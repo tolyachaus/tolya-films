@@ -7,20 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Manrope', 'sans-serif'],
-              display: ['Oswald', 'sans-serif'],
+              sans: ['Outfit', 'sans-serif'],
+              display: ['"Playfair Display"', 'serif'],
             },
             colors: {
               brand: {
                 gold: '#D4AF37',
-                dark: '#0a0a0a',
-                gray: '#1a1a1a'
+                dark: '#111111',
+                gray: '#F3F4F6',
+                light: '#FAFAFA'
               }
             }
           }
@@ -28,6 +29,18 @@
       }
     </script>
     <style>
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.4;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
       /* Custom scrollbar for sleek look */
       ::-webkit-scrollbar {
         width: 8px;
@@ -59,7 +72,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-brand-dark text-white antialiased selection:bg-white selection:text-black">
+  <body class="bg-brand-light text-brand-dark antialiased selection:bg-brand-dark selection:text-brand-light">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
