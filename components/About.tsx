@@ -73,9 +73,9 @@ const About: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-brand-dark font-display text-xl uppercase tracking-widest mb-2">Mein Stil</h3>
+                <h3 className="text-brand-dark font-display text-xl uppercase tracking-widest mb-2">My Style</h3>
                 <p>
-                  Lebendig, emotional und visuell stark. Im Fokus stehen <span className="text-brand-dark italic">Echtheit und Rhythmus</span>.
+                  Vibrant, emotional, and visually compelling. The focus is on <span className="text-brand-dark italic">authenticity and rhythm</span>.
                 </p>
               </div>
             </div>

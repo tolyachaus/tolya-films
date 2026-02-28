@@ -23,15 +23,15 @@ const Contact: React.FC = () => {
             />
             <span id="footer-title" className="hidden text-3xl font-display font-bold tracking-widest uppercase mb-6">Tolya Films</span>
             <p className="text-gray-600 font-light max-w-sm leading-relaxed">
-              Professionelle Videoproduktion mit Leidenschaft für Detail und Rhythmus.
-              Lassen Sie uns Ihre Geschichte erzählen.
+              Professional video production with a passion for detail and rhythm.
+              Let's tell your story.
             </p>
           </div>
 
           {/* Contact Info */}
           <div className="col-span-1">
             <h3 className="text-lg font-display font-bold uppercase tracking-widest mb-6 text-brand-dark">
-              Kontakt
+              Contact
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 group animate-pulse hover:animate-none">
@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
               <li className="flex items-start space-x-3 group">
                 <MapPin className="w-5 h-5 text-gray-500 group-hover:text-brand-dark transition-colors mt-1" />
                 <span className="text-gray-600 group-hover:text-brand-dark transition-colors font-light">
-                  Deutschland, Mannheim
+                  Mannheim, Germany
                 </span>
               </li>
             </ul>
@@ -101,8 +101,8 @@ const Contact: React.FC = () => {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 font-medium tracking-wider">
           <p>&copy; {new Date().getFullYear()} TOLYA FILMS. ALL RIGHTS RESERVED.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-gray-400 transition-colors">IMPRESSUM</a>
-            <a href="#" className="hover:text-gray-400 transition-colors">DATENSCHUTZ</a>
+            <a href="#" className="hover:text-gray-400 transition-colors">IMPRINT</a>
+            <a href="#" className="hover:text-gray-400 transition-colors">PRIVACY POLICY</a>
           </div>
         </div>
 
