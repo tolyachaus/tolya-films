@@ -56,13 +56,13 @@ const Navbar: React.FC = () => {
             </a>
           ))}
           <div className={`flex items-center space-x-4 pl-4 border-l ${isScrolled ? 'border-brand-dark/20' : 'border-white/20'}`}>
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-transform hover:scale-110">
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-70 transition-transform hover:scale-110">
               <Instagram size={18} />
             </a>
-            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-transform hover:scale-110">
+            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-70 transition-transform hover:scale-110">
               <Facebook size={18} />
             </a>
-            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-transform hover:scale-110">
+            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:opacity-70 transition-transform hover:scale-110">
               <Youtube size={18} />
             </a>
           </div>
@@ -98,9 +98,9 @@ const Navbar: React.FC = () => {
                 </a>
               ))}
               <div className="flex space-x-8 mt-8">
-                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400"><Instagram size={24} /></a>
-                <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400"><Facebook size={24} /></a>
-                <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400"><Youtube size={24} /></a>
+                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white hover:text-gray-400"><Instagram size={24} /></a>
+                <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white hover:text-gray-400"><Facebook size={24} /></a>
+                <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white hover:text-gray-400"><Youtube size={24} /></a>
               </div>
             </div>
           </motion.div>

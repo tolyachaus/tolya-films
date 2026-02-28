@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { X, Instagram, Facebook, Youtube } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { SOCIAL_LINKS } from '../types';
@@ -14,12 +15,12 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
   // Construct safe origin for embed
   const origin = typeof window !== 'undefined' ? window.location.origin : '';
 
-  return (
+  const modalContent = (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black text-white"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md text-white"
       onClick={onClose}
     >
       {/* Header Controls */}
@@ -55,6 +56,7 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
 
         <button
           onClick={onClose}
+          aria-label="Close video modal"
           className="text-white/70 hover:text-white transition-colors"
         >
           <X size={40} strokeWidth={1} />
@@ -78,6 +80,8 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
       </div>
     </motion.div>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default VideoModal;

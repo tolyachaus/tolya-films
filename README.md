@@ -1,21 +1,21 @@
 # Tolya Films Portfolio
 
-Официальный сайт-портфолио для Tolya Films.
+The official portfolio website for Tolya Films.
 
-## 🎬 О проекте
-Кинематографичный, высокопроизводительный сайт, созданный для демонстрации видеоработ. Разработан с использованием современных веб-технологий для максимальной плавности и визуального эффекта.
+## 🎬 About the Project
+A cinematic, high-performance website created to showcase videography work. Built with modern web technologies for maximum smoothness and visual impact.
 
-## 🛠 Технологии
+## 🛠 Technologies
 - **React 19**
-- **Vite** (для быстрой сборки)
-- **Tailwind CSS** (стилизация)
-- **Framer Motion** (анимации)
-- **Lucide React** (иконки)
+- **Vite** (for fast building)
+- **Tailwind CSS** (styling)
+- **Framer Motion** (animations)
+- **Lucide React** (icons)
 
-## 🚀 Как запустить локально
-1. Клонируйте репозиторий.
-2. Установите зависимости: `npm install`
-3. Запустите сервер разработки: `npm run dev`
+## 🚀 How to Run Locally
+1. Clone the repository.
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
 
-## 📦 Деплой
-Сайт автоматически собирается и публикуется на GitHub Pages при каждом пуше в ветку `main` благодаря GitHub Actions.
+## 📦 Deployment
+The website is automatically built and deployed to GitHub Pages on every push to the `main` branch using GitHub Actions.
