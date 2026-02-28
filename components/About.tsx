@@ -50,32 +50,32 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div>
-              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight">
-                ABOUT ME
+              <h2 className="text-4xl md:text-6xl font-display font-bold mb-6 tracking-tight text-brand-dark">
+                ÜBER MICH
               </h2>
-              <div className="h-1 w-16 bg-white mb-8"></div>
+              <div className="h-1 w-16 bg-brand-gold mb-8"></div>
             </div>
 
-            <div className="space-y-6 text-gray-700 font-light text-lg leading-relaxed">
+            <div className="space-y-6 text-brand-dark font-light text-lg leading-relaxed">
               <p>
-                I craft videos that capture attention – helping people and brands be
-                <span className="text-brand-dark font-medium"> seen, heard, and remembered</span>.
-                I work with full dedication, pay attention to every detail, and keep my word.
-                My portfolio speaks best for my work.
+                Ich erstelle Videos, die Aufmerksamkeit erregen – um Menschen und Marken dabei zu helfen,
+                <span className="font-medium"> gesehen, gehört und wiedererkannt</span> zu werden.
+                Ich arbeite mit vollem Einsatz, achte auf jedes Detail und halte mein Wort.
+                Meine Arbeiten im Portfolio sprechen am besten für meine Leistungen.
               </p>
 
               <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm">
-                <h3 className="text-brand-dark font-display text-xl uppercase tracking-widest mb-2">What I Do</h3>
+                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Was ich mache</h3>
                 <p>
-                  I shoot and edit videos. Besides video, I am also a musician – this gives me a special feeling for
-                  <span className="text-brand-dark font-medium"> rhythm, sound, and mood</span> in the image.
+                  Ich filme und schneide Videos. Neben dem Video bin ich auch Musiker – das gibt mir ein besonderes Gefühl für
+                  <span className="font-medium"> Rhythmus, Sound und Stimmung</span> im Bild.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-brand-dark font-display text-xl uppercase tracking-widest mb-2">My Style</h3>
+                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Mein Stil</h3>
                 <p>
-                  Vibrant, emotional, and visually compelling. The focus is on <span className="text-brand-dark italic">authenticity and rhythm</span>.
+                  Lebendig, emotional und visuell stark. Im Fokus stehen <span className="italic">Echtheit und Rhythmus</span>.
                 </p>
               </div>
             </div>
