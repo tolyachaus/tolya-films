@@ -31,6 +31,7 @@ export const SOCIAL_LINKS = {
 };
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ' },
   { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo' },
   { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0' },
   { id: '3', title: 'Music Video', videoId: 'jMFLPuGl71I' },
