@@ -75,7 +75,7 @@ const Contact: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-md"
               >
                 <Instagram size={20} />
               </a>
@@ -84,7 +84,7 @@ const Contact: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 hover:scale-110 transition-all duration-300 shadow-md"
               >
                 <Facebook size={20} />
               </a>
@@ -93,7 +93,7 @@ const Contact: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center text-brand-dark hover:bg-brand-dark hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white hover:bg-red-700 hover:scale-110 transition-all duration-300 shadow-md"
               >
                 <Youtube size={20} />
               </a>
