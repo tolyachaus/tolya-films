@@ -33,10 +33,10 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
             Portfolio
           </a>
           <a href="#about" onClick={onClose} className="text-xs font-bold tracking-widest text-white hover:text-gray-300 uppercase transition-colors">
-            Über mich
+            About
           </a>
           <a href="#contact" onClick={onClose} className="text-xs font-bold tracking-widest text-white hover:text-gray-300 uppercase transition-colors">
-            Kontakt
+            Contact
           </a>
         </div>
 
