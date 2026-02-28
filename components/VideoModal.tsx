@@ -19,11 +19,11 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-black text-white"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black text-white"
       onClick={onClose}
     >
       {/* Header Controls */}
-      <div 
+      <div
         className="absolute top-0 left-0 right-0 p-6 md:p-8 flex justify-end items-center z-50"
         onClick={(e) => e.stopPropagation()}
       >
@@ -42,15 +42,15 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
         <div className="hidden md:block w-px h-5 bg-white/20 mr-8"></div>
 
         <div className="hidden md:flex items-center space-x-5 mr-10">
-            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
-              <Instagram size={18} />
-            </a>
-            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
-              <Facebook size={18} />
-            </a>
-            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
-              <Youtube size={18} />
-            </a>
+          <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+            <Instagram size={18} />
+          </a>
+          <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+            <Facebook size={18} />
+          </a>
+          <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
+            <Youtube size={18} />
+          </a>
         </div>
 
         <button
@@ -60,9 +60,9 @@ const VideoModal: React.FC<VideoModalProps> = ({ videoId, onClose }) => {
           <X size={40} strokeWidth={1} />
         </button>
       </div>
-      
+
       {/* Video Container */}
-      <div 
+      <div
         className="w-full max-w-6xl aspect-video bg-black shadow-2xl relative"
         onClick={(e) => e.stopPropagation()}
       >
