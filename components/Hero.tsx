@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
           Your browser does not support the video tag.
         </video>
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-brand-light"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-brand-light/20"></div>
       </div>
 
       {/* Content */}
