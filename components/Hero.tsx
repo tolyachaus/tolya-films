@@ -13,7 +13,8 @@ const Hero: React.FC = () => {
           muted
           loop
           playsInline
-          poster="https://img.youtube.com/vi/Q2-FvT6VzLw/maxresdefault.jpg"
+          controls={false}
+          disablePictureInPicture
           className="w-full h-full object-cover opacity-90"
         >
           <source src={ASSETS.showreel} type="video/mp4" />
