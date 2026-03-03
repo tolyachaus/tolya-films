@@ -15,11 +15,11 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
 
           {/* Brand */}
-          <div className="col-span-1 lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
             <img
               src={ASSETS.logoBlack}
               alt="Tolya Films"
-              className="h-12 mb-6"
+              className="h-10 md:h-12 mb-4"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const title = document.getElementById('footer-title');
@@ -27,8 +27,8 @@ const Contact: React.FC = () => {
               }}
             />
             <span id="footer-title" className="hidden text-3xl font-display font-bold tracking-widest uppercase mb-6">Tolya Films</span>
-            <p className="text-gray-600 font-light max-w-sm leading-relaxed">
-              Jede Geschichte verdient es, gesehen zu werden.
+            <p className="text-gray-500 font-medium text-xs md:text-sm tracking-widest uppercase max-w-sm leading-relaxed mt-2 transition-all">
+              JEDE GESCHICHTE VERDIENT ES,<br className="hidden md:block" />GESEHEN ZU WERDEN.
             </p>
           </div>
 
