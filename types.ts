@@ -19,7 +19,7 @@ export const ASSETS = {
   logoWhite: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_white.png',
   logoBlack: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_black.png',
   profilePhoto: 'https://tolyafilms.com/wp-content/uploads/2025/10/DSC01515-3-scaled.jpg',
-  showreel: '/schowreel_2025_HDV1.mp4',
+  showreel: '/tolya-films/schowreel_2025_HDV1.mp4',
 };
 
 export const SOCIAL_LINKS = {
