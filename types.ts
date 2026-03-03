@@ -31,7 +31,7 @@ export const SOCIAL_LINKS = {
   whatsapp: 'https://wa.me/4916096562965'
 };
 
-import rikeJonathanCover from './src/assets/rike_jonathan_cover.jpg';
+import rikeJonathanCover from './src/assets/rike_jonathan_cover.avif';
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-[21/9]', thumbnail: rikeJonathanCover },
