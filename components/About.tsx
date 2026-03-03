@@ -58,24 +58,23 @@ const About: React.FC = () => {
 
             <div className="space-y-6 text-brand-dark font-light text-lg leading-relaxed">
               <p>
-                Ich erstelle Videos, die Aufmerksamkeit erregen – um Menschen und Marken dabei zu helfen,
-                <span className="font-medium"> gesehen, gehört und wiedererkannt</span> zu werden.
-                Ich arbeite mit vollem Einsatz, achte auf jedes Detail und halte mein Wort.
-                Meine Arbeiten im Portfolio sprechen am besten für meine Leistungen.
+                Ich drehe Videos, die im Gedächtnis bleiben — nicht weil sie nur gut aussehen, sondern weil in ihnen echte Emotion steckt. Seit einigen Jahren arbeite ich mit Paaren, Marken und Veranstaltern in ganz Deutschland. Jedes Projekt ist für mich keine bloße Aufgabe, sondern eine Geschichte, die es wert ist, ehrlich und mit Herz erzählt zu werden.
+              </p>
+              <p>
+                Neben dem Video mache ich Musik — und das gibt mir etwas, das man technisch nicht lernen kann: ein Gespür für Rhythmus, Dynamik und den entscheidenden Moment. Deshalb sehen meine Videos nicht nur gut aus — sie fühlen sich richtig an.
               </p>
 
-              <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm">
+              <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm mt-8">
                 <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Was ich mache</h3>
                 <p>
-                  Ich filme und schneide Videos. Neben dem Video bin ich auch Musiker – das gibt mir ein besonderes Gefühl für
-                  <span className="font-medium"> Rhythmus, Sound und Stimmung</span> im Bild.
+                  Ich filme und schneide Hochzeitsvideos, Content für Social Media und Videos für Marken. Vom ersten Bild bis zum finalen Schnitt bin ich vollständig in jeden Auftrag vertieft.
                 </p>
               </div>
 
-              <div>
+              <div className="mt-8">
                 <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Mein Stil</h3>
                 <p>
-                  Lebendig, emotional und visuell stark. Im Fokus stehen <span className="italic">Echtheit und Rhythmus</span>.
+                  Lebendig, emotional, rhythmisch. Ohne Künstlichkeit — nur das, was wirklich da ist.
                 </p>
               </div>
             </div>
