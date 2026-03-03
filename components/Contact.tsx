@@ -36,7 +36,7 @@ const Contact: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 group animate-pulse hover:animate-none">
                 <Phone className="w-5 h-5 text-gray-500 group-hover:text-brand-dark transition-colors mt-1" />
-                <a href={`tel:${SOCIAL_LINKS.phone}`} className="text-brand-dark font-medium transition-colors">
+                <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className="text-brand-dark font-medium transition-colors hover:text-brand-gold">
                   {SOCIAL_LINKS.phone}
                 </a>
               </li>
@@ -66,9 +66,10 @@ const Contact: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white hover:bg-black hover:scale-110 transition-all duration-300 shadow-md"
+                className="px-4 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white hover:bg-black hover:scale-105 transition-all duration-300 shadow-md gap-2"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span className="font-medium tracking-wide">{SOCIAL_LINKS.phone}</span>
               </a>
               <a
                 href={SOCIAL_LINKS.instagram}
