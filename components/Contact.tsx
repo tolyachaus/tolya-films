@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Instagram, Facebook, Youtube, Mail, MapPin, Phone } from 'lucide-react';
 import { ASSETS, SOCIAL_LINKS } from '../types';
 import ImpressumModal from './ImpressumModal';
+import DatenschutzModal from './DatenschutzModal';
 
 const Contact: React.FC = () => {
   const [isImpressumOpen, setIsImpressumOpen] = useState(false);
+  const [isDatenschutzOpen, setIsDatenschutzOpen] = useState(false);
 
   return (
     <footer id="contact" className="bg-brand-gray text-brand-dark pt-24 pb-12 border-t border-black/10 relative z-10">
@@ -108,13 +110,14 @@ const Contact: React.FC = () => {
           <p>&copy; {new Date().getFullYear()} TOLYA FILMS. ALL RIGHTS RESERVED.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <button onClick={() => setIsImpressumOpen(true)} className="hover:text-gray-400 transition-colors uppercase tracking-wider">IMPRESSUM</button>
-            <a href="#" className="hover:text-gray-400 transition-colors">DATENSCHUTZ</a>
+            <button onClick={() => setIsDatenschutzOpen(true)} className="hover:text-gray-400 transition-colors uppercase tracking-wider">DATENSCHUTZ</button>
           </div>
         </div>
 
       </div>
 
       <ImpressumModal isOpen={isImpressumOpen} onClose={() => setIsImpressumOpen(false)} />
+      <DatenschutzModal isOpen={isDatenschutzOpen} onClose={() => setIsDatenschutzOpen(false)} />
     </footer>
   );
 };

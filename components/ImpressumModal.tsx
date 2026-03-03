@@ -2,7 +2,6 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SOCIAL_LINKS } from '../types';
 
 interface ImpressumModalProps {
     isOpen: boolean;
@@ -21,7 +20,6 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
                 className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md text-brand-dark p-4 md:p-8"
                 onClick={onClose}
             >
-                {/* Modal Container */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95, y: 20 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -29,7 +27,6 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
                     className="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl max-h-[90vh] overflow-y-auto"
                     onClick={(e) => e.stopPropagation()}
                 >
-                    {/* Close Button */}
                     <button
                         onClick={onClose}
                         aria-label="Close impressum"
@@ -38,10 +35,10 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
                         <X size={32} strokeWidth={1.5} />
                     </button>
 
-                    {/* Content */}
-                    <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-widest text-brand-dark mb-8">
+                    <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-widest text-brand-dark mb-4">
                         Impressum
                     </h2>
+                    <p className="font-bold mb-8">Angaben gemäß § 5 DDG</p>
 
                     <div className="space-y-8 font-light leading-relaxed text-gray-700">
                         <div>
@@ -54,8 +51,8 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
 
                         <div>
                             <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">Kontakt</h3>
-                            <p>Telefon: <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">{SOCIAL_LINKS.phone}</a></p>
-                            <p>E-Mail: <a href={`mailto:${SOCIAL_LINKS.email}`} className="hover:text-brand-gold transition-colors">{SOCIAL_LINKS.email}</a></p>
+                            <p>Telefon: <a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
+                            <p>E-Mail: <a href="mailto:tolya.films@gmail.com" className="hover:text-brand-gold transition-colors">tolya.films@gmail.com</a></p>
                         </div>
 
                         <div>
