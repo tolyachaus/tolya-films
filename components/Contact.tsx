@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
   const [isDatenschutzOpen, setIsDatenschutzOpen] = useState(false);
 
   return (
-    <footer id="contact" className="bg-brand-gray text-brand-dark pt-24 pb-12 border-t border-black/10 relative z-10">
+    <footer id="contact" className="bg-brand-gray text-brand-dark pt-16 md:pt-32 pb-12 border-t border-black/10 relative z-10">
       <div className="container mx-auto px-6">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">

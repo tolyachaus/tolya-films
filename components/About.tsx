@@ -12,7 +12,7 @@ const About: React.FC = () => {
   const imageY = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
   return (
-    <section id="about" className="py-24 bg-white overflow-hidden relative" ref={containerRef}>
+    <section id="about" className="py-12 md:py-32 bg-white overflow-hidden relative" ref={containerRef}>
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
 
