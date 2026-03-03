@@ -31,8 +31,10 @@ export const SOCIAL_LINKS = {
   whatsapp: 'https://wa.me/4916096562965'
 };
 
+import rikeJonathanCover from './src/assets/rike_jonathan_cover.jpg';
+
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
-  { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-[21/9]', thumbnail: '/images/rike_jonathan_cover.jpg' },
+  { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-[21/9]', thumbnail: rikeJonathanCover },
   { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video' },
   { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo' },
   { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0' },
