@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
 
           {/* Brand */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
+          <div className="col-span-1 lg:col-span-2 flex flex-col items-start text-left">
             <img
               src={ASSETS.logoBlack}
               alt="Tolya Films"
