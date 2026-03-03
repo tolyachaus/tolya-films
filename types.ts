@@ -34,7 +34,7 @@ export const SOCIAL_LINKS = {
 import rikeJonathanCover from './src/assets/rike_jonathan_cover.avif';
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
-  { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-[21/9]', thumbnail: rikeJonathanCover },
+  { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-video', thumbnail: rikeJonathanCover },
   { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video' },
   { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo' },
   { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0' },
