@@ -8,7 +8,7 @@ const Portfolio: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 bg-brand-light relative z-10">
+    <section id="portfolio" className="py-12 md:py-32 bg-brand-light relative z-10">
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,12 +30,12 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative aspect-video bg-brand-gray cursor-pointer overflow-hidden rounded-sm"
+              className={`group relative ${item.aspectRatio || 'aspect-video'} bg-brand-gray cursor-pointer overflow-hidden rounded-sm ${index === 0 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
               onClick={() => setSelectedVideo(item.videoId)}
             >
               {/* Thumbnail */}
               <img
-                src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
+                src={item.thumbnail || `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                 alt={item.title}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

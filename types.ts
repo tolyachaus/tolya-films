@@ -5,6 +5,7 @@ export interface PortfolioItem {
   title: string;
   videoId: string; // YouTube ID
   thumbnail?: string;
+  aspectRatio?: string; // e.g. 'aspect-[21/9]'
 }
 
 export interface SocialLink {
@@ -17,8 +18,8 @@ export interface SocialLink {
 export const ASSETS = {
   logoWhite: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_white.png',
   logoBlack: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_black.png',
-  profilePhoto: 'https://tolyafilms.com/wp-content/uploads/2025/10/DSC01515-3-scaled.jpg',
-  showreel: 'https://tolyafilms.com/wp-content/uploads/2025/11/schowreel_2025_HDV1.mp4',
+  profilePhoto: '/tolya-films/profile.jpg',
+  showreel: '/tolya-films/schowreel_2025_HDV1.mp4',
 };
 
 export const SOCIAL_LINKS = {
@@ -26,12 +27,15 @@ export const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/people/Tolyafilms/61582845653575',
   youtube: 'https://www.youtube.com/channel/UCNp-b0u-fkjNH0QFdE49m6w',
   email: 'tolya.films@gmail.com',
-  phone: '+49 123 456789',
-  whatsapp: 'https://wa.me/49123456789'
+  phone: '+49 160 9652965',
+  whatsapp: 'https://wa.me/4916096562965'
 };
 
+import rikeJonathanCover from './src/assets/rike_jonathan_cover.avif';
+
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
-  { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ' },
+  { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-video', thumbnail: rikeJonathanCover },
+  { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video' },
   { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo' },
   { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0' },
   { id: '3', title: 'Music Video', videoId: 'jMFLPuGl71I' },

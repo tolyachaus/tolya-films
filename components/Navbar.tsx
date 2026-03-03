@@ -125,8 +125,7 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 bg-gradient-to-b from-black/95 via-black/90 to-brand-dark/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center"
           >
-            {/* Changed z-index map and bg color wrapper to span fullscreen properly */}
-            <div className="flex flex-col items-center space-y-8 w-full px-6 text-white text-center">
+            <div className="flex flex-col items-center space-y-8 w-full px-6 text-gray-800 text-center">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -137,7 +136,7 @@ const Navbar: React.FC = () => {
                   {link.name}
                 </a>
               ))}
-              <div className="flex flex-wrap justify-center gap-4 mt-8 pt-8 border-t border-white/10 w-full max-w-sm">
+              <div className="flex flex-wrap justify-center gap-4 mt-8 pt-8 border-t border-gray-400/30 w-full max-w-sm">
                 <a
                   href={SOCIAL_LINKS.whatsapp}
                   target="_blank"
