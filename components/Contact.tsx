@@ -23,8 +23,7 @@ const Contact: React.FC = () => {
             />
             <span id="footer-title" className="hidden text-3xl font-display font-bold tracking-widest uppercase mb-6">Tolya Films</span>
             <p className="text-gray-600 font-light max-w-sm leading-relaxed">
-              Professionelle Videoproduktion mit Leidenschaft für Detail und Rhythmus.
-              Lassen Sie uns Ihre Geschichte erzählen.
+              Jede Geschichte verdient es, gesehen zu werden.
             </p>
           </div>
 
