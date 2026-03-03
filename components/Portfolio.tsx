@@ -35,7 +35,7 @@ const Portfolio: React.FC = () => {
             >
               {/* Thumbnail */}
               <img
-                src={`https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
+                src={item.thumbnail || `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                 alt={item.title}
                 loading="lazy"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
