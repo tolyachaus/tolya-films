@@ -18,8 +18,8 @@ export interface SocialLink {
 export const ASSETS = {
   logoWhite: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_white.png',
   logoBlack: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_black.png',
-  profilePhoto: '/tolya-films/profile.jpg',
-  showreel: '/tolya-films/schowreel_2025_HDV1.mp4',
+  profilePhoto: '/profile.jpg',
+  showreel: '/schowreel_2025_HDV1.mp4',
 };
 
 export const SOCIAL_LINKS = {
