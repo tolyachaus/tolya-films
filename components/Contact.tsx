@@ -109,8 +109,20 @@ const Contact: React.FC = () => {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 font-medium tracking-wider">
           <p>&copy; {new Date().getFullYear()} TOLYA FILMS. ALL RIGHTS RESERVED.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <button onClick={() => setIsImpressumOpen(true)} className="hover:text-gray-400 transition-colors uppercase tracking-wider">IMPRESSUM</button>
-            <button onClick={() => setIsDatenschutzOpen(true)} className="hover:text-gray-400 transition-colors uppercase tracking-wider">DATENSCHUTZ</button>
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); setIsImpressumOpen(true); }}
+              className="hover:text-gray-400 transition-colors uppercase tracking-wider"
+            >
+              IMPRESSUM
+            </button>
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); setIsDatenschutzOpen(true); }}
+              className="hover:text-gray-400 transition-colors uppercase tracking-wider"
+            >
+              DATENSCHUTZ
+            </button>
           </div>
         </div>
 
