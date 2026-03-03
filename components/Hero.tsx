@@ -34,6 +34,7 @@ const Hero: React.FC = () => {
         >
           <h1 className="text-5xl md:text-8xl font-display font-bold tracking-[0.15em] uppercase text-white drop-shadow-2xl mb-4">
             Cinematic Vision
+            <span className="sr-only">Tolya Films - Videograf in Mannheim</span>
           </h1>
           <p className="text-lg md:text-2xl font-light text-gray-100 tracking-[0.3em] uppercase max-w-2xl mx-auto drop-shadow-lg">
             Videografie & Editing

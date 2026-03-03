@@ -58,7 +58,7 @@ const About: React.FC = () => {
 
             <div className="space-y-6 text-brand-dark font-light text-lg leading-relaxed">
               <p>
-                Ich drehe Videos, die im Gedächtnis bleiben — nicht weil sie nur gut aussehen, sondern weil in ihnen echte Emotion steckt. Seit einigen Jahren arbeite ich mit Paaren, Marken und Veranstaltern in ganz Deutschland. Jedes Projekt ist für mich keine bloße Aufgabe, sondern eine Geschichte, die es wert ist, ehrlich und mit Herz erzählt zu werden.
+                Ich drehe Videos, die im Gedächtnis bleiben — nicht weil sie nur gut aussehen, sondern weil in ihnen echte Emotion steckt. Seit einigen Jahren arbeite ich als Videograf mit Paaren, Marken und Veranstaltern in Mannheim und ganz Deutschland. Jedes Projekt ist für mich keine bloße Aufgabe, sondern eine Geschichte, die es wert ist, ehrlich und mit Herz erzählt zu werden.
               </p>
               <p>
                 Neben dem Video mache ich Musik — und das gibt mir etwas, das man technisch nicht lernen kann: ein Gespür für Rhythmus, Dynamik und den entscheidenden Moment. Deshalb sehen meine Videos nicht nur gut aus — sie fühlen sich richtig an.
