@@ -123,9 +123,8 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-brand-dark/98 backdrop-blur-xl z-50 flex flex-col items-center justify-center"
+            className="fixed inset-0 bg-brand-dark z-50 flex flex-col items-center justify-center"
           >
-            {/* Changed z-index map and bg color wrapper to span fullscreen properly */}
             <div className="flex flex-col items-center space-y-8 w-full px-6 text-white text-center">
               {navLinks.map((link) => (
                 <a
