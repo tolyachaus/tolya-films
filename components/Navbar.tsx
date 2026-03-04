@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
             <img
               src={logoSrc}
               alt="Tolya Films"
-              className="h-9 md:h-11 lg:h-14 w-auto object-contain transition-all duration-300"
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-300"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const span = e.currentTarget.parentElement?.querySelector('span');
