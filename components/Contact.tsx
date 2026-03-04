@@ -23,7 +23,10 @@ const Contact: React.FC = () => {
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const title = document.getElementById('footer-title');
-                if (title) title.style.display = 'block';
+                if (title) {
+                  title.classList.remove('hidden');
+                  title.classList.add('block');
+                }
               }}
             />
             <span id="footer-title" className="hidden text-3xl font-display font-bold tracking-widest uppercase mb-6">Tolya Films</span>

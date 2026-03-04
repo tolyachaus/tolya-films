@@ -28,9 +28,9 @@ const Navbar: React.FC = () => {
       ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm'
       : 'bg-transparent py-6';
 
-  const logoSrc = isMobileMenuOpen ? ASSETS.logoWhite : (isScrolled ? ASSETS.logoBlack : ASSETS.logoWhite);
+  const logoSrc = isMobileMenuOpen ? ASSETS.logoBlack : (isScrolled ? ASSETS.logoBlack : ASSETS.logoWhite);
   const desktopTextColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : 'text-white';
-  const mobileToggleColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : 'text-white';
+  const mobileToggleColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : (isMobileMenuOpen ? 'text-brand-dark' : 'text-white');
 
   return (
     <>
@@ -48,10 +48,13 @@ const Navbar: React.FC = () => {
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const span = e.currentTarget.parentElement?.querySelector('span');
-                if (span) span.style.display = 'block';
+                if (span) {
+                  span.classList.remove('hidden');
+                  span.classList.add('block');
+                }
               }}
             />
-            <span className={`hidden text-2xl font-display font-bold ${!isMobileMenuOpen && isScrolled ? "text-brand-dark" : "text-white"} tracking-widest uppercase`}>Tolya Films</span>
+            <span className={`hidden text-2xl font-display font-bold ${isMobileMenuOpen || isScrolled ? "text-brand-dark" : "text-white"} tracking-widest uppercase`}>Tolya Films</span>
           </a>
 
           {/* Desktop Menu */}
