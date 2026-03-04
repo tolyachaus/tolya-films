@@ -28,6 +28,29 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Tolya Films",
+      "image": "https://tolyafilms.com/logo.jpg",
+      "@id": "https://tolyafilms.com/",
+      "url": "https://tolyafilms.com/",
+      "telephone": "+49 160 9652965",
+      "email": "tolya.films@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Heckerstraße 18",
+        "addressLocality": "Mannheim",
+        "postalCode": "68199",
+        "addressCountry": "DE"
+      },
+      "sameAs": [
+        "https://www.instagram.com/tolya.films",
+        "https://www.facebook.com/people/Tolyafilms/61582845653575",
+        "https://www.youtube.com/channel/UCNp-b0u-fkjNH0QFdE49m6w"
+      ]
+    }
+  </script>
   <script type="importmap">
 {
   "imports": {
@@ -42,26 +65,7 @@
 </head>
 
 <body class="bg-brand-light text-brand-dark antialiased selection:bg-brand-dark selection:text-brand-light">
-  <div id="root">
-    <!-- SEO Fallback Content for Crawlers (Replaced by React on Client Load) -->
-    <header>
-      <h1>Tolya Films | Videograf & Editing in Mannheim</h1>
-      <nav>
-        <ul>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#about">Über mich</a></li>
-          <li><a href="#contact">Kontakt</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section>
-        <h2>Professionelle Videoproduktion</h2>
-        <p>Tolya Films - Professionelle Videoproduktion und Bearbeitung in Mannheim, Deutschland. Entdecken Sie
-          lebendige, emotionale und kraftvolle visuelle Werke.</p>
-      </section>
-    </main>
-  </div>
+  <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
 
