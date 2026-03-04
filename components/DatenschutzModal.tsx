@@ -64,7 +64,7 @@ const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) 
 
                         <section>
                             <h3 className="font-display font-bold text-lg text-brand-dark mb-2">3. Hosting und Server-Logfiles</h3>
-                            <p>Diese Website wird bei der Hetzner Online GmbH gehostet.</p>
+                            <p>Diese Website wird über GitHub Pages (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) gehostet.</p>
                             <p className="mt-2">Beim Besuch dieser Website werden durch den Webserver bzw. den Hosting-Anbieter automatisch Informationen in sogenannten Server-Logfiles erfasst. Dies können insbesondere sein:</p>
                             <ul className="list-disc pl-5 mt-2 space-y-1">
                                 <li>IP-Adresse</li>
