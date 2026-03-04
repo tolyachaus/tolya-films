@@ -16,8 +16,8 @@ export interface SocialLink {
 
 // Assuming assets might be HTTP, we will try to force HTTPS or handle errors gracefully in UI
 export const ASSETS = {
-  logoWhite: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_white.png',
-  logoBlack: 'https://tolyafilms.com/wp-content/uploads/2025/06/logo_tolya_films_black.png',
+  logoWhite: '/logo.jpg',
+  logoBlack: '/logo.jpg',
   profilePhoto: '/profile.jpg',
   showreel: '/schowreel_2025_HDV1.mp4',
 };
