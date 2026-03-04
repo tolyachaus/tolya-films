@@ -16,8 +16,8 @@ export interface SocialLink {
 
 // Assuming assets might be HTTP, we will try to force HTTPS or handle errors gracefully in UI
 export const ASSETS = {
-  logoWhite: '/logo.jpg',
-  logoBlack: '/logo.jpg',
+  logoWhite: '/logo-transparent.png',
+  logoBlack: '/logo-transparent.png',
   profilePhoto: '/profile.jpg',
   showreel: '/schowreel_2025_HDV1.mp4',
 };

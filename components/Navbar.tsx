@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
       ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm'
       : 'bg-transparent py-6';
 
-  const logoSrc = isMobileMenuOpen ? ASSETS.logoBlack : (isScrolled ? ASSETS.logoBlack : ASSETS.logoWhite);
+  const logoSrc = ASSETS.logoBlack; // transparent PNG, colour controlled by CSS filter
   const desktopTextColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : 'text-white';
   const mobileToggleColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : (isMobileMenuOpen ? 'text-brand-dark' : 'text-white');
 
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
             <img
               src={logoSrc}
               alt="Tolya Films"
-              className="h-8 md:h-10 w-auto object-contain transition-opacity duration-300"
+              className={`h-8 md:h-10 lg:h-12 w-auto object-contain transition-all duration-300 ${!isMobileMenuOpen && !isScrolled ? 'brightness-0 invert' : 'brightness-0'}`}
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const span = e.currentTarget.parentElement?.querySelector('span');
