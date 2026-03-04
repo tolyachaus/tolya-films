@@ -32,13 +32,19 @@ export const SOCIAL_LINKS = {
 };
 
 import rikeJonathanCover from './src/assets/rike_jonathan_cover.avif';
+import gemmaTimoCover from './src/assets/thumbnails/YdLQ3CAjlpQ.jpg';
+import cinematicPortraitCover from './src/assets/thumbnails/ln-P6GUBLPo.jpg';
+import eventHighlightCover from './src/assets/thumbnails/dVGzZKFKxN0.jpg';
+import musicVideoCover from './src/assets/thumbnails/jMFLPuGl71I.jpg';
+import commercialCover from './src/assets/thumbnails/SskIWKbsVss.jpg';
+import documentaryCover from './src/assets/thumbnails/zyquMe78knA.jpg';
 
 export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-video', thumbnail: rikeJonathanCover },
-  { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video' },
-  { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo' },
-  { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0' },
-  { id: '3', title: 'Music Video', videoId: 'jMFLPuGl71I' },
-  { id: '4', title: 'Commercial', videoId: 'SskIWKbsVss' },
-  { id: '5', title: 'Documentary', videoId: 'zyquMe78knA' },
+  { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video', thumbnail: gemmaTimoCover },
+  { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo', thumbnail: cinematicPortraitCover },
+  { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0', thumbnail: eventHighlightCover },
+  { id: '3', title: 'Music Video', videoId: 'jMFLPuGl71I', thumbnail: musicVideoCover },
+  { id: '4', title: 'Commercial', videoId: 'SskIWKbsVss', thumbnail: commercialCover },
+  { id: '5', title: 'Documentary', videoId: 'zyquMe78knA', thumbnail: documentaryCover },
 ];
