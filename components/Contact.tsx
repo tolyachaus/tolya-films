@@ -19,7 +19,7 @@ const Contact: React.FC = () => {
             <img
               src={ASSETS.logoBlack}
               alt="Tolya Films"
-              className="h-14 md:h-18 lg:h-20 w-auto object-contain brightness-0 mb-6"
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain mb-6"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
                 const title = document.getElementById('footer-title');
