@@ -49,21 +49,6 @@ import documentaryCover from './src/assets/thumbnails/zyquMe78knA.jpg';
 
 export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
-    id: '8',
-    slug: 'kerstin-freddy',
-    title: 'KERSTIN & FREDDY',
-    videoId: 'tQn4lPc3vjQ', // Trailer
-    fullVideoId: 'mnHxcdehFlo', // Full Film
-    aspectRatio: 'aspect-video',
-    thumbnail: rikeJonathanCover,
-    location: {
-      name: 'Morrhof',
-      city: 'Großkarlbach, Rheinland-Pfalz, Germany',
-      description: 'Toskanischer Garten & Orangerie · Hauptstraße 77, 67229 Großkarlbach. Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
-    },
-    quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
-  },
-  {
     id: '7',
     slug: 'rike-jonathan',
     title: 'RIKE & JONATHAN',
@@ -88,6 +73,21 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
       name: 'Schriesheim',
       city: 'Stadt in Deutschland'
     }
+  },
+  {
+    id: '8',
+    slug: 'kerstin-freddy',
+    title: 'KERSTIN & FREDDY',
+    videoId: 'tQn4lPc3vjQ', // Trailer
+    fullVideoId: 'mnHxcdehFlo', // Full Film
+    aspectRatio: 'aspect-video',
+    thumbnail: 'https://img.youtube.com/vi/tQn4lPc3vjQ/maxresdefault.jpg',
+    location: {
+      name: 'Morrhof',
+      city: 'Großkarlbach, Rheinland-Pfalz, Germany',
+      description: 'Toskanischer Garten & Orangerie · Hauptstraße 77, 67229 Großkarlbach. Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
+    },
+    quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
   },
   {
     id: '1',

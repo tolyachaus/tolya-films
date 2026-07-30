@@ -52,9 +52,24 @@ const Portfolio: React.FC = () => {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/20 transition-all duration-500 flex flex-col items-center justify-center">
-                <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center bg-white/30 backdrop-blur-md transform scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 shadow-xl">
-                  <Play fill="white" className="text-white ml-1 drop-shadow-md" size={32} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-all duration-500 flex flex-col justify-between p-6">
+                <div className="flex justify-end">
+                  <div className="w-12 h-12 rounded-full border border-white/50 flex items-center justify-center bg-white/20 backdrop-blur-md transform scale-90 group-hover:scale-100 transition-all duration-500 shadow-xl">
+                    <Play fill="white" className="text-white ml-0.5" size={22} />
+                  </div>
+                </div>
+                <div>
+                  <p className="text-brand-gold text-[10px] uppercase tracking-[0.3em] font-medium mb-1">
+                    Wedding Film
+                  </p>
+                  <h3 className="text-white font-display text-xl md:text-2xl font-bold uppercase tracking-wider">
+                    {item.title}
+                  </h3>
+                  {item.location && (
+                    <p className="text-white/70 text-xs tracking-widest uppercase font-light mt-0.5">
+                      {item.location.name} · {item.location.city}
+                    </p>
+                  )}
                 </div>
               </div>
             </motion.div>
