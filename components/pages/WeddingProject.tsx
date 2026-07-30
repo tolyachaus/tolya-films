@@ -8,13 +8,13 @@ const WeddingProject: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [activeVideoType, setActiveVideoType] = useState<'trailer' | 'full'>('trailer');
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const project = WEDDING_PORTFOLIO_ITEMS.find((item) => item.slug === slug);
 
   useEffect(() => {
     setActiveVideoType('trailer');
-    setIsPlaying(true);
+    setIsPlaying(false);
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [slug]);
 
