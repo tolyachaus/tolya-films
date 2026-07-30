@@ -83,7 +83,7 @@ const WeddingProject: React.FC = () => {
                       }`}
                     >
                       <Film size={13} />
-                      Trailer / Highlight
+                      Trailer
                     </button>
                     <button
                       type="button"
@@ -95,7 +95,7 @@ const WeddingProject: React.FC = () => {
                       }`}
                     >
                       <Play size={13} fill="currentColor" />
-                      Full Film / Повний фільм
+                      Full Film
                     </button>
                   </div>
                 )}
