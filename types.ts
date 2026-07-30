@@ -85,7 +85,7 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     location: {
       name: 'Morrhof',
       city: 'Großkarlbach, Rheinland-Pfalz, Germany',
-      description: 'Toskanischer Garten & Orangerie · Hauptstraße 77, 67229 Großkarlbach. Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
+      description: 'Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
     },
     quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
   },

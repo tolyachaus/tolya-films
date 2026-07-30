@@ -113,7 +113,7 @@ const WeddingProject: React.FC = () => {
                   <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-2 font-medium">
                     Wedding Film
                   </p>
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-[0.06em] uppercase text-brand-dark leading-none">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold tracking-[0.05em] uppercase text-brand-dark leading-tight">
                     {project.title}
                   </h1>
                 </div>
@@ -124,7 +124,7 @@ const WeddingProject: React.FC = () => {
                     <p className="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium mb-1">
                       Location
                     </p>
-                    <h2 className="text-xl lg:text-2xl font-display font-bold text-brand-dark uppercase">
+                    <h2 className="text-base lg:text-lg font-display font-bold text-brand-dark uppercase tracking-wider">
                       {project.location.name}
                     </h2>
                     <p className="text-xs uppercase tracking-[0.2em] text-brand-dark/60 font-light mb-3">
