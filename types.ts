@@ -69,11 +69,9 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     aspectRatio: 'aspect-video',
     thumbnail: gemmaTimoCover,
     location: {
-      name: 'Bodensee Manor',
-      city: 'Lake Constance, Germany',
-      description: 'Eine atemberaubende Kulisse direkt am Seeufer. Die einzigartige Verbindung aus naturbelassener Kulisse und eleganter Architektur schuf den perfekten Rahmen für ein unvergessliches Hochzeitsfest.'
-    },
-    quote: 'Words cannot describe how happy we are with our wedding film. Tolya captured every emotion, every tear, and every smile so beautifully. Watching it feels like reliving the most magical day of our lives.'
+      name: 'Schriesheim',
+      city: 'Stadt in Deutschland'
+    }
   },
   {
     id: '1',
