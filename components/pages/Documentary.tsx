@@ -134,13 +134,6 @@ const Documentary: React.FC = () => {
                       </div>
                     </div>
                   </div>
-
-                  {/* Title */}
-                  <div className="px-1 text-center md:text-left">
-                    <h3 className="font-display text-xl uppercase tracking-widest font-bold text-brand-dark group-hover:text-brand-gold transition-colors duration-300">
-                      {item.title}
-                    </h3>
-                  </div>
                 </motion.div>
               ))}
             </motion.div>
