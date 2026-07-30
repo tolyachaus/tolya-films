@@ -87,15 +87,6 @@ const Contact: React.FC = () => {
                 <Instagram size={20} />
               </a>
               <a
-                href={SOCIAL_LINKS.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white hover:bg-black hover:scale-110 transition-all duration-300 shadow-md"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
                 href={SOCIAL_LINKS.youtube}
                 target="_blank"
                 rel="noopener noreferrer"

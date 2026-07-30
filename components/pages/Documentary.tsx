@@ -124,36 +124,18 @@ const Documentary: React.FC = () => {
       </div>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-black/[0.06] py-16 bg-white">
-        <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <footer className="border-t border-black/[0.06] py-12 bg-white">
+        <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <Link to="/">
             <img
               src={ASSETS.logoBlack}
               alt="Tolya Films"
-              className="h-10 w-auto object-contain opacity-50 hover:opacity-80 transition-opacity duration-300"
+              className="h-9 w-auto object-contain opacity-50 hover:opacity-80 transition-opacity duration-300"
             />
           </Link>
           <p className="text-brand-dark/40 text-xs tracking-widest uppercase text-center">
             © {new Date().getFullYear()} Tolya Films · Mannheim
           </p>
-          <div className="flex items-center gap-4">
-            {[
-              { href: SOCIAL_LINKS.instagram, label: 'Instagram', icon: <Instagram size={16} /> },
-              { href: SOCIAL_LINKS.facebook, label: 'Facebook', icon: <Facebook size={16} /> },
-              { href: SOCIAL_LINKS.youtube, label: 'YouTube', icon: <Youtube size={16} /> },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-brand-dark/40 hover:text-brand-dark hover:border-brand-dark/50 transition-all duration-300"
-              >
-                {s.icon}
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
 

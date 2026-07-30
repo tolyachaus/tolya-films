@@ -145,24 +145,6 @@ const WeddingProject: React.FC = () => {
           <p className="text-brand-dark/40 text-xs tracking-widest uppercase text-center">
             © {new Date().getFullYear()} Tolya Films · Mannheim
           </p>
-          <div className="flex items-center gap-4">
-            {[
-              { href: SOCIAL_LINKS.instagram, label: 'Instagram', icon: <Instagram size={16} /> },
-              { href: SOCIAL_LINKS.facebook, label: 'Facebook', icon: <Facebook size={16} /> },
-              { href: SOCIAL_LINKS.youtube, label: 'YouTube', icon: <Youtube size={16} /> },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-brand-dark/40 hover:text-brand-dark hover:border-brand-dark/50 transition-all duration-300"
-              >
-                {s.icon}
-              </a>
-            ))}
-          </div>
         </div>
       </footer>
     </div>
