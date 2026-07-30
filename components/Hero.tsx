@@ -48,15 +48,21 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-4 md:bottom-10 left-1/2 transform -translate-x-1/2 z-20"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <a href="#portfolio" className="text-brand-dark/40 md:text-white/70 hover:text-brand-dark md:hover:text-white transition-colors">
-          <ChevronDown size={32} strokeWidth={1.5} />
-        </a>
-      </motion.div>
+      <div className="absolute bottom-4 md:bottom-10 inset-x-0 flex justify-center items-center z-20 pointer-events-none">
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          className="pointer-events-auto flex items-center justify-center"
+        >
+          <a
+            href="#portfolio"
+            aria-label="Scroll down to portfolio"
+            className="text-brand-dark/40 md:text-white/70 hover:text-brand-dark md:hover:text-white transition-colors flex items-center justify-center"
+          >
+            <ChevronDown size={32} strokeWidth={1.5} />
+          </a>
+        </motion.div>
+      </div>
     </section>
   );
 };
