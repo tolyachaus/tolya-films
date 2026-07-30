@@ -45,8 +45,8 @@ const Navbar: React.FC = () => {
 
   const docLink = { name: 'Documentary / Commercial', to: '/documentary' };
 
-  const isDocPage = location.pathname === '/documentary';
-  const isDarkNavbarText = isScrolled || isDocPage;
+  const isLightBgPage = location.pathname === '/documentary' || location.pathname.startsWith('/wedding');
+  const isDarkNavbarText = isScrolled || isLightBgPage;
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
