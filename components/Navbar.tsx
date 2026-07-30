@@ -52,9 +52,10 @@ const Navbar: React.FC = () => {
       ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm'
       : 'bg-transparent py-6';
 
-  const logoSrc = isMobileMenuOpen ? ASSETS.logoBlack : (isScrolled ? ASSETS.logoBlack : ASSETS.logoWhite);
+  const desktopLogoSrc = isScrolled ? ASSETS.logoBlack : ASSETS.logoWhite;
+  const mobileLogoSrc = ASSETS.logoBlack;
   const desktopTextColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : 'text-white';
-  const mobileToggleColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : (isMobileMenuOpen ? 'text-brand-dark' : 'text-white');
+  const mobileToggleColor = isMobileMenuOpen ? 'text-brand-dark' : (isScrolled ? 'text-brand-dark' : 'text-brand-dark md:text-white');
 
   return (
     <>
@@ -64,21 +65,17 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="relative group z-[60]">
-            {/* Fallback text if image fails due to mixed content blocking */}
             <img
-              src={logoSrc}
+              src={isMobileMenuOpen ? ASSETS.logoBlack : desktopLogoSrc}
               alt="Tolya Films"
-              className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-300"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                const span = e.currentTarget.parentElement?.querySelector('span');
-                if (span) {
-                  span.classList.remove('hidden');
-                  span.classList.add('block');
-                }
-              }}
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain transition-all duration-300 hidden md:block"
             />
-            <span className={`hidden text-2xl font-display font-bold ${isMobileMenuOpen || isScrolled ? "text-brand-dark" : "text-white"} tracking-widest uppercase`}>Tolya Films</span>
+            <img
+              src={mobileLogoSrc}
+              alt="Tolya Films"
+              className="h-14 sm:h-16 w-auto object-contain transition-all duration-300 md:hidden"
+            />
+            <span className={`hidden text-2xl font-display font-bold ${isMobileMenuOpen || isScrolled ? "text-brand-dark" : "text-brand-dark md:text-white"} tracking-widest uppercase`}>Tolya Films</span>
           </a>
 
           {/* Desktop Menu */}

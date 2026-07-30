@@ -5,38 +5,40 @@ import { ASSETS } from '../types';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
-      {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full bg-black flex items-center justify-center">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls={false}
-          disablePictureInPicture
-          className="w-full h-full object-contain md:object-cover opacity-90"
-        >
-          <source src={ASSETS.showreel} type="video/mp4" />
-          {/* Fallback if video fails to load */}
-          Your browser does not support the video tag.
-        </video>
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 pointer-events-none"></div>
+    <section className="relative min-h-[90vh] md:h-screen w-full overflow-hidden bg-brand-light md:bg-black flex flex-col md:flex-row items-center justify-start md:justify-center pt-24 pb-12 md:pt-0 md:pb-0">
+      {/* Background / Main Video Container */}
+      <div className="w-full px-4 sm:px-6 md:px-0 md:absolute md:inset-0 md:w-full md:h-full flex items-center justify-center">
+        <div className="relative w-full max-w-xl md:max-w-none aspect-video md:h-full md:aspect-auto overflow-hidden rounded-sm md:rounded-none shadow-lg md:shadow-none border border-black/5 md:border-none bg-black">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            controls={false}
+            disablePictureInPicture
+            className="w-full h-full object-cover opacity-100 brightness-110"
+          >
+            <source src={ASSETS.showreel} type="video/mp4" />
+            {/* Fallback if video fails to load */}
+            Your browser does not support the video tag.
+          </video>
+          {/* Overlay Gradient: 20% lighter overlay for crystal clear video */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35 pointer-events-none md:block hidden"></div>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+      {/* Content Container (Below video on mobile, centered overlay on desktop) */}
+      <div className="relative z-10 w-full max-w-4xl px-6 mt-6 md:mt-0 flex flex-col justify-center items-center text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-8xl font-display font-bold tracking-[0.1em] uppercase text-white drop-shadow-2xl mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-8xl font-display font-bold tracking-[0.08em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl mb-2 md:mb-4">
             Cinematic Vision
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
-          <p className="text-base sm:text-lg md:text-2xl font-light text-gray-100 tracking-[0.3em] uppercase max-w-2xl mx-auto drop-shadow-lg">
+          <p className="text-xs sm:text-sm md:text-2xl font-light text-brand-dark/70 md:text-gray-100 tracking-[0.25em] uppercase max-w-2xl mx-auto drop-shadow-none md:drop-shadow-lg">
             Stories told through film
           </p>
         </motion.div>
@@ -44,12 +46,12 @@ const Hero: React.FC = () => {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-20"
-        animate={{ y: [0, 10, 0] }}
+        className="absolute bottom-4 md:bottom-10 left-1/2 transform -translate-x-1/2 z-20"
+        animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <a href="#portfolio" className="text-white/70 hover:text-white transition-colors">
-          <ChevronDown size={40} strokeWidth={1} />
+        <a href="#portfolio" className="text-brand-dark/40 md:text-white/70 hover:text-brand-dark md:hover:text-white transition-colors">
+          <ChevronDown size={32} strokeWidth={1.5} />
         </a>
       </motion.div>
     </section>
