@@ -90,19 +90,6 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
   },
   {
-    id: '1',
-    slug: 'cinematic-portrait',
-    title: 'Cinematic Portrait',
-    videoId: 'ln-P6GUBLPo',
-    thumbnail: cinematicPortraitCover,
-    location: {
-      name: 'Villa Bellissima',
-      city: 'Tuscany, Italy',
-      description: 'Versteckt in den sanften Hügeln der Toskana vereint diese historische Villa zeitlose Eleganz, meisterhafte Gartenkunst und warmes mediterranes Licht.'
-    },
-    quote: 'An absolute masterpiece. The cinematic composition, lighting, and story editing exceeded all our expectations. It is truly a work of art.'
-  },
-  {
     id: '2',
     slug: 'event-highlight',
     title: 'Event Highlight',
