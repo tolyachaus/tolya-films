@@ -19,7 +19,7 @@ export const ASSETS = {
   logoWhite: '/logo-white.png',
   logoBlack: '/logo-black.png',
   profilePhoto: '/profile.jpg',
-  showreel: '/schowreel_2025_HDV1.mp4',
+  showreel: '/wedding_showreel_V3.mp4',
 };
 
 export const SOCIAL_LINKS = {

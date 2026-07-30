@@ -5,9 +5,9 @@ import { ASSETS } from '../types';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center">
       {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full bg-brand-light">
+      <div className="absolute inset-0 w-full h-full bg-black flex items-center justify-center">
         <video
           autoPlay
           muted
@@ -15,14 +15,14 @@ const Hero: React.FC = () => {
           playsInline
           controls={false}
           disablePictureInPicture
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-contain md:object-cover opacity-90"
         >
           <source src={ASSETS.showreel} type="video/mp4" />
           {/* Fallback if video fails to load */}
           Your browser does not support the video tag.
         </video>
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-brand-light/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 pointer-events-none"></div>
       </div>
 
       {/* Content */}
@@ -32,11 +32,11 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <h1 className="text-5xl md:text-8xl font-display font-bold tracking-[0.1em] uppercase text-white drop-shadow-2xl mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-display font-bold tracking-[0.1em] uppercase text-white drop-shadow-2xl mb-4">
             Cinematic Vision
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
-          <p className="text-lg md:text-2xl font-light text-gray-100 tracking-[0.3em] uppercase max-w-2xl mx-auto drop-shadow-lg">
+          <p className="text-base sm:text-lg md:text-2xl font-light text-gray-100 tracking-[0.3em] uppercase max-w-2xl mx-auto drop-shadow-lg">
             Stories told through film
           </p>
         </motion.div>
@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-20"
+        className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 z-20"
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
