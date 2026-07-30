@@ -174,7 +174,7 @@ const Navbar: React.FC = () => {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-gray-800 hover:text-brand-dark text-3xl font-display font-light tracking-widest transition-colors w-full py-2 drop-shadow-sm font-semibold"
+                  className="text-brand-dark hover:opacity-75 text-2xl sm:text-3xl font-display font-semibold tracking-widest uppercase transition-opacity w-full py-2"
                 >
                   {link.name}
                 </a>
@@ -182,7 +182,7 @@ const Navbar: React.FC = () => {
               <Link
                 to={docLink.to}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-gray-800 hover:text-brand-dark text-2xl font-display font-light tracking-widest transition-colors w-full py-2 drop-shadow-sm font-semibold"
+                className="text-brand-dark hover:opacity-75 text-2xl sm:text-3xl font-display font-semibold tracking-widest uppercase transition-opacity w-full py-2"
               >
                 {docLink.name}
               </Link>
