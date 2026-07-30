@@ -55,11 +55,11 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     aspectRatio: 'aspect-video',
     thumbnail: rikeJonathanCover,
     location: {
-      name: 'Morrhof',
-      city: 'Großkarlbach, Rheinland-Pfalz, Germany',
-      description: 'Der Morrhof gehört zu den exklusivsten Hochzeitslocations Deutschlands. Umgeben von Weinbergen im Herzen der Pfalz verbindet das historische Anwesen mediterrane Architektur, elegante Gärten und eine außergewöhnliche Atmosphäre – der perfekte Ort für luxuriöse und stilvolle Hochzeiten.'
+      name: 'Hotel Jagdschloss Kranichstein',
+      city: 'Darmstadt, Germany',
+      description: 'An seine Hochzeitsfeier wird man sich für immer erinnern. Im Hotel Jagdschloss Kranichstein kann der Wunsch, sie so wenig alltäglich wie möglich zu gestalten, auf ganz verschiedene Weise in Erfüllung gehen. Je nach Jahreszeit, Größe der Gesellschaft und Ihren persönlichen Vorlieben. Hier laden Sie zu einem fürstlichen Fest in historischen Räumlichkeiten und malerischer Natur.'
     },
-    quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
+    quote: 'Tolyaaaaaaa, we finally got to watch it!!!! Its soooooooooooooooooooooooooooooooooooooooo good!!!! Wow wow wow wow wow!!!! Thank you so much for your amazing work!!!! We are really really happy with how everything turned out!'
   },
   {
     id: '6',
