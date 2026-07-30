@@ -8,13 +8,11 @@ const WeddingProject: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const [activeVideoType, setActiveVideoType] = useState<'trailer' | 'full'>('trailer');
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const project = WEDDING_PORTFOLIO_ITEMS.find((item) => item.slug === slug);
 
   useEffect(() => {
     setActiveVideoType('trailer');
-    setIsPlaying(false);
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [slug]);
 
@@ -37,7 +35,6 @@ const WeddingProject: React.FC = () => {
 
   const handleVideoTypeChange = (type: 'trailer' | 'full') => {
     setActiveVideoType(type);
-    setIsPlaying(true);
   };
 
   return (
@@ -67,35 +64,14 @@ const WeddingProject: React.FC = () => {
                   transition={{ duration: 0.8 }}
                   className="relative aspect-video w-full rounded-sm overflow-hidden shadow-2xl bg-black border border-black/10"
                 >
-                  {isPlaying ? (
-                    <iframe
-                      key={activeVideoId}
-                      src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`}
-                      title={`${project.title} - Wedding Film`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="w-full h-full border-none"
-                    />
-                  ) : (
-                    <div
-                      onClick={() => setIsPlaying(true)}
-                      className="relative w-full h-full cursor-pointer group select-none"
-                    >
-                      <img
-                        src={project.thumbnail || `https://img.youtube.com/vi/${activeVideoId}/maxresdefault.jpg`}
-                        alt={project.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300 flex flex-col items-center justify-center gap-3">
-                        <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/60 flex items-center justify-center bg-white/20 backdrop-blur-md transform group-hover:scale-110 transition-all duration-300 shadow-2xl">
-                          <Play fill="white" className="text-white ml-1" size={32} />
-                        </div>
-                        <span className="text-white text-xs uppercase tracking-[0.3em] font-medium drop-shadow-md">
-                          Play Film
-                        </span>
-                      </div>
-                    </div>
-                  )}
+                  <iframe
+                    key={activeVideoId}
+                    src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`}
+                    title={`${project.title} - Wedding Film`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full border-none"
+                  />
                 </motion.div>
 
                 {/* Video Version Toggle Button (If Full Film Exists) */}
