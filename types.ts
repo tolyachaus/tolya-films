@@ -4,7 +4,8 @@ export interface PortfolioItem {
   id: string;
   slug: string;
   title: string;
-  videoId: string; // YouTube ID
+  videoId: string; // YouTube ID (Trailer / Primary)
+  fullVideoId?: string; // Optional Full Wedding Film Video ID
   thumbnail?: string;
   aspectRatio?: string; // e.g. 'aspect-[21/9]'
   location?: {
@@ -47,6 +48,21 @@ import commercialCover from './src/assets/thumbnails/SskIWKbsVss.jpg';
 import documentaryCover from './src/assets/thumbnails/zyquMe78knA.jpg';
 
 export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
+  {
+    id: '8',
+    slug: 'kerstin-freddy',
+    title: 'KERSTIN & FREDDY',
+    videoId: 'tQn4lPc3vjQ', // Trailer
+    fullVideoId: 'mnHxcdehFlo', // Full Film
+    aspectRatio: 'aspect-video',
+    thumbnail: rikeJonathanCover,
+    location: {
+      name: 'Morrhof',
+      city: 'Großkarlbach, Rheinland-Pfalz, Germany',
+      description: 'Toskanischer Garten & Orangerie · Hauptstraße 77, 67229 Großkarlbach. Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
+    },
+    quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
+  },
   {
     id: '7',
     slug: 'rike-jonathan',

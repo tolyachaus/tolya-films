@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Quote, Instagram, Facebook, Youtube, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Quote, Instagram, Facebook, Youtube, ArrowRight, Play, Film } from 'lucide-react';
 import { ASSETS, SOCIAL_LINKS, WEDDING_PORTFOLIO_ITEMS } from '../../types';
 
 const WeddingProject: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
+  const [activeVideoType, setActiveVideoType] = useState<'trailer' | 'full'>('trailer');
 
   const project = WEDDING_PORTFOLIO_ITEMS.find((item) => item.slug === slug);
 
   useEffect(() => {
+    setActiveVideoType('trailer');
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [slug]);
 
@@ -28,6 +30,8 @@ const WeddingProject: React.FC = () => {
   // Find next project for navigation
   const currentIndex = WEDDING_PORTFOLIO_ITEMS.findIndex((item) => item.slug === slug);
   const nextProject = WEDDING_PORTFOLIO_ITEMS[(currentIndex + 1) % WEDDING_PORTFOLIO_ITEMS.length];
+
+  const activeVideoId = activeVideoType === 'full' && project.fullVideoId ? project.fullVideoId : project.videoId;
 
   return (
     <div className="min-h-screen bg-brand-light text-brand-dark flex flex-col justify-between selection:bg-brand-dark selection:text-brand-light">
@@ -48,21 +52,54 @@ const WeddingProject: React.FC = () => {
 
             {/* Split Grid on Desktop (lg:), Stacked on Mobile */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              {/* ── LEFT COLUMN: VIDEO PLAYER (PRIMARY FOCUS) ── */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                className="lg:col-span-7 relative aspect-video w-full rounded-sm overflow-hidden shadow-2xl bg-black border border-black/10"
-              >
-                <iframe
-                  src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1&rel=0&modestbranding=1`}
-                  title={`${project.title} - Wedding Film`}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full border-none"
-                />
-              </motion.div>
+              {/* ── LEFT COLUMN: SINGLE VIDEO PLAYER (PRIMARY FOCUS) ── */}
+              <div className="lg:col-span-7 flex flex-col space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="relative aspect-video w-full rounded-sm overflow-hidden shadow-2xl bg-black border border-black/10"
+                >
+                  <iframe
+                    key={activeVideoId}
+                    src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&rel=0&modestbranding=1`}
+                    title={`${project.title} - Wedding Film`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full border-none"
+                  />
+                </motion.div>
+
+                {/* Video Version Toggle Button (If Full Film Exists) */}
+                {project.fullVideoId && (
+                  <div className="flex items-center justify-between bg-white/80 backdrop-blur-md p-1.5 rounded-sm border border-black/10 shadow-sm">
+                    <button
+                      type="button"
+                      onClick={() => setActiveVideoType('trailer')}
+                      className={`flex-1 py-2 px-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] transition-all rounded-xs flex items-center justify-center gap-1.5 ${
+                        activeVideoType === 'trailer'
+                          ? 'bg-brand-dark text-white shadow-sm'
+                          : 'text-brand-dark/60 hover:text-brand-dark hover:bg-black/5'
+                      }`}
+                    >
+                      <Film size={13} />
+                      Trailer / Highlight
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveVideoType('full')}
+                      className={`flex-1 py-2 px-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] transition-all rounded-xs flex items-center justify-center gap-1.5 ${
+                        activeVideoType === 'full'
+                          ? 'bg-brand-dark text-white shadow-sm'
+                          : 'text-brand-dark/60 hover:text-brand-dark hover:bg-black/5'
+                      }`}
+                    >
+                      <Play size={13} fill="currentColor" />
+                      Full Film / Повний фільм
+                    </button>
+                  </div>
+                )}
+              </div>
 
               {/* ── RIGHT COLUMN: EDITORIAL CONTENT ── */}
               <motion.div
