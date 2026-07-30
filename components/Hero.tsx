@@ -27,23 +27,18 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Content Container (Below video on mobile, centered overlay on desktop) */}
-      <div className="relative z-10 w-full max-w-6xl px-4 sm:px-6 mt-8 md:mt-0 flex flex-col justify-center items-center text-center">
+      {/* Content Container (Centered between video & portfolio on mobile, centered overlay on desktop) */}
+      <div className="relative z-10 w-full max-w-5xl px-6 mt-10 md:mt-0 flex flex-col justify-center items-center text-center my-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full flex flex-col items-center"
+          className="w-full flex flex-col items-center justify-center text-center"
         >
-          {/* Line 1: Cinematic Vision on 1 single line */}
-          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-display font-bold tracking-[0.06em] md:tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl mb-2 md:mb-4 whitespace-nowrap">
-            Cinematic Vision
+          <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl leading-tight max-w-4xl mx-auto">
+            Wedding films that feel like cinema
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
-          {/* Line 2: Stories told through film on line 2 */}
-          <p className="text-xs sm:text-sm md:text-xl lg:text-2xl font-light text-brand-dark/70 md:text-gray-100 tracking-[0.2em] md:tracking-[0.3em] uppercase max-w-3xl mx-auto drop-shadow-none md:drop-shadow-lg whitespace-nowrap">
-            Stories told through film
-          </p>
         </motion.div>
       </div>
 
