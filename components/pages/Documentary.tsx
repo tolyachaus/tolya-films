@@ -81,17 +81,17 @@ const Documentary: React.FC = () => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
+    <div className="min-h-screen bg-brand-light text-brand-dark">
 
       {/* ── HERO ── */}
-      <section className="relative h-[55vh] min-h-[380px] flex items-end pb-16 overflow-hidden">
+      <section className="relative h-[55vh] min-h-[380px] flex items-end pb-16 overflow-hidden border-b border-black/[0.04]">
         {/* Background texture */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#141414] via-[#0d0d0d] to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]" />
         {/* Gold accent line top */}
         <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
         {/* Subtle grid pattern */}
         <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
             backgroundImage:
               'linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)',
@@ -102,7 +102,7 @@ const Documentary: React.FC = () => {
         {/* Back link */}
         <Link
           to="/"
-          className="absolute top-6 left-6 md:left-12 flex items-center gap-2 text-white/40 hover:text-white/80 transition-colors duration-300 text-xs uppercase tracking-widest group"
+          className="absolute top-6 left-6 md:left-12 flex items-center gap-2 text-brand-dark/40 hover:text-brand-dark/80 transition-colors duration-300 text-xs uppercase tracking-widest group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
           Zurück
@@ -111,7 +111,7 @@ const Documentary: React.FC = () => {
         {/* Logo */}
         <Link to="/" className="absolute top-4 left-1/2 -translate-x-1/2">
           <img
-            src={ASSETS.logoWhite}
+            src={ASSETS.logoBlack}
             alt="Tolya Films"
             className="h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
           />
@@ -130,11 +130,11 @@ const Documentary: React.FC = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-[0.06em] uppercase leading-none mb-6">
               Documentary
               <br />
-              <span className="text-white/40 text-3xl md:text-5xl lg:text-6xl">&amp; Commercial</span>
+              <span className="text-brand-dark/40 text-3xl md:text-5xl lg:text-6xl">&amp; Commercial</span>
             </h1>
             <div className="flex items-center gap-4">
               <div className="h-[1px] w-12 bg-brand-gold" />
-              <p className="text-white/50 text-sm tracking-widest uppercase">
+              <p className="text-brand-dark/50 text-sm tracking-widest uppercase">
                 A filmmaker's broader lens
               </p>
             </div>
@@ -143,7 +143,7 @@ const Documentary: React.FC = () => {
       </section>
 
       {/* ── INTRO ── */}
-      <section className="py-20 md:py-28 border-b border-white/[0.06]">
+      <section className="py-20 md:py-28 bg-white border-b border-black/[0.06]">
         <div className="container mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -152,7 +152,7 @@ const Documentary: React.FC = () => {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <p className="text-white/60 text-lg md:text-xl font-light leading-relaxed tracking-wide">
+            <p className="text-brand-dark/70 text-lg md:text-xl font-light leading-relaxed tracking-wide">
               Neben Hochzeitsfilmen entstehen hier Arbeiten, die zeigen, wie ich als
               Filmemacher denke — dokumentarisch, werblich, künstlerisch.
               Jede Produktion ist eine eigene visuelle Sprache.
@@ -162,7 +162,7 @@ const Documentary: React.FC = () => {
       </section>
 
       {/* ── CATEGORY GRID ── */}
-      <section className="py-24 md:py-36">
+      <section className="py-24 md:py-36 bg-brand-light">
         <div className="container mx-auto px-6 md:px-12">
 
           <motion.div
@@ -172,7 +172,7 @@ const Documentary: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="mb-20"
           >
-            <h2 className="text-xs uppercase tracking-[0.4em] text-white/30 mb-3">Kategorien</h2>
+            <h2 className="text-xs uppercase tracking-[0.4em] text-brand-dark/40 mb-3">Kategorien</h2>
             <div className="h-[1px] w-8 bg-brand-gold" />
           </motion.div>
 
@@ -181,7 +181,7 @@ const Documentary: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-white/[0.06]"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-black/[0.08]"
           >
             {categories.map((cat) => (
               <motion.div
@@ -189,38 +189,38 @@ const Documentary: React.FC = () => {
                 variants={itemVariants}
                 onMouseEnter={() => setHoveredId(cat.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className="relative bg-[#0a0a0a] p-10 flex flex-col gap-8 cursor-default overflow-hidden group"
+                className="relative bg-white p-10 flex flex-col gap-8 cursor-default overflow-hidden group"
                 style={{ minHeight: '260px' }}
               >
                 {/* Hover glow */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-brand-gold/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  className="absolute inset-0 bg-gradient-to-br from-brand-gold/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 />
 
                 {/* Top gold accent */}
                 <div className="absolute top-0 left-0 right-0 h-[1px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
                 {/* Icon */}
-                <div className="text-white/20 group-hover:text-brand-gold transition-colors duration-500">
+                <div className="text-brand-dark/30 group-hover:text-brand-gold transition-colors duration-500">
                   {cat.icon}
                 </div>
 
                 {/* Text */}
                 <div className="mt-auto">
-                  <p className="text-white/30 text-[10px] uppercase tracking-[0.3em] mb-2 transition-colors duration-300 group-hover:text-brand-gold/60">
+                  <p className="text-brand-dark/40 text-[10px] uppercase tracking-[0.3em] mb-2 transition-colors duration-300 group-hover:text-brand-gold/80">
                     {cat.titleDe}
                   </p>
-                  <h3 className="text-white text-xl md:text-2xl font-display font-semibold uppercase tracking-widest mb-3 transition-colors duration-300">
+                  <h3 className="text-brand-dark text-xl md:text-2xl font-display font-semibold uppercase tracking-widest mb-3 transition-colors duration-300">
                     {cat.title}
                   </h3>
-                  <p className="text-white/30 text-sm font-light leading-relaxed group-hover:text-white/50 transition-colors duration-300">
+                  <p className="text-brand-dark/60 text-sm font-light leading-relaxed group-hover:text-brand-dark/80 transition-colors duration-300">
                     {cat.description}
                   </p>
                 </div>
 
                 {/* Coming soon label */}
                 <div className="absolute top-8 right-8">
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-white/15 border border-white/10 px-2 py-1 group-hover:border-brand-gold/30 group-hover:text-brand-gold/40 transition-all duration-300">
+                  <span className="text-[9px] uppercase tracking-[0.25em] text-brand-dark/40 border border-black/10 px-2 py-1 group-hover:border-brand-gold/30 group-hover:text-brand-gold/60 transition-all duration-300">
                     Demnächst
                   </span>
                 </div>
@@ -229,23 +229,23 @@ const Documentary: React.FC = () => {
 
             {/* Spacer tile for even grid */}
             {categories.length % 4 !== 0 && (
-              <div className="hidden xl:block bg-[#0a0a0a]" />
+              <div className="hidden xl:block bg-white" />
             )}
           </motion.div>
         </div>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-white/[0.06] py-16">
+      <footer className="border-t border-black/[0.06] py-16 bg-white">
         <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-8">
           <Link to="/">
             <img
-              src={ASSETS.logoWhite}
+              src={ASSETS.logoBlack}
               alt="Tolya Films"
               className="h-10 w-auto object-contain opacity-50 hover:opacity-80 transition-opacity duration-300"
             />
           </Link>
-          <p className="text-white/20 text-xs tracking-widest uppercase text-center">
+          <p className="text-brand-dark/40 text-xs tracking-widest uppercase text-center">
             © {new Date().getFullYear()} Tolya Films · Mannheim
           </p>
           <div className="flex items-center gap-4">
@@ -260,7 +260,7 @@ const Documentary: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/30 hover:text-white hover:border-white/40 transition-all duration-300"
+                className="w-9 h-9 rounded-full border border-black/15 flex items-center justify-center text-brand-dark/40 hover:text-brand-dark hover:border-brand-dark/50 transition-all duration-300"
               >
                 {s.icon}
               </a>
