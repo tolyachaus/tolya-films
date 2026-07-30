@@ -91,16 +91,16 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
   },
   {
     id: '2',
-    slug: 'event-highlight',
-    title: 'Event Highlight',
+    slug: 'pascal-michal',
+    title: 'PASCAL & MICHAL',
     videoId: 'dVGzZKFKxN0',
+    aspectRatio: 'aspect-video',
     thumbnail: eventHighlightCover,
     location: {
-      name: 'Schloss Heidelberg',
-      city: 'Heidelberg, Germany',
-      description: 'Eine der romantischsten Schlosskulissen Europas mit spektakulärem Blick über das Neckartal und unbegrenztem Raum für glamouröse Feste.'
+      name: 'Ladenburg',
+      city: 'Deutschland'
     },
-    quote: 'Thank you for documenting the energy, joy, and unforgettable moments of our celebration so vibrant and elegant. We could not be more grateful!'
+    quote: 'Wooow, THANK YOU SO MUCH!! I watched it together with Pascal yesterday and now again on my own and I have to cry every single time I watch it so beautiful!!'
   },
 ];
 
