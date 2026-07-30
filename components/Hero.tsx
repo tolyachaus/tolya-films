@@ -28,19 +28,24 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content Container (Centered between video & screen bottom on mobile, centered overlay on desktop) */}
-      <div className="relative z-10 w-full flex-1 md:flex-initial flex flex-col justify-center items-center text-center px-6 md:absolute md:inset-0">
+      <div className="relative z-10 w-full flex-1 md:flex-initial flex flex-col justify-center items-center text-center px-4 sm:px-6 md:absolute md:inset-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full max-w-5xl flex flex-col items-center justify-center text-center my-auto"
+          className="w-full max-w-5xl flex flex-col items-center justify-center text-center my-auto space-y-3 md:space-y-5"
         >
-          {/* 2-Line Header for Desktop & Mobile */}
+          {/* Main Headline - Strictly 2 Lines */}
           <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl xl:text-8xl font-display font-bold tracking-[0.08em] md:tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl leading-snug md:leading-tight">
-            <span className="block">Wedding films</span>
-            <span className="block">that feel like cinema</span>
+            <span className="block whitespace-nowrap">Wedding films</span>
+            <span className="block whitespace-nowrap">that feel like cinema</span>
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
+
+          {/* Subheadline - Single Line, Light Font, Smaller */}
+          <p className="text-[10px] sm:text-xs md:text-lg lg:text-xl font-light tracking-[0.2em] md:tracking-[0.28em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md whitespace-nowrap uppercase">
+            A story told through image, rhythm, and sound
+          </p>
         </motion.div>
       </div>
 
