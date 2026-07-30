@@ -39,12 +39,15 @@ import musicVideoCover from './src/assets/thumbnails/jMFLPuGl71I.jpg';
 import commercialCover from './src/assets/thumbnails/SskIWKbsVss.jpg';
 import documentaryCover from './src/assets/thumbnails/zyquMe78knA.jpg';
 
-export const PORTFOLIO_ITEMS: PortfolioItem[] = [
+export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-video', thumbnail: rikeJonathanCover },
   { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video', thumbnail: gemmaTimoCover },
   { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo', thumbnail: cinematicPortraitCover },
   { id: '2', title: 'Event Highlight', videoId: 'dVGzZKFKxN0', thumbnail: eventHighlightCover },
-  { id: '3', title: 'Music Video', videoId: 'jMFLPuGl71I', thumbnail: musicVideoCover },
-  { id: '4', title: 'Commercial', videoId: 'SskIWKbsVss', thumbnail: commercialCover },
-  { id: '5', title: 'Documentary', videoId: 'zyquMe78knA', thumbnail: documentaryCover },
+];
+
+export const DOCUMENTARY_PORTFOLIO_ITEMS: PortfolioItem[] = [
+  { id: '3', title: 'Showreel 2025', videoId: 'jMFLPuGl71I', thumbnail: musicVideoCover },
+  { id: '4', title: 'Bridge', videoId: 'SskIWKbsVss', thumbnail: commercialCover },
+  { id: '5', title: 'Becoming Dr. Marvin Knapp', videoId: 'zyquMe78knA', thumbnail: documentaryCover },
 ];

@@ -1,239 +1,152 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Film, Tv, Clapperboard, Music, Sparkles, Plane, MoreHorizontal } from 'lucide-react';
-import { ASSETS, SOCIAL_LINKS } from '../../types';
-import { Instagram, Facebook, Youtube } from 'lucide-react';
-
-interface Category {
-  id: string;
-  title: string;
-  titleDe: string;
-  description: string;
-  icon: React.ReactNode;
-}
-
-const categories: Category[] = [
-  {
-    id: 'documentary',
-    title: 'Documentary',
-    titleDe: 'Dokumentarfilm',
-    description: 'Wahre Geschichten. Authentische Momente.',
-    icon: <Film size={32} strokeWidth={1.2} />,
-  },
-  {
-    id: 'commercial',
-    title: 'Commercial',
-    titleDe: 'Werbefilm',
-    description: 'Marken, die man fühlen kann.',
-    icon: <Tv size={32} strokeWidth={1.2} />,
-  },
-  {
-    id: 'brand',
-    title: 'Brand Film',
-    titleDe: 'Markenfilm',
-    description: 'Identität in Bewegung.',
-    icon: <Clapperboard size={32} strokeWidth={1.2} />,
-  },
-  {
-    id: 'music',
-    title: 'Music Video',
-    titleDe: 'Musikvideo',
-    description: 'Klang trifft auf visuelles Erleben.',
-    icon: <Music size={32} strokeWidth={1.2} />,
-  },
-  {
-    id: 'fashion',
-    title: 'Fashion',
-    titleDe: 'Fashion-Projekt',
-    description: 'Ästhetik als Aussage.',
-    icon: <Sparkles size={32} strokeWidth={1.2} />,
-  },
-  {
-    id: 'travel',
-    title: 'Travel',
-    titleDe: 'Reisefilm',
-    description: 'Orte, die bleiben.',
-    icon: <Plane size={32} strokeWidth={1.2} />,
-  },
-  {
-    id: 'other',
-    title: 'Other Works',
-    titleDe: 'Weitere Werke',
-    description: 'Cinematic storytelling ohne Grenzen.',
-    icon: <MoreHorizontal size={32} strokeWidth={1.2} />,
-  },
-];
+import { ArrowLeft, Play, Instagram, Facebook, Youtube } from 'lucide-react';
+import { ASSETS, SOCIAL_LINKS, DOCUMENTARY_PORTFOLIO_ITEMS } from '../../types';
+import VideoModal from '../VideoModal';
 
 const containerVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.08 },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const Documentary: React.FC = () => {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   return (
-    <div className="min-h-screen bg-brand-light text-brand-dark">
-
-      {/* ── HERO ── */}
-      <section className="relative h-[55vh] min-h-[380px] flex items-end pb-16 overflow-hidden border-b border-black/[0.04]">
-        {/* Background texture */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]" />
-        {/* Gold accent line top */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              'linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
-
-        {/* Back link */}
-        <Link
-          to="/"
-          className="absolute top-6 left-6 md:left-12 flex items-center gap-2 text-brand-dark/40 hover:text-brand-dark/80 transition-colors duration-300 text-xs uppercase tracking-widest group"
-        >
-          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
-          Zurück
-        </Link>
-
-        {/* Logo */}
-        <Link to="/" className="absolute top-4 left-1/2 -translate-x-1/2">
-          <img
-            src={ASSETS.logoBlack}
-            alt="Tolya Films"
-            className="h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+    <div className="min-h-screen bg-brand-light text-brand-dark flex flex-col justify-between">
+      <div>
+        {/* ── HERO ── */}
+        <section className="relative h-[45vh] min-h-[320px] flex items-end pb-12 overflow-hidden border-b border-black/[0.04]">
+          {/* Background texture */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]" />
+          {/* Gold accent line top */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent" />
+          {/* Subtle grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage:
+                'linear-gradient(#D4AF37 1px, transparent 1px), linear-gradient(90deg, #D4AF37 1px, transparent 1px)',
+              backgroundSize: '60px 60px',
+            }}
           />
-        </Link>
 
-        {/* Hero content */}
-        <div className="relative z-10 container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          {/* Back link */}
+          <Link
+            to="/"
+            className="absolute top-6 left-6 md:left-12 flex items-center gap-2 text-brand-dark/40 hover:text-brand-dark/80 transition-colors duration-300 text-xs uppercase tracking-widest group"
           >
-            <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-4 font-medium">
-              Tolya Films
-            </p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-[0.06em] uppercase leading-none mb-6">
-              Documentary
-              <br />
-              <span className="text-brand-dark/40 text-3xl md:text-5xl lg:text-6xl">&amp; Commercial</span>
-            </h1>
-            <div className="flex items-center gap-4">
-              <div className="h-[1px] w-12 bg-brand-gold" />
-              <p className="text-brand-dark/50 text-sm tracking-widest uppercase">
-                A filmmaker's broader lens
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
+            Zurück
+          </Link>
+
+          {/* Logo */}
+          <Link to="/" className="absolute top-4 left-1/2 -translate-x-1/2">
+            <img
+              src={ASSETS.logoBlack}
+              alt="Tolya Films"
+              className="h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
+          </Link>
+
+          {/* Hero content */}
+          <div className="relative z-10 container mx-auto px-6 md:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-4 font-medium">
+                Tolya Films
               </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold tracking-[0.06em] uppercase leading-none mb-6">
+                Documentary
+                <br />
+                <span className="text-brand-dark/40 text-3xl md:text-5xl lg:text-6xl">&amp; Commercial</span>
+              </h1>
+              <div className="flex items-center gap-4">
+                <div className="h-[1px] w-12 bg-brand-gold" />
+                <p className="text-brand-dark/50 text-sm tracking-widest uppercase">
+                  A filmmaker's broader lens
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* ── INTRO ── */}
-      <section className="py-20 md:py-28 bg-white border-b border-black/[0.06]">
-        <div className="container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="max-w-2xl"
-          >
-            <p className="text-brand-dark/70 text-lg md:text-xl font-light leading-relaxed tracking-wide">
-              Neben Hochzeitsfilmen entstehen hier Arbeiten, die zeigen, wie ich als
-              Filmemacher denke — dokumentarisch, werblich, künstlerisch.
-              Jede Produktion ist eine eigene visuelle Sprache.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+        {/* ── INTRO ── */}
+        <section className="py-16 md:py-20 bg-white border-b border-black/[0.06]">
+          <div className="container mx-auto px-6 md:px-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="max-w-2xl"
+            >
+              <p className="text-brand-dark/70 text-lg md:text-xl font-light leading-relaxed tracking-wide">
+                Neben Hochzeitsfilmen entstehen hier Arbeiten, die zeigen, wie ich als
+                Filmemacher denke — dokumentarisch, werblich, künstlerisch.
+                Jede Produktion ist eine eigene visuelle Sprache.
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* ── CATEGORY GRID ── */}
-      <section className="py-24 md:py-36 bg-brand-light">
-        <div className="container mx-auto px-6 md:px-12">
+        {/* ── WORKS GRID ── */}
+        <section className="py-20 md:py-28 bg-brand-light">
+          <div className="container mx-auto px-6 md:px-12">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12"
+            >
+              {DOCUMENTARY_PORTFOLIO_ITEMS.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  variants={itemVariants}
+                  className="group relative cursor-pointer flex flex-col"
+                  onClick={() => setSelectedVideo(item.videoId)}
+                >
+                  {/* Aspect ratio container */}
+                  <div className="relative overflow-hidden bg-gray-150 shadow-md aspect-video mb-5 border border-black/[0.03]">
+                    {/* Thumbnail */}
+                    <img
+                      src={item.thumbnail || `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
+                      alt={item.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500 flex flex-col items-center justify-center">
+                      <div className="w-16 h-16 rounded-full border-2 border-white flex items-center justify-center bg-white/30 backdrop-blur-md transform scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 shadow-xl">
+                        <Play fill="white" className="text-white ml-1 drop-shadow-md" size={32} />
+                      </div>
+                    </div>
+                  </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-20"
-          >
-            <h2 className="text-xs uppercase tracking-[0.4em] text-brand-dark/40 mb-3">Kategorien</h2>
-            <div className="h-[1px] w-8 bg-brand-gold" />
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-black/[0.08]"
-          >
-            {categories.map((cat) => (
-              <motion.div
-                key={cat.id}
-                variants={itemVariants}
-                onMouseEnter={() => setHoveredId(cat.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="relative bg-white p-10 flex flex-col gap-8 cursor-default overflow-hidden group"
-                style={{ minHeight: '260px' }}
-              >
-                {/* Hover glow */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-brand-gold/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
-
-                {/* Top gold accent */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-brand-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-
-                {/* Icon */}
-                <div className="text-brand-dark/30 group-hover:text-brand-gold transition-colors duration-500">
-                  {cat.icon}
-                </div>
-
-                {/* Text */}
-                <div className="mt-auto">
-                  <p className="text-brand-dark/40 text-[10px] uppercase tracking-[0.3em] mb-2 transition-colors duration-300 group-hover:text-brand-gold/80">
-                    {cat.titleDe}
-                  </p>
-                  <h3 className="text-brand-dark text-xl md:text-2xl font-display font-semibold uppercase tracking-widest mb-3 transition-colors duration-300">
-                    {cat.title}
-                  </h3>
-                  <p className="text-brand-dark/60 text-sm font-light leading-relaxed group-hover:text-brand-dark/80 transition-colors duration-300">
-                    {cat.description}
-                  </p>
-                </div>
-
-                {/* Coming soon label */}
-                <div className="absolute top-8 right-8">
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-brand-dark/40 border border-black/10 px-2 py-1 group-hover:border-brand-gold/30 group-hover:text-brand-gold/60 transition-all duration-300">
-                    Demnächst
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-
-            {/* Spacer tile for even grid */}
-            {categories.length % 4 !== 0 && (
-              <div className="hidden xl:block bg-white" />
-            )}
-          </motion.div>
-        </div>
-      </section>
+                  {/* Title */}
+                  <div className="px-1 text-center md:text-left">
+                    <h3 className="font-display text-xl uppercase tracking-widest font-bold text-brand-dark group-hover:text-brand-gold transition-colors duration-300">
+                      {item.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      </div>
 
       {/* ── FOOTER ── */}
       <footer className="border-t border-black/[0.06] py-16 bg-white">
@@ -268,6 +181,9 @@ const Documentary: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* Video Modal portal */}
+      <VideoModal videoId={selectedVideo} onClose={() => setSelectedVideo(null)} />
     </div>
   );
 };

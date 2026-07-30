@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 250" fill="none">
+  <!-- "Tolya" in bold rounded font, approximating the logo style -->
+  <text
+    x="250" y="110"
+    font-family="'Arial Rounded MT Bold', 'Nunito', 'Varela Round', Arial, sans-serif"
+    font-size="130"
+    font-weight="900"
+    text-anchor="middle"
+    fill="currentColor"
+    letter-spacing="-2"
+  >Tolya</text>
+
+  <!-- Circle (the dot) -->
+  <circle cx="102" cy="185" r="22" fill="currentColor"/>
+
+  <!-- "films" smaller, lighter weight -->
+  <text
+    x="310" y="210"
+    font-family="'Arial Rounded MT Bold', 'Nunito', 'Varela Round', Arial, sans-serif"
+    font-size="80"
+    font-weight="400"
+    text-anchor="middle"
+    fill="currentColor"
+    letter-spacing="0"
+  >films</text>
+</svg>
