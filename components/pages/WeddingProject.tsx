@@ -9,14 +9,12 @@ const WeddingProject: React.FC = () => {
   const navigate = useNavigate();
   const [activeVideoType, setActiveVideoType] = useState<'trailer' | 'full'>('trailer');
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
 
   const project = WEDDING_PORTFOLIO_ITEMS.find((item) => item.slug === slug);
 
   useEffect(() => {
     setActiveVideoType('trailer');
     setIsPlaying(true);
-    setIsMuted(true);
     window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [slug]);
 
@@ -40,7 +38,6 @@ const WeddingProject: React.FC = () => {
   const handleVideoTypeChange = (type: 'trailer' | 'full') => {
     setActiveVideoType(type);
     setIsPlaying(true);
-    setIsMuted(false);
   };
 
   return (
@@ -72,8 +69,8 @@ const WeddingProject: React.FC = () => {
                 >
                   {isPlaying ? (
                     <iframe
-                      key={`${activeVideoId}-${isMuted ? 'muted' : 'unmuted'}`}
-                      src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1${isMuted ? '&mute=1' : ''}`}
+                      key={activeVideoId}
+                      src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`}
                       title={`${project.title} - Wedding Film`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
@@ -81,7 +78,7 @@ const WeddingProject: React.FC = () => {
                     />
                   ) : (
                     <div
-                      onClick={() => { setIsPlaying(true); setIsMuted(false); }}
+                      onClick={() => setIsPlaying(true)}
                       className="relative w-full h-full cursor-pointer group select-none"
                     >
                       <img
@@ -158,14 +155,9 @@ const WeddingProject: React.FC = () => {
                     <h2 className="text-base lg:text-lg font-display font-bold text-brand-dark uppercase tracking-wider">
                       {project.location.name}
                     </h2>
-                    <p className="text-xs uppercase tracking-[0.2em] text-brand-dark/60 font-light mb-3">
+                    <p className="text-xs uppercase tracking-[0.2em] text-brand-dark/60 font-light">
                       {project.location.city}
                     </p>
-                    {project.location.description && (
-                      <p className="text-brand-dark/75 text-sm leading-relaxed font-light">
-                        {project.location.description}
-                      </p>
-                    )}
                   </div>
                 )}
 

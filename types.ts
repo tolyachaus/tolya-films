@@ -57,8 +57,7 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     thumbnail: rikeJonathanCover,
     location: {
       name: 'Hotel Jagdschloss Kranichstein',
-      city: 'Darmstadt, Germany',
-      description: 'An seine Hochzeitsfeier wird man sich für immer erinnern. Im Hotel Jagdschloss Kranichstein kann der Wunsch, sie so wenig alltäglich wie möglich zu gestalten, auf ganz verschiedene Weise in Erfüllung gehen. Je nach Jahreszeit, Größe der Gesellschaft und Ihren persönlichen Vorlieben. Hier laden Sie zu einem fürstlichen Fest in historischen Räumlichkeiten und malerischer Natur.'
+      city: 'Darmstadt, Germany'
     },
     quote: 'Tolyaaaaaaa, we finally got to watch it!!!! Its soooooooooooooooooooooooooooooooooooooooo good!!!! Wow wow wow wow wow!!!! Thank you so much for your amazing work!!!! We are really really happy with how everything turned out!'
   },
@@ -72,8 +71,7 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     thumbnail: 'https://img.youtube.com/vi/tQn4lPc3vjQ/maxresdefault.jpg',
     location: {
       name: 'Morrhof',
-      city: 'Großkarlbach, Rheinland-Pfalz, Germany',
-      description: 'Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
+      city: 'Großkarlbach, Rheinland-Pfalz, Germany'
     },
     quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
   },
