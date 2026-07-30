@@ -45,17 +45,31 @@ const Navbar: React.FC = () => {
 
   const docLink = { name: 'Documentary / Commercial', to: '/documentary' };
 
-  // When Mobile Menu is open, we force the navbar text color to white and background to transparent.
+  const isDocPage = location.pathname === '/documentary';
+  const isDarkNavbarText = isScrolled || isDocPage;
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const navBackgroundClass = isMobileMenuOpen
     ? 'bg-transparent py-4'
-    : isScrolled
+    : isDarkNavbarText
       ? 'bg-white/95 backdrop-blur-md py-4 shadow-sm'
       : 'bg-transparent py-6';
 
-  const desktopLogoSrc = isScrolled ? ASSETS.logoBlack : ASSETS.logoWhite;
+  const desktopLogoSrc = isDarkNavbarText ? ASSETS.logoBlack : ASSETS.logoWhite;
   const mobileLogoSrc = ASSETS.logoBlack;
-  const desktopTextColor = isScrolled && !isMobileMenuOpen ? 'text-brand-dark' : 'text-white';
-  const mobileToggleColor = isMobileMenuOpen ? 'text-brand-dark' : (isScrolled ? 'text-brand-dark' : 'text-brand-dark md:text-white');
+  const desktopTextColor = isDarkNavbarText && !isMobileMenuOpen ? 'text-brand-dark' : 'text-white';
+  const mobileToggleColor = isMobileMenuOpen ? 'text-brand-dark' : (isDarkNavbarText ? 'text-brand-dark' : 'text-brand-dark md:text-white');
+  const underlineClass = isDarkNavbarText && !isMobileMenuOpen ? 'bg-brand-dark' : 'bg-white';
+  const iconStyleClass = isDarkNavbarText && !isMobileMenuOpen ? 'bg-gray-100 text-brand-dark hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20';
 
   return (
     <>
@@ -64,7 +78,7 @@ const Navbar: React.FC = () => {
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
-          <a href="#" className="relative group z-[60]">
+          <a href="/" onClick={handleLogoClick} className="relative group z-[60]">
             <img
               src={isMobileMenuOpen ? ASSETS.logoBlack : desktopLogoSrc}
               alt="Tolya Films"
@@ -75,7 +89,7 @@ const Navbar: React.FC = () => {
               alt="Tolya Films"
               className="h-14 sm:h-16 w-auto object-contain transition-all duration-300 md:hidden"
             />
-            <span className={`hidden text-2xl font-display font-bold ${isMobileMenuOpen || isScrolled ? "text-brand-dark" : "text-brand-dark md:text-white"} tracking-widest uppercase`}>Tolya Films</span>
+            <span className={`hidden text-2xl font-display font-bold ${isMobileMenuOpen || isDarkNavbarText ? "text-brand-dark" : "text-brand-dark md:text-white"} tracking-widest uppercase`}>Tolya Films</span>
           </a>
 
           {/* Desktop Menu */}
@@ -88,23 +102,29 @@ const Navbar: React.FC = () => {
                 className="text-sm font-medium uppercase tracking-widest hover:opacity-70 transition-opacity relative group"
               >
                 {link.name}
-                <span className={`absolute -bottom-2 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${isScrolled && !isMobileMenuOpen ? 'bg-brand-dark' : 'bg-white'}`}></span>
+                <span className={`absolute -bottom-2 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${underlineClass}`}></span>
               </a>
             ))}
             <Link
               to={docLink.to}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                if (location.pathname === '/documentary') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className="text-sm font-medium uppercase tracking-widest hover:opacity-70 transition-opacity relative group"
             >
               {docLink.name}
-              <span className={`absolute -bottom-2 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${isScrolled && !isMobileMenuOpen ? 'bg-brand-dark' : 'bg-white'}`}></span>
+              <span className={`absolute -bottom-2 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${underlineClass}`}></span>
             </Link>
-            <div className={`flex items-center gap-3 pl-4 border-l ${isScrolled && !isMobileMenuOpen ? 'border-brand-dark/20' : 'border-white/20'}`}>
+            <div className={`flex items-center gap-3 pl-4 border-l ${isDarkNavbarText && !isMobileMenuOpen ? 'border-brand-dark/20' : 'border-white/20'}`}>
               <a
                 href={SOCIAL_LINKS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${isScrolled && !isMobileMenuOpen ? 'bg-gray-100 text-brand-dark hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${iconStyleClass}`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
               </a>
@@ -113,7 +133,7 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${isScrolled && !isMobileMenuOpen ? 'bg-gray-100 text-brand-dark hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${iconStyleClass}`}
               >
                 <Instagram size={16} />
               </a>
@@ -122,7 +142,7 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${isScrolled && !isMobileMenuOpen ? 'bg-gray-100 text-brand-dark hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${iconStyleClass}`}
               >
                 <Facebook size={16} />
               </a>
@@ -131,7 +151,7 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${isScrolled && !isMobileMenuOpen ? 'bg-gray-100 text-brand-dark hover:bg-gray-200' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 ${iconStyleClass}`}
               >
                 <Youtube size={16} />
               </a>

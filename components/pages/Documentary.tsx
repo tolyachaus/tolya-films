@@ -24,7 +24,7 @@ const Documentary: React.FC = () => {
     <div className="min-h-screen bg-brand-light text-brand-dark flex flex-col justify-between">
       <div>
         {/* ── HERO ── */}
-        <section className="relative h-[45vh] min-h-[320px] flex items-end pb-12 overflow-hidden border-b border-black/[0.04]">
+        <section className="relative pt-28 md:pt-36 pb-12 md:pb-16 overflow-hidden border-b border-black/[0.04]">
           {/* Background texture */}
           <div className="absolute inset-0 bg-gradient-to-br from-white via-[#fafafa] to-[#f5f5f5]" />
           {/* Gold accent line top */}
@@ -38,24 +38,6 @@ const Documentary: React.FC = () => {
               backgroundSize: '60px 60px',
             }}
           />
-
-          {/* Back link */}
-          <Link
-            to="/"
-            className="absolute top-6 left-6 md:left-12 flex items-center gap-2 text-brand-dark/40 hover:text-brand-dark/80 transition-colors duration-300 text-xs uppercase tracking-widest group"
-          >
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform duration-300" />
-            Zurück
-          </Link>
-
-          {/* Logo */}
-          <Link to="/" className="absolute top-4 left-1/2 -translate-x-1/2">
-            <img
-              src={ASSETS.logoBlack}
-              alt="Tolya Films"
-              className="h-14 md:h-16 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
-            />
-          </Link>
 
           {/* Hero content */}
           <div className="relative z-10 container mx-auto px-6 md:px-12">

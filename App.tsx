@@ -7,16 +7,9 @@ import Documentary from './components/pages/Documentary';
 function App() {
   return (
     <HashRouter>
+      <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar />
-              <Home />
-            </>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/documentary" element={<Documentary />} />
       </Routes>
     </HashRouter>
