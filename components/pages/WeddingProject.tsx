@@ -62,9 +62,9 @@ const WeddingProject: React.FC = () => {
                 >
                   <iframe
                     key={activeVideoId}
-                    src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&rel=0&modestbranding=1`}
+                    src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&playsinline=1&enablejsapi=1&rel=0&modestbranding=1`}
                     title={`${project.title} - Wedding Film`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
                     className="w-full h-full border-none"
                   />
