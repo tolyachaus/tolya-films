@@ -3,7 +3,6 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
 import Documentary from './components/pages/Documentary';
-import KerstinFreddy from './components/pages/KerstinFreddy';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/documentary" element={<Documentary />} />
-        <Route path="/wedding/kerstin-freddy" element={<KerstinFreddy />} />
       </Routes>
     </HashRouter>
   );
