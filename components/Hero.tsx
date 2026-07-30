@@ -32,12 +32,12 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <h1 className="text-5xl md:text-8xl font-display font-bold tracking-[0.15em] uppercase text-white drop-shadow-2xl mb-4">
-            Cinematic Vision
-            <span className="sr-only">Tolya Films - Videograf in Mannheim</span>
+          <h1 className="text-5xl md:text-8xl font-display font-bold tracking-[0.1em] uppercase text-white drop-shadow-2xl mb-4">
+            Wedding Films
+            <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
           <p className="text-lg md:text-2xl font-light text-gray-100 tracking-[0.3em] uppercase max-w-2xl mx-auto drop-shadow-lg">
-            Videografie & Editing
+            Cinematic Stories
           </p>
         </motion.div>
       </div>

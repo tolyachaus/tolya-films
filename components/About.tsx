@@ -58,23 +58,23 @@ const About: React.FC = () => {
 
             <div className="space-y-6 text-brand-dark font-light text-lg leading-relaxed">
               <p>
-                Ich drehe Videos, die im Gedächtnis bleiben — nicht weil sie nur gut aussehen, sondern weil in ihnen echte Emotion steckt. Seit einigen Jahren arbeite ich als Videograf mit Paaren, Marken und Veranstaltern in Mannheim und ganz Deutschland. Jedes Projekt ist für mich keine bloße Aufgabe, sondern eine Geschichte, die es wert ist, ehrlich und mit Herz erzählt zu werden.
+                Ich drehe Hochzeitsfilme, die im Gedächtnis bleiben — nicht nur, weil sie unglaublich gut aussehen, sondern weil in ihnen echte Emotion steckt. Als Wedding Filmmaker begleite ich Paare in Mannheim, ganz Deutschland und weltweit. Eine Hochzeit ist für mich keine bloße Aufgabe, sondern eine einzigartige Geschichte, die es wert ist, filmisch, ehrlich und mit Herz erzählt zu werden.
               </p>
               <p>
-                Neben dem Video mache ich Musik — und das gibt mir etwas, das man technisch nicht lernen kann: ein Gespür für Rhythmus, Dynamik und den entscheidenden Moment. Deshalb sehen meine Videos nicht nur gut aus — sie fühlen sich richtig an.
+                Meine cineastische Herangehensweise und meine Leidenschaft für Musik geben mir etwas, das man technisch nicht lernen kann: ein Gespür für Rhythmus, Dynamik und den entscheidenden Moment. Deshalb sehen meine Hochzeitsfilme nicht nur gut aus — sie fühlen sich richtig an.
               </p>
 
               <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm mt-8">
-                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Was ich mache</h3>
+                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Mein Fokus</h3>
                 <p>
-                  Ich filme und schneide Hochzeitsvideos, Content für Social Media und Videos für Marken. Vom ersten Bild bis zum finalen Schnitt bin ich vollständig in jeden Auftrag vertieft.
+                  Ich bin spezialisiert auf hochwertige, emotionale Hochzeitsfilme. Vom Getting Ready bis zur Party bin ich vollständig in euren Tag vertieft.
                 </p>
               </div>
 
               <div className="mt-8">
-                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Mein Stil</h3>
+                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Der Stil</h3>
                 <p>
-                  Lebendig, emotional, rhythmisch. Ohne Künstlichkeit — nur das, was wirklich da ist.
+                  Cineastisch, emotional, unaufdringlich. Ich fange die echten Momente ein, als wären sie Szenen aus einem Kinofilm.
                 </p>
               </div>
             </div>
