@@ -1,21 +1,25 @@
 import React from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Portfolio from './components/Portfolio';
-import About from './components/About';
-import Contact from './components/Contact';
+import Home from './components/pages/Home';
+import Documentary from './components/pages/Documentary';
 
 function App() {
   return (
-    <div className="min-h-screen selection:bg-brand-dark selection:text-brand-light overflow-x-hidden">
-      <Navbar />
-      <main className="relative z-10">
-        <Hero />
-        <Portfolio />
-        <About />
-      </main>
-      <Contact />
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Home />
+            </>
+          }
+        />
+        <Route path="/documentary" element={<Documentary />} />
+      </Routes>
+    </HashRouter>
   );
 }
 

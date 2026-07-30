@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Facebook, Youtube } from 'lucide-react';
 import { ASSETS, SOCIAL_LINKS } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,6 +21,8 @@ const Navbar: React.FC = () => {
     { name: 'Über mich', href: '#about' },
     { name: 'Kontakt', href: '#contact' },
   ];
+
+  const docLink = { name: 'Documentary / Commercial', to: '/documentary' };
 
   // When Mobile Menu is open, we force the navbar text color to white and background to transparent.
   const navBackgroundClass = isMobileMenuOpen
@@ -69,6 +72,13 @@ const Navbar: React.FC = () => {
                 <span className={`absolute -bottom-2 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${isScrolled && !isMobileMenuOpen ? 'bg-brand-dark' : 'bg-white'}`}></span>
               </a>
             ))}
+            <Link
+              to={docLink.to}
+              className="text-sm font-medium uppercase tracking-widest hover:opacity-70 transition-opacity relative group"
+            >
+              {docLink.name}
+              <span className={`absolute -bottom-2 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${isScrolled && !isMobileMenuOpen ? 'bg-brand-dark' : 'bg-white'}`}></span>
+            </Link>
             <div className={`flex items-center gap-3 pl-4 border-l ${isScrolled && !isMobileMenuOpen ? 'border-brand-dark/20' : 'border-white/20'}`}>
               <a
                 href={SOCIAL_LINKS.whatsapp}
@@ -139,6 +149,13 @@ const Navbar: React.FC = () => {
                   {link.name}
                 </a>
               ))}
+              <Link
+                to={docLink.to}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-gray-800 hover:text-brand-dark text-2xl font-display font-light tracking-widest transition-colors w-full py-2 drop-shadow-sm font-semibold"
+              >
+                {docLink.name}
+              </Link>
               <div className="flex flex-wrap justify-center gap-4 mt-8 pt-8 border-t border-gray-400/30 w-full max-w-sm">
                 <a
                   href={SOCIAL_LINKS.whatsapp}
