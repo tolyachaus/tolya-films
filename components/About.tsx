@@ -56,25 +56,32 @@ const About: React.FC = () => {
               <div className="h-1 w-16 bg-brand-gold mb-8"></div>
             </div>
 
-            <div className="space-y-6 text-brand-dark font-light text-lg leading-relaxed">
+            <div className="space-y-6 text-brand-dark font-light text-base md:text-lg leading-relaxed">
               <p>
-                Ich drehe Hochzeitsfilme, die im Gedächtnis bleiben — nicht nur, weil sie unglaublich gut aussehen, sondern weil in ihnen echte Emotion steckt. Als Wedding Filmmaker begleite ich Paare in Mannheim, ganz Deutschland und weltweit. Eine Hochzeit ist für mich keine bloße Aufgabe, sondern eine einzigartige Geschichte, die es wert ist, filmisch, ehrlich und mit Herz erzählt zu werden.
+                Ich heiße Tolya. Ich bin Wedding Filmmaker aus Mannheim – tätig in ganz Deutschland und darüber hinaus.
               </p>
               <p>
-                Meine cineastische Herangehensweise und meine Leidenschaft für Musik geben mir etwas, das man technisch nicht lernen kann: ein Gespür für Rhythmus, Dynamik und den entscheidenden Moment. Deshalb sehen meine Hochzeitsfilme nicht nur gut aus — sie fühlen sich richtig an.
+                Für mich ist jede Hochzeit keine Veranstaltung, die man einfach dokumentiert, sondern eine Geschichte, die es verdient, in Bildern, Schnitt, Musik und Stimme erzählt zu werden.
+              </p>
+              <p>
+                Mein Blick auf Hochzeitsfilme kommt nicht aus einem Videografie-Kurs, sondern aus jahrelanger Erfahrung mit Musik. Das gibt mir etwas, das man sich nicht antrainieren kann: ein Gespür für Rhythmus, für Pausen, für den Moment, in dem eine Einstellung stehen bleiben muss – und den, in dem sich das Tempo abrupt ändert. Genau deshalb wirken meine Filme nicht nur schön geschnitten, sondern haben eine eigene Dramaturgie, wie echtes Kino.
               </p>
 
               <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm mt-8">
-                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Mein Fokus</h3>
-                <p>
-                  Ich bin spezialisiert auf hochwertige, emotionale Hochzeitsfilme. Vom Getting Ready bis zur Party bin ich vollständig in euren Tag vertieft.
+                <h3 className="font-display text-lg uppercase tracking-widest mb-2 font-bold text-brand-dark">
+                  MEINE SPEZIALISIERUNG
+                </h3>
+                <p className="text-brand-dark/90 leading-relaxed text-base">
+                  Ich erstelle einen einzigen, in sich stimmigen Hochzeitsfilm – statt euch mit zehn verschiedenen Formaten zu überhäufen. Einen Film, den ihr euch noch in Jahren ansehen und dabei den Tag jedes Mal aufs Neue erleben werdet. Ich passe mich eurem Ablauf an und nehme aus eurem Tag genau das mit, was wirklich erzählenswert ist.
                 </p>
               </div>
 
-              <div className="mt-8">
-                <h3 className="font-display text-xl uppercase tracking-widest mb-2 font-bold">Der Stil</h3>
-                <p>
-                  Cineastisch, emotional, unaufdringlich. Ich fange die echten Momente ein, als wären sie Szenen aus einem Kinofilm.
+              <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm mt-6">
+                <h3 className="font-display text-lg uppercase tracking-widest mb-2 font-bold text-brand-dark">
+                  MEIN STIL
+                </h3>
+                <p className="text-brand-dark/90 leading-relaxed text-base">
+                  Autorenhaft. Ich dokumentiere eure Hochzeit nicht – ich interpretiere sie wie ein Regisseur: Ich entscheide, wo die Kamera schweigt und wo sie spricht, welcher Moment zum Höhepunkt des Films wird und welcher außen vor bleibt. Das Ergebnis ist kein einfach schönes Video, sondern ein Film mit Charakter.
                 </p>
               </div>
             </div>
