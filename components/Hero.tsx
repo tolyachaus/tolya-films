@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full max-w-5xl flex flex-col items-center justify-center text-center my-auto space-y-3 md:space-y-5"
+          className="w-full max-w-5xl flex flex-col items-center justify-center text-center my-auto -mt-6 sm:-mt-8 md:mt-0 space-y-3 md:space-y-5"
         >
           {/* Main Headline - Strictly 2 Lines */}
           <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl xl:text-8xl font-display font-bold tracking-[0.08em] md:tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl leading-snug md:leading-tight">
