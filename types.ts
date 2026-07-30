@@ -63,18 +63,6 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     quote: 'Tolyaaaaaaa, we finally got to watch it!!!! Its soooooooooooooooooooooooooooooooooooooooo good!!!! Wow wow wow wow wow!!!! Thank you so much for your amazing work!!!! We are really really happy with how everything turned out!'
   },
   {
-    id: '6',
-    slug: 'gemma-timo',
-    title: 'GEMMA & TIMO',
-    videoId: 'YdLQ3CAjlpQ',
-    aspectRatio: 'aspect-video',
-    thumbnail: gemmaTimoCover,
-    location: {
-      name: 'Schriesheim',
-      city: 'Stadt in Deutschland'
-    }
-  },
-  {
     id: '8',
     slug: 'kerstin-freddy',
     title: 'KERSTIN & FREDDY',
@@ -88,6 +76,18 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
       description: 'Lasst Euch verzaubern von einem der schönsten Anwesen der Region, angelegt wie ein mediterranes Refugium mit Zypressenalleen, Gartenhaus und viel grünem Charme – der ideale Ort für freie Trauungen und Hochzeitsfeiern!'
     },
     quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
+  },
+  {
+    id: '6',
+    slug: 'gemma-timo',
+    title: 'GEMMA & TIMO',
+    videoId: 'YdLQ3CAjlpQ',
+    aspectRatio: 'aspect-video',
+    thumbnail: gemmaTimoCover,
+    location: {
+      name: 'Schriesheim',
+      city: 'Stadt in Deutschland'
+    }
   },
   {
     id: '2',
