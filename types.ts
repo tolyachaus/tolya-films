@@ -79,7 +79,7 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     slug: 'kerstin-freddy',
     title: 'KERSTIN & FREDDY',
     videoId: 'tQn4lPc3vjQ', // Trailer
-    fullVideoId: 'mnHxcdehFlo', // Full Film
+    fullVideoId: 'ln-P6GUBLPo', // Full Film
     aspectRatio: 'aspect-video',
     thumbnail: 'https://img.youtube.com/vi/tQn4lPc3vjQ/maxresdefault.jpg',
     location: {
