@@ -6,6 +6,8 @@ export interface PortfolioItem {
   videoId: string; // YouTube ID
   thumbnail?: string;
   aspectRatio?: string; // e.g. 'aspect-[21/9]'
+  slug?: string;
+  hasDedicatedPage?: boolean;
 }
 
 export interface SocialLink {
@@ -40,6 +42,7 @@ import commercialCover from './src/assets/thumbnails/SskIWKbsVss.jpg';
 import documentaryCover from './src/assets/thumbnails/zyquMe78knA.jpg';
 
 export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
+  { id: '8', title: 'KERSTIN & FREDDY', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-video', thumbnail: rikeJonathanCover, slug: 'kerstin-freddy', hasDedicatedPage: true },
   { id: '7', title: 'RIKE & JONATHAN', videoId: 'mnHxcdehFlo', aspectRatio: 'aspect-video', thumbnail: rikeJonathanCover },
   { id: '6', title: 'GEMMA & TIMO', videoId: 'YdLQ3CAjlpQ', aspectRatio: 'aspect-video', thumbnail: gemmaTimoCover },
   { id: '1', title: 'Cinematic Portrait', videoId: 'ln-P6GUBLPo', thumbnail: cinematicPortraitCover },
@@ -51,3 +54,17 @@ export const DOCUMENTARY_PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: '4', title: 'Bridge', videoId: 'SskIWKbsVss', thumbnail: commercialCover },
   { id: '5', title: 'Becoming Dr. Marvin Knapp', videoId: 'zyquMe78knA', thumbnail: documentaryCover },
 ];
+
+export const KERSTIN_FREDDY_DATA = {
+  title: 'KERSTIN & FREDDY',
+  subtitle: 'A Wedding at Morrhof',
+  coverImage: rikeJonathanCover,
+  highlightVideoId: 'mnHxcdehFlo', // Trailer / Highlight Film
+  fullFilmVideoId: 'YdLQ3CAjlpQ',    // Full Wedding Film
+  location: {
+    name: 'Morrhof',
+    region: 'Großkarlbach, Rheinland-Pfalz, Germany',
+    description: 'Der Morrhof gehört zu den exklusivsten Hochzeitslocations Deutschlands. Umgeben von Weinbergen im Herzen der Pfalz verbindet das historische Anwesen mediterrane Architektur, elegante Gärten und eine außergewöhnliche Atmosphäre – der perfekte Ort für luxuriöse und stilvolle Hochzeiten.'
+  },
+  quote: 'Tolya, you did a WONDERFUL job – we love it so much and we will watch it SO SO often!! Thank you so, so much for capturing our day in such a loving, detailed way! I really love all the sequences you chose and the final result is just amazing!!'
+};

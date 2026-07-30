@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import { WEDDING_PORTFOLIO_ITEMS } from '../types';
@@ -6,6 +7,16 @@ import VideoModal from './VideoModal';
 
 const Portfolio: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleItemClick = (item: (typeof WEDDING_PORTFOLIO_ITEMS)[0]) => {
+    if (item.hasDedicatedPage && item.slug) {
+      navigate(`/wedding/${item.slug}`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setSelectedVideo(item.videoId);
+    }
+  };
 
   return (
     <section id="portfolio" className="py-12 md:py-32 bg-brand-light relative z-10">
@@ -31,7 +42,7 @@ const Portfolio: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className={`group relative ${item.aspectRatio || 'aspect-video'} bg-brand-gray cursor-pointer overflow-hidden rounded-sm ${index === 0 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
-              onClick={() => setSelectedVideo(item.videoId)}
+              onClick={() => handleItemClick(item)}
             >
               {/* Thumbnail */}
               <img
