@@ -20,9 +20,9 @@
 
 | Key | 🇩🇪 Deutsch (DE) | 🇬🇧 English (EN) |
 | :--- | :--- | :--- |
-| `hero.taglineLine1` | Wedding films | Wedding films |
-| `hero.taglineLine2` | that feel like cinema | that feel like cinema |
-| `hero.subtitle` | A story told through image, rhythm, and sound | A story told through image, rhythm, and sound |
+| `hero.taglineLine1` | Hochzeitsfilme, | Wedding films |
+| `hero.taglineLine2` | die sich wie Kino anfühlen | that feel like cinema |
+| `hero.subtitle` | Eine Geschichte erzählt durch Bild, Rhythmus und Ton | A story told through image, rhythm, and sound |
 
 ---
 

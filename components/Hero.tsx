@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
           </h1>
 
           {/* Subheadline - Single Line, Light Font, Smaller */}
-          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light tracking-[0.2em] md:tracking-[0.3em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md whitespace-nowrap uppercase">
+          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md sm:whitespace-nowrap uppercase">
             {t.hero.subtitle}
           </p>
         </motion.div>

@@ -9,9 +9,9 @@ export const TRANSLATIONS = {
       doc: 'Documentary / Commercial'
     },
     hero: {
-      taglineLine1: 'Wedding films',
-      taglineLine2: 'that feel like cinema',
-      subtitle: 'A story told through image, rhythm, and sound'
+      taglineLine1: 'Hochzeitsfilme,',
+      taglineLine2: 'die sich wie Kino anfühlen',
+      subtitle: 'Eine Geschichte erzählt durch Bild, Rhythmus und Ton'
     },
     portfolio: {
       title: 'Portfolio',
