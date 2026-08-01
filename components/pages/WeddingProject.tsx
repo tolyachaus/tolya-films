@@ -77,33 +77,46 @@ const WeddingProject: React.FC = () => {
                   />
                 </motion.div>
 
-                {/* Video Version Toggle Button (If Full Film Exists) */}
+                {/* Video Version Toggle Switcher (If Full Film Exists) */}
                 {project.fullVideoId && (
-                  <div className="flex items-center justify-between bg-white/80 backdrop-blur-md p-1.5 rounded-sm border border-black/10 shadow-sm">
-                    <button
-                      type="button"
-                      onClick={() => handleVideoTypeChange('trailer')}
-                      className={`flex-1 py-2 px-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] transition-all rounded-xs flex items-center justify-center gap-1.5 ${
-                        activeVideoType === 'trailer'
-                          ? 'bg-brand-dark text-white shadow-sm'
-                          : 'text-brand-dark/60 hover:text-brand-dark hover:bg-black/5'
-                      }`}
-                    >
-                      <Film size={13} />
-                      {t.weddingProject.trailerBtn}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleVideoTypeChange('full')}
-                      className={`flex-1 py-2 px-3 text-[11px] md:text-xs font-semibold uppercase tracking-[0.2em] transition-all rounded-xs flex items-center justify-center gap-1.5 ${
-                        activeVideoType === 'full'
-                          ? 'bg-brand-dark text-white shadow-sm'
-                          : 'text-brand-dark/60 hover:text-brand-dark hover:bg-black/5'
-                      }`}
-                    >
-                      <Play size={13} fill="currentColor" />
-                      {t.weddingProject.fullFilmBtn}
-                    </button>
+                  <div className="bg-white p-3 rounded-sm border border-black/15 shadow-md space-y-2">
+                    <div className="flex items-center justify-between text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold text-brand-dark/80 px-1">
+                      <span className="flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
+                        </span>
+                        <span>{t.weddingProject.versionHint}</span>
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => handleVideoTypeChange('trailer')}
+                        className={`py-2.5 px-3 text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] transition-all rounded-xs flex items-center justify-center gap-2 border ${
+                          activeVideoType === 'trailer'
+                            ? 'bg-brand-dark text-white border-brand-dark shadow-md ring-2 ring-brand-gold/50 scale-[1.01]'
+                            : 'bg-brand-gray/60 text-brand-dark/80 border-black/10 hover:bg-brand-gray hover:text-brand-dark'
+                        }`}
+                      >
+                        <Film size={14} className={activeVideoType === 'trailer' ? 'text-brand-gold' : 'text-brand-dark/60'} />
+                        <span>{t.weddingProject.trailerBtn}</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => handleVideoTypeChange('full')}
+                        className={`py-2.5 px-3 text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] transition-all rounded-xs flex items-center justify-center gap-2 border ${
+                          activeVideoType === 'full'
+                            ? 'bg-brand-dark text-white border-brand-dark shadow-md ring-2 ring-brand-gold/50 scale-[1.01]'
+                            : 'bg-brand-gray/60 text-brand-dark/80 border-black/10 hover:bg-brand-gray hover:text-brand-dark'
+                        }`}
+                      >
+                        <Play size={13} fill="currentColor" className={activeVideoType === 'full' ? 'text-brand-gold' : 'text-brand-dark/60'} />
+                        <span>{t.weddingProject.fullFilmBtn}</span>
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>

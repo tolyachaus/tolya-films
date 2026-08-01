@@ -34,8 +34,9 @@ export const TRANSLATIONS = {
       filmType: 'Wedding Film',
       locationLabel: 'Location',
       kindWordsLabel: 'Kind Words',
-      trailerBtn: 'Trailer',
-      fullFilmBtn: 'Full Film',
+      trailerBtn: 'Trailer (1-3 Min)',
+      fullFilmBtn: 'Hauptfilm (Full Version)',
+      versionHint: '2 Versionen verfügbar',
       nextProject: 'Nächstes Projekt'
     },
     contactForm: {
@@ -109,8 +110,9 @@ export const TRANSLATIONS = {
       filmType: 'Wedding Film',
       locationLabel: 'Location',
       kindWordsLabel: 'Kind Words',
-      trailerBtn: 'Trailer',
-      fullFilmBtn: 'Full Film',
+      trailerBtn: 'Trailer (1-3 Min)',
+      fullFilmBtn: 'Full Film (Full Version)',
+      versionHint: '2 Versions Available',
       nextProject: 'Next Project'
     },
     contactForm: {
