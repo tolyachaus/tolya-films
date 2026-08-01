@@ -53,7 +53,8 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     id: '7',
     slug: 'rike-jonathan',
     title: 'RIKE & JONATHAN',
-    videoId: 'mnHxcdehFlo',
+    videoId: '6gTPni4OT2M', // Trailer
+    fullVideoId: 'mnHxcdehFlo', // Full Film
     aspectRatio: 'aspect-video',
     thumbnail: rikeJonathanCover,
     location: {
