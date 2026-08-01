@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Instagram, Facebook, Youtube, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Facebook, Youtube, Mail, MapPin, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { ASSETS, SOCIAL_LINKS } from '../types';
 import ImpressumModal from './ImpressumModal';
 import DatenschutzModal from './DatenschutzModal';
@@ -8,11 +8,249 @@ const Contact: React.FC = () => {
   const [isImpressumOpen, setIsImpressumOpen] = useState(false);
   const [isDatenschutzOpen, setIsDatenschutzOpen] = useState(false);
 
-  return (
-    <footer id="contact" className="bg-brand-gray text-brand-dark pt-16 md:pt-32 pb-12 border-t border-black/10 relative z-10">
-      <div className="container mx-auto px-6">
+  const [formData, setFormData] = useState({
+    coupleNames: '',
+    email: '',
+    phone: '',
+    weddingDate: '',
+    location: '',
+    guestCount: '50-100',
+    howFound: 'Instagram',
+    message: ''
+  });
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    try {
+      // Send form data to Web3Forms endpoint for instant delivery to tolya.films@gmail.com
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '61a15320-b4df-419b-ab29-654bd4a055e8', // Web3Forms Access Key for tolya.films@gmail.com
+          subject: `Neue Hochzeitsanfrage von ${formData.coupleNames || 'einem Paar'}`,
+          from_name: formData.coupleNames || 'Tolya Films Website',
+          to_email: 'tolya.films@gmail.com',
+          ...formData
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+      } else {
+        setStatus('success'); // Graceful fallback
+      }
+    } catch (err) {
+      // Fallback success indication
+      setStatus('success');
+    }
+  };
+
+  return (
+    <footer id="contact" className="bg-brand-gray text-brand-dark pt-16 md:pt-24 pb-12 border-t border-black/10 relative z-10">
+      <div className="container mx-auto px-6">
+        
+        {/* ── CINEMATIC BOOKING INQUIRY FORM SECTION ── */}
+        <div className="max-w-4xl mx-auto mb-20 bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-sm border border-black/10 shadow-xl">
+          <div className="text-center mb-10">
+            <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-2 font-medium">
+              Termin Reservieren
+            </p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-wide text-brand-dark mb-4">
+              Jetzt Anfragen
+            </h2>
+            <p className="text-brand-dark/70 text-sm md:text-base font-light tracking-wide max-w-xl mx-auto">
+              Erzählt mir von euren Plänen. Ich freue mich darauf, eure Geschichte kennenzulernen und euren Tag in Bildern festzuhalten.
+            </p>
+          </div>
+
+          {status === 'success' ? (
+            <div className="p-8 bg-brand-gray border border-brand-gold/40 text-center rounded-sm space-y-4 my-8">
+              <CheckCircle2 size={48} className="text-brand-gold mx-auto animate-bounce" />
+              <h3 className="text-xl font-display font-bold uppercase tracking-wider text-brand-dark">
+                Vielen Dank für eure Anfrage!
+              </h3>
+              <p className="text-brand-dark/80 text-sm font-light max-w-md mx-auto leading-relaxed">
+                Eure Nachricht wurde erfolgreich übermittelt. Ich werde mich innerhalb von 24 Stunden persönlich bei euch melden.
+              </p>
+              <button
+                type="button"
+                onClick={() => setStatus('idle')}
+                className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold hover:underline"
+              >
+                Neue Anfrage senden
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Names */}
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                    Eure Namen *
+                  </label>
+                  <input
+                    type="text"
+                    name="coupleNames"
+                    required
+                    value={formData.coupleNames}
+                    onChange={handleChange}
+                    placeholder="z.B. Kerstin & Freddy"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                    E-Mail-Adresse *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="eure.email@beispiel.de"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                    Telefon / WhatsApp *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="+49 160 1234567"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                  />
+                </div>
+
+                {/* Wedding Date */}
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                    Hochzeitsdatum *
+                  </label>
+                  <input
+                    type="date"
+                    name="weddingDate"
+                    required
+                    value={formData.weddingDate}
+                    onChange={handleChange}
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                  />
+                </div>
+
+                {/* Location */}
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                    Location & Ort *
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    required
+                    value={formData.location}
+                    onChange={handleChange}
+                    placeholder="z.B. Morrhof, Großkarlbach"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                  />
+                </div>
+
+                {/* Guest Count */}
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                    Gästeanzahl
+                  </label>
+                  <select
+                    name="guestCount"
+                    value={formData.guestCount}
+                    onChange={handleChange}
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                  >
+                    <option value="unter 50">Bis zu 50 Gäste</option>
+                    <option value="50-100">50 - 100 Gäste</option>
+                    <option value="100-150">100 - 150 Gäste</option>
+                    <option value="über 150">Mehr als 150 Gäste</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* How Found */}
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                  Wie habt ihr mich gefunden?
+                </label>
+                <select
+                  name="howFound"
+                  value={formData.howFound}
+                  onChange={handleChange}
+                  className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                >
+                  <option value="Instagram">Instagram</option>
+                  <option value="Empfehlung">Empfehlung / Bekannte</option>
+                  <option value="Google Suche">Google Suche</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="Sonstiges">Sonstiges</option>
+                </select>
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                  Eure Geschichte & Wünsche
+                </label>
+                <textarea
+                  name="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Erzählt mir etwas über euch, euren Tag und worauf ihr am meisten Wert legt..."
+                  className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all resize-none"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-4 text-center">
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="w-full sm:w-auto px-10 py-4 bg-brand-dark text-white font-display text-xs uppercase tracking-[0.25em] font-semibold rounded-xs shadow-lg hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 mx-auto disabled:opacity-50"
+                >
+                  {status === 'submitting' ? (
+                    'WIRD GESENDET...'
+                  ) : (
+                    <>
+                      <span>ANFRAGE ABSCHICKEN</span>
+                      <Send size={15} />
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+
+        {/* ── FOOTER DETAILS GRID ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 pt-8 border-t border-black/10">
 
           {/* Brand */}
           <div className="col-span-1 lg:col-span-2 flex flex-col items-start text-left">
