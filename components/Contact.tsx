@@ -11,17 +11,14 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     coupleNames: '',
     email: '',
-    phone: '',
     weddingDate: '',
     location: '',
-    guestCount: '50-100',
-    howFound: 'Instagram',
     message: ''
   });
 
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -30,7 +27,6 @@ const Contact: React.FC = () => {
     setStatus('submitting');
 
     try {
-      // Send form data to Web3Forms endpoint for instant delivery to tolya.films@gmail.com
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
@@ -50,10 +46,9 @@ const Contact: React.FC = () => {
       if (result.success) {
         setStatus('success');
       } else {
-        setStatus('success'); // Graceful fallback
+        setStatus('success');
       }
     } catch (err) {
-      // Fallback success indication
       setStatus('success');
     }
   };
@@ -62,43 +57,43 @@ const Contact: React.FC = () => {
     <footer id="contact" className="bg-brand-gray text-brand-dark pt-16 md:pt-24 pb-12 border-t border-black/10 relative z-10">
       <div className="container mx-auto px-6">
         
-        {/* ── CINEMATIC BOOKING INQUIRY FORM SECTION ── */}
-        <div className="max-w-4xl mx-auto mb-20 bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-sm border border-black/10 shadow-xl">
-          <div className="text-center mb-10">
+        {/* ── MINIMALIST CINEMATIC BOOKING INQUIRY FORM ── */}
+        <div className="max-w-3xl mx-auto mb-20 bg-white/90 backdrop-blur-md p-6 sm:p-10 md:p-12 rounded-sm border border-black/10 shadow-xl">
+          <div className="text-center mb-8">
             <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-2 font-medium">
               Termin Reservieren
             </p>
-            <h2 className="text-3xl md:text-5xl font-display font-bold uppercase tracking-wide text-brand-dark mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold uppercase tracking-wide text-brand-dark mb-3">
               Jetzt Anfragen
             </h2>
-            <p className="text-brand-dark/70 text-sm md:text-base font-light tracking-wide max-w-xl mx-auto">
-              Erzählt mir von euren Plänen. Ich freue mich darauf, eure Geschichte kennenzulernen und euren Tag in Bildern festzuhalten.
+            <p className="text-brand-dark/70 text-xs sm:text-sm font-light tracking-wide max-w-lg mx-auto">
+              Unverbindliche Anfrage für eure Hochzeit. Ich freue mich darauf, eure Geschichte kennenzulernen.
             </p>
           </div>
 
           {status === 'success' ? (
-            <div className="p-8 bg-brand-gray border border-brand-gold/40 text-center rounded-sm space-y-4 my-8">
-              <CheckCircle2 size={48} className="text-brand-gold mx-auto animate-bounce" />
-              <h3 className="text-xl font-display font-bold uppercase tracking-wider text-brand-dark">
+            <div className="p-8 bg-brand-gray border border-brand-gold/40 text-center rounded-sm space-y-4 my-6">
+              <CheckCircle2 size={44} className="text-brand-gold mx-auto animate-bounce" />
+              <h3 className="text-lg font-display font-bold uppercase tracking-wider text-brand-dark">
                 Vielen Dank für eure Anfrage!
               </h3>
-              <p className="text-brand-dark/80 text-sm font-light max-w-md mx-auto leading-relaxed">
+              <p className="text-brand-dark/80 text-xs sm:text-sm font-light max-w-md mx-auto leading-relaxed">
                 Eure Nachricht wurde erfolgreich übermittelt. Ich werde mich innerhalb von 24 Stunden persönlich bei euch melden.
               </p>
               <button
                 type="button"
                 onClick={() => setStatus('idle')}
-                className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold hover:underline"
+                className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold hover:underline"
               >
                 Neue Anfrage senden
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Names */}
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                  <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     Eure Namen *
                   </label>
                   <input
@@ -108,13 +103,13 @@ const Contact: React.FC = () => {
                     value={formData.coupleNames}
                     onChange={handleChange}
                     placeholder="z.B. Kerstin & Freddy"
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                  <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     E-Mail-Adresse *
                   </label>
                   <input
@@ -124,29 +119,13 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="eure.email@beispiel.de"
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
-                  />
-                </div>
-
-                {/* Phone */}
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
-                    Telefon / WhatsApp *
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+49 160 1234567"
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
 
                 {/* Wedding Date */}
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                  <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     Hochzeitsdatum *
                   </label>
                   <input
@@ -155,13 +134,13 @@ const Contact: React.FC = () => {
                     required
                     value={formData.weddingDate}
                     onChange={handleChange}
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
 
                 {/* Location */}
                 <div>
-                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                  <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     Location & Ort *
                   </label>
                   <input
@@ -171,76 +150,39 @@ const Contact: React.FC = () => {
                     value={formData.location}
                     onChange={handleChange}
                     placeholder="z.B. Morrhof, Großkarlbach"
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
+                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
-
-                {/* Guest Count */}
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
-                    Gästeanzahl
-                  </label>
-                  <select
-                    name="guestCount"
-                    value={formData.guestCount}
-                    onChange={handleChange}
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
-                  >
-                    <option value="unter 50">Bis zu 50 Gäste</option>
-                    <option value="50-100">50 - 100 Gäste</option>
-                    <option value="100-150">100 - 150 Gäste</option>
-                    <option value="über 150">Mehr als 150 Gäste</option>
-                  </select>
-                </div>
-              </div>
-
-              {/* How Found */}
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
-                  Wie habt ihr mich gefunden?
-                </label>
-                <select
-                  name="howFound"
-                  value={formData.howFound}
-                  onChange={handleChange}
-                  className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all"
-                >
-                  <option value="Instagram">Instagram</option>
-                  <option value="Empfehlung">Empfehlung / Bekannte</option>
-                  <option value="Google Suche">Google Suche</option>
-                  <option value="YouTube">YouTube</option>
-                  <option value="Sonstiges">Sonstiges</option>
-                </select>
               </div>
 
               {/* Message */}
               <div>
-                <label className="block text-xs uppercase tracking-widest text-brand-dark/70 font-semibold mb-2">
+                <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                   Eure Geschichte & Wünsche
                 </label>
                 <textarea
                   name="message"
-                  rows={4}
+                  rows={3}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Erzählt mir etwas über euch, euren Tag und worauf ihr am meisten Wert legt..."
-                  className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-4 py-3 rounded-xs outline-none transition-all resize-none"
+                  placeholder="Erzählt mir etwas über euch und eure Hochzeitspläne..."
+                  className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all resize-none"
                 />
               </div>
 
               {/* Submit Button */}
-              <div className="pt-4 text-center">
+              <div className="pt-2 text-center">
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full sm:w-auto px-10 py-4 bg-brand-dark text-white font-display text-xs uppercase tracking-[0.25em] font-semibold rounded-xs shadow-lg hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 mx-auto disabled:opacity-50"
+                  className="w-full sm:w-auto px-9 py-3.5 bg-brand-dark text-white font-display text-xs uppercase tracking-[0.25em] font-semibold rounded-xs shadow-md hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 mx-auto disabled:opacity-50"
                 >
                   {status === 'submitting' ? (
                     'WIRD GESENDET...'
                   ) : (
                     <>
                       <span>ANFRAGE ABSCHICKEN</span>
-                      <Send size={15} />
+                      <Send size={14} />
                     </>
                   )}
                 </button>
