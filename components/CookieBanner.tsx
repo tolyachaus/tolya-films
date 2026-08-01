@@ -91,28 +91,29 @@ const CookieBanner: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-white/10">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 mt-4 pt-4 border-t border-white/10">
               <button
                 type="button"
                 onClick={handleAcceptAll}
-                className="flex-1 py-2.5 px-4 bg-brand-gold text-brand-dark font-display text-[11px] font-bold uppercase tracking-wider rounded-xs hover:bg-white transition-all shadow-md text-center"
+                className="flex-1 py-2.5 px-4 bg-white text-brand-dark font-display text-[11px] font-bold uppercase tracking-wider rounded-xs hover:bg-brand-gold hover:text-white transition-all shadow-md text-center"
               >
-                Alle Akzeptieren
+                Alle akzeptieren
               </button>
               <button
                 type="button"
                 onClick={handleRejectOptional}
-                className="flex-1 py-2.5 px-4 bg-white/10 text-white font-display text-[11px] font-medium uppercase tracking-wider rounded-xs hover:bg-white/20 transition-all text-center"
+                className="flex-1 py-2.5 px-4 bg-white/15 text-white border border-white/20 font-display text-[11px] font-bold uppercase tracking-wider rounded-xs hover:bg-white/25 transition-all text-center"
               >
-                Nur Notwendige
+                Alle ablehnen
               </button>
               <button
                 type="button"
                 onClick={() => setShowSettingsModal(true)}
                 aria-label="Cookie Einstellungen"
-                className="py-2.5 px-3 bg-white/5 text-gray-300 hover:text-white rounded-xs transition-colors"
+                className="py-2.5 px-3 bg-white/5 text-gray-300 hover:text-white border border-white/10 rounded-xs transition-colors flex items-center justify-center gap-1.5 text-[11px] font-medium uppercase tracking-wider"
               >
-                <Settings size={16} />
+                <Settings size={14} />
+                <span className="sm:hidden">Einstellungen</span>
               </button>
             </div>
           </motion.div>
