@@ -27,23 +27,27 @@ const Contact: React.FC = () => {
     setStatus('submitting');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // Send form data to FormSubmit.co endpoint for instant delivery to tolya.films@gmail.com
+      const response = await fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json'
         },
         body: JSON.stringify({
-          access_key: '61a15320-b4df-419b-ab29-654bd4a055e8', // Web3Forms Access Key for tolya.films@gmail.com
-          subject: `Neue Hochzeitsanfrage von ${formData.coupleNames || 'einem Paar'}`,
-          from_name: formData.coupleNames || 'Tolya Films Website',
-          to_email: 'tolya.films@gmail.com',
-          ...formData
+          'Namen des Paares': formData.coupleNames,
+          'E-Mail-Adresse': formData.email,
+          'Hochzeitsdatum': formData.weddingDate,
+          'Location & Ort': formData.location,
+          'Nachricht & Wünsche': formData.message || 'Keine Nachricht angegeben',
+          _subject: `Neue Hochzeitsanfrage: ${formData.coupleNames || 'Tolya Films Website'}`,
+          _template: 'table',
+          _captcha: 'false'
         })
       });
 
       const result = await response.json();
-      if (result.success) {
+      if (result.success === 'true' || result.success === true || response.ok) {
         setStatus('success');
       } else {
         setStatus('success');
