@@ -64,7 +64,8 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     stills: [
       '/images/rike_still_1.jpg',
       '/images/rike_still_2.jpg',
-      '/images/rike_still_3.jpg'
+      '/images/rike_still_3.jpg',
+      '/images/rike_still_4.jpg'
     ]
   },
   {
