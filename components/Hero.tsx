@@ -36,14 +36,14 @@ const Hero: React.FC = () => {
           className="w-full max-w-5xl flex flex-col items-center justify-center text-center mt-6 sm:mt-8 md:mt-0 space-y-3 md:space-y-5"
         >
           {/* Main Headline - Strictly 2 Lines */}
-          <h1 className="text-xl sm:text-2xl md:text-5xl lg:text-7xl xl:text-8xl font-display font-bold tracking-[0.08em] md:tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl leading-snug md:leading-tight">
+          <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-[0.08em] md:tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl leading-snug md:leading-tight">
             <span className="block whitespace-nowrap">Wedding films</span>
             <span className="block whitespace-nowrap">that feel like cinema</span>
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
 
           {/* Subheadline - Single Line, Light Font, Smaller */}
-          <p className="text-[10px] sm:text-xs md:text-lg lg:text-xl font-light tracking-[0.2em] md:tracking-[0.28em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md whitespace-nowrap uppercase">
+          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light tracking-[0.2em] md:tracking-[0.3em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md whitespace-nowrap uppercase">
             A story told through image, rhythm, and sound
           </p>
         </motion.div>
