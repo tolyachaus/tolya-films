@@ -6,6 +6,7 @@ import {
   updateConsentState,
   initConsentMode
 } from '../src/config/analytics';
+import { useLanguage } from '../src/context/LanguageContext';
 
 export const OPEN_COOKIE_SETTINGS_EVENT = 'tolya_open_cookie_settings';
 
@@ -19,6 +20,7 @@ const CookieBanner: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
   const [analyticsConsent, setAnalyticsConsent] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     // 1. Initialize Consent Mode Default State immediately
@@ -83,10 +85,10 @@ const CookieBanner: React.FC = () => {
               <Cookie size={24} className="text-brand-gold shrink-0 mt-0.5" />
               <div>
                 <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
-                  Privatsphäre & Cookies
+                  {t.cookie.title}
                 </h3>
                 <p className="text-gray-300 text-xs font-light leading-relaxed mt-1">
-                  Wir nutzen Cookies, um unsere Website zu optimieren. Essentielle Cookies sind immer aktiv. Analyse-Cookies helfen uns, das Nutzungserlebnis zu verbessern (DSGVO / Consent Mode v2).
+                  {t.cookie.desc}
                 </p>
               </div>
             </div>
@@ -97,14 +99,14 @@ const CookieBanner: React.FC = () => {
                 onClick={handleAcceptAll}
                 className="flex-1 py-2.5 px-4 bg-white text-brand-dark font-display text-[11px] font-bold uppercase tracking-wider rounded-xs hover:bg-brand-gold hover:text-white transition-all shadow-md text-center"
               >
-                Alle akzeptieren
+                {t.cookie.acceptAll}
               </button>
               <button
                 type="button"
                 onClick={handleRejectOptional}
                 className="flex-1 py-2.5 px-4 bg-white/15 text-white border border-white/20 font-display text-[11px] font-bold uppercase tracking-wider rounded-xs hover:bg-white/25 transition-all text-center"
               >
-                Alle ablehnen
+                {t.cookie.rejectOptional}
               </button>
               <button
                 type="button"
@@ -113,7 +115,7 @@ const CookieBanner: React.FC = () => {
                 className="py-2.5 px-3 bg-white/5 text-gray-300 hover:text-white border border-white/10 rounded-xs transition-colors flex items-center justify-center gap-1.5 text-[11px] font-medium uppercase tracking-wider"
               >
                 <Settings size={14} />
-                <span className="sm:hidden">Einstellungen</span>
+                <span className="sm:hidden">{t.cookie.settingsBtn}</span>
               </button>
             </div>
           </motion.div>

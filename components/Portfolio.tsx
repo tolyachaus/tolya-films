@@ -4,10 +4,12 @@ import { motion } from 'framer-motion';
 import { Play } from 'lucide-react';
 import { WEDDING_PORTFOLIO_ITEMS } from '../types';
 import VideoModal from './VideoModal';
+import { useLanguage } from '../src/context/LanguageContext';
 
 const Portfolio: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleItemClick = (item: (typeof WEDDING_PORTFOLIO_ITEMS)[0]) => {
     if (item.slug) {
@@ -27,7 +29,7 @@ const Portfolio: React.FC = () => {
           className="mb-16 text-center"
         >
           <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-widest text-brand-dark mb-6">
-            Portfolio
+            {t.portfolio.title}
           </h2>
           <div className="h-1 w-24 bg-brand-gold mx-auto"></div>
         </motion.div>

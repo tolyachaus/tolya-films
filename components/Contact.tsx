@@ -13,6 +13,7 @@ import {
 } from '../src/config/analytics';
 
 const Contact: React.FC = () => {
+  const { t } = useLanguage();
   const [isImpressumOpen, setIsImpressumOpen] = useState(false);
   const [isDatenschutzOpen, setIsDatenschutzOpen] = useState(false);
   const [isCookiePolicyOpen, setIsCookiePolicyOpen] = useState(false);
@@ -76,13 +77,13 @@ const Contact: React.FC = () => {
         <div className="max-w-3xl mx-auto mb-20 bg-white/90 backdrop-blur-md p-6 sm:p-10 md:p-12 rounded-sm border border-black/10 shadow-xl">
           <div className="text-center mb-8">
             <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-2 font-medium">
-              Termin Reservieren
+              {t.contactForm.tag}
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold uppercase tracking-wide text-brand-dark mb-3">
-              Jetzt Anfragen
+              {t.contactForm.title}
             </h2>
             <p className="text-brand-dark/70 text-xs sm:text-sm font-light tracking-wide max-w-lg mx-auto">
-              Unverbindliche Anfrage für eure Hochzeit. Ich freue mich darauf, eure Geschichte kennenzulernen.
+              {t.contactForm.subtitle}
             </p>
           </div>
 
@@ -90,17 +91,17 @@ const Contact: React.FC = () => {
             <div className="p-8 bg-brand-gray border border-brand-gold/40 text-center rounded-sm space-y-4 my-6">
               <CheckCircle2 size={44} className="text-brand-gold mx-auto animate-bounce" />
               <h3 className="text-lg font-display font-bold uppercase tracking-wider text-brand-dark">
-                Vielen Dank für eure Anfrage!
+                {t.contactForm.successTitle}
               </h3>
               <p className="text-brand-dark/80 text-xs sm:text-sm font-light max-w-md mx-auto leading-relaxed">
-                Eure Nachricht wurde erfolgreich übermittelt. Ich werde mich innerhalb von 24 Stunden persönlich bei euch melden.
+                {t.contactForm.successDesc}
               </p>
               <button
                 type="button"
                 onClick={() => setStatus('idle')}
                 className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-gold hover:underline"
               >
-                Neue Anfrage senden
+                {t.contactForm.newInquiryBtn}
               </button>
             </div>
           ) : (
@@ -109,7 +110,7 @@ const Contact: React.FC = () => {
                 {/* Names */}
                 <div>
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
-                    Eure Namen *
+                    {t.contactForm.namesLabel}
                   </label>
                   <input
                     type="text"
@@ -117,7 +118,7 @@ const Contact: React.FC = () => {
                     required
                     value={formData.coupleNames}
                     onChange={handleChange}
-                    placeholder="z.B. Kerstin & Freddy"
+                    placeholder={t.contactForm.namesPlaceholder}
                     className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
@@ -125,7 +126,7 @@ const Contact: React.FC = () => {
                 {/* Email */}
                 <div>
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
-                    E-Mail-Adresse *
+                    {t.contactForm.emailLabel}
                   </label>
                   <input
                     type="email"
@@ -133,7 +134,7 @@ const Contact: React.FC = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="eure.email@beispiel.de"
+                    placeholder={t.contactForm.emailPlaceholder}
                     className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
@@ -141,7 +142,7 @@ const Contact: React.FC = () => {
                 {/* Wedding Date */}
                 <div>
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
-                    Hochzeitsdatum *
+                    {t.contactForm.dateLabel}
                   </label>
                   <input
                     type="date"
@@ -156,7 +157,7 @@ const Contact: React.FC = () => {
                 {/* Location */}
                 <div>
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
-                    Location & Ort *
+                    {t.contactForm.locationLabel}
                   </label>
                   <input
                     type="text"
@@ -164,7 +165,7 @@ const Contact: React.FC = () => {
                     required
                     value={formData.location}
                     onChange={handleChange}
-                    placeholder="z.B. Morrhof, Großkarlbach"
+                    placeholder={t.contactForm.locationPlaceholder}
                     className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
@@ -173,14 +174,14 @@ const Contact: React.FC = () => {
               {/* Message */}
               <div>
                 <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
-                  Eure Geschichte & Wünsche
+                  {t.contactForm.messageLabel}
                 </label>
                 <textarea
                   name="message"
                   rows={3}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Erzählt mir etwas über euch und eure Hochzeitspläne..."
+                  placeholder={t.contactForm.messagePlaceholder}
                   className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all resize-none"
                 />
               </div>
@@ -193,10 +194,10 @@ const Contact: React.FC = () => {
                   className="w-full sm:w-auto px-9 py-3.5 bg-brand-dark text-white font-display text-xs uppercase tracking-[0.25em] font-semibold rounded-xs shadow-md hover:bg-black hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 mx-auto disabled:opacity-50"
                 >
                   {status === 'submitting' ? (
-                    'WIRD GESENDET...'
+                    t.contactForm.submittingBtn
                   ) : (
                     <>
-                      <span>ANFRAGE ABSCHICKEN</span>
+                      <span>{t.contactForm.submitBtn}</span>
                       <Send size={14} />
                     </>
                   )}

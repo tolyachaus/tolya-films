@@ -6,6 +6,7 @@ import Documentary from './components/pages/Documentary';
 import WeddingProject from './components/pages/WeddingProject';
 import CookieBanner from './components/CookieBanner';
 import { trackPageView } from './src/config/analytics';
+import { LanguageProvider } from './src/context/LanguageContext';
 
 const RouteTracker: React.FC = () => {
   const location = useLocation();
@@ -19,16 +20,18 @@ const RouteTracker: React.FC = () => {
 
 function App() {
   return (
-    <HashRouter>
-      <RouteTracker />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/documentary" element={<Documentary />} />
-        <Route path="/wedding/:slug" element={<WeddingProject />} />
-      </Routes>
-      <CookieBanner />
-    </HashRouter>
+    <LanguageProvider>
+      <HashRouter>
+        <RouteTracker />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/documentary" element={<Documentary />} />
+          <Route path="/wedding/:slug" element={<WeddingProject />} />
+        </Routes>
+        <CookieBanner />
+      </HashRouter>
+    </LanguageProvider>
   );
 }
 

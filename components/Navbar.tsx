@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Menu, X, Instagram, Facebook, Youtube, Globe } from 'lucide-react';
 import { ASSETS, SOCIAL_LINKS } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../src/context/LanguageContext';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,12 +40,12 @@ const Navbar: React.FC = () => {
   };
 
   const navLinks = [
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Über mich', href: '#about' },
-    { name: 'Kontakt', href: '#contact' },
+    { name: t.nav.portfolio, href: '#portfolio' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
-  const docLink = { name: 'Documentary / Commercial', to: '/documentary' };
+  const docLink = { name: t.nav.doc, to: '/documentary' };
 
   const isLightBgPage = location.pathname === '/documentary' || location.pathname.startsWith('/wedding');
   const isDarkNavbarText = isScrolled || isLightBgPage;
@@ -146,16 +148,57 @@ const Navbar: React.FC = () => {
               >
                 <Youtube size={15} />
               </a>
+
+              {/* Language Switcher Desktop */}
+              <div className="flex items-center gap-1.5 ml-2 font-display text-xs tracking-wider uppercase font-semibold">
+                <button
+                  type="button"
+                  onClick={() => setLang('de')}
+                  className={`transition-colors py-1 px-1.5 rounded-xs ${lang === 'de' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
+                >
+                  DE
+                </button>
+                <span className="opacity-40">|</span>
+                <button
+                  type="button"
+                  onClick={() => setLang('en')}
+                  className={`transition-colors py-1 px-1.5 rounded-xs ${lang === 'en' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
+                >
+                  EN
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className={`md:hidden relative z-[60] focus:outline-none ${mobileToggleColor}`}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
+          {/* Mobile Right Controls: Language + Hamburger */}
+          <div className="md:hidden flex items-center gap-3 relative z-[60]">
+            {/* Language Switcher Mobile Header */}
+            <div className={`flex items-center gap-1 text-[11px] font-display font-semibold uppercase tracking-wider ${mobileToggleColor}`}>
+              <button
+                type="button"
+                onClick={() => setLang('de')}
+                className={`py-1 px-1 ${lang === 'de' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
+              >
+                DE
+              </button>
+              <span className="opacity-40">|</span>
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className={`py-1 px-1 ${lang === 'en' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
+              >
+                EN
+              </button>
+            </div>
+
+            <button
+              className={`focus:outline-none ${mobileToggleColor}`}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
       </nav>
 

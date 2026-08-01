@@ -2,8 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { ASSETS } from '../types';
+import { useLanguage } from '../src/context/LanguageContext';
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen md:h-screen w-full overflow-hidden bg-brand-light md:bg-black flex flex-col justify-between md:justify-center pt-24 pb-16 md:pt-0 md:pb-0">
       {/* Background / Main Video Container */}
@@ -37,14 +40,14 @@ const Hero: React.FC = () => {
         >
           {/* Main Headline - Strictly 2 Lines */}
           <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold tracking-[0.08em] md:tracking-[0.1em] uppercase text-brand-dark md:text-white drop-shadow-none md:drop-shadow-2xl leading-snug md:leading-tight">
-            <span className="block whitespace-nowrap">Wedding films</span>
-            <span className="block whitespace-nowrap">that feel like cinema</span>
+            <span className="block whitespace-nowrap">{t.hero.taglineLine1}</span>
+            <span className="block whitespace-nowrap">{t.hero.taglineLine2}</span>
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
 
           {/* Subheadline - Single Line, Light Font, Smaller */}
           <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light tracking-[0.2em] md:tracking-[0.3em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md whitespace-nowrap uppercase">
-            A story told through image, rhythm, and sound
+            {t.hero.subtitle}
           </p>
         </motion.div>
       </div>
