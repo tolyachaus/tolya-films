@@ -14,6 +14,7 @@ export interface PortfolioItem {
     description?: string;
   };
   quote?: string;
+  stills?: string[];
 }
 
 export interface SocialLink {
@@ -59,7 +60,12 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
       name: 'Hotel Jagdschloss Kranichstein',
       city: 'Darmstadt, Germany'
     },
-    quote: 'Tolyaaaaaaa, we finally got to watch it!!!! Its soooooooooooooooooooooooooooooooooooooooo good!!!! Wow wow wow wow wow!!!! Thank you so much for your amazing work!!!! We are really really happy with how everything turned out!'
+    quote: 'Tolyaaaaaaa, we finally got to watch it!!!! Its soooooooooooooooooooooooooooooooooooooooo good!!!! Wow wow wow wow wow!!!! Thank you so much for your amazing work!!!! We are really really happy with how everything turned out!',
+    stills: [
+      '/images/rike_still_1.jpg',
+      '/images/rike_still_2.jpg',
+      '/images/rike_still_3.jpg'
+    ]
   },
   {
     id: '8',
