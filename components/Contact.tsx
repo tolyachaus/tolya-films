@@ -3,10 +3,19 @@ import { Instagram, Facebook, Youtube, Mail, MapPin, Phone, Send, CheckCircle2 }
 import { ASSETS, SOCIAL_LINKS } from '../types';
 import ImpressumModal from './ImpressumModal';
 import DatenschutzModal from './DatenschutzModal';
+import CookiePolicyModal from './CookiePolicyModal';
+import { triggerCookieSettings } from './CookieBanner';
+import {
+  trackFormSubmit,
+  trackEmailClick,
+  trackPhoneClick,
+  trackInstagramClick
+} from '../src/config/analytics';
 
 const Contact: React.FC = () => {
   const [isImpressumOpen, setIsImpressumOpen] = useState(false);
   const [isDatenschutzOpen, setIsDatenschutzOpen] = useState(false);
+  const [isCookiePolicyOpen, setIsCookiePolicyOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     coupleNames: '',
@@ -26,8 +35,10 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setStatus('submitting');
 
+    // Track GA4 Form Lead Event
+    trackFormSubmit('Booking Inquiry');
+
     try {
-      // Send form data to FormSubmit.co endpoint for instant delivery to tolya.films@gmail.com
       const response = await fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
         method: 'POST',
         headers: {
@@ -227,13 +238,23 @@ const Contact: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 group animate-pulse hover:animate-none">
                 <Phone className="w-5 h-5 text-gray-500 group-hover:text-brand-dark transition-colors mt-1" />
-                <a href={SOCIAL_LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className="text-brand-dark font-medium transition-colors hover:text-brand-gold">
+                <a
+                  href={SOCIAL_LINKS.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackPhoneClick(SOCIAL_LINKS.phone)}
+                  className="text-brand-dark font-medium transition-colors hover:text-brand-gold"
+                >
                   {SOCIAL_LINKS.phone}
                 </a>
               </li>
               <li className="flex items-start space-x-3 group">
                 <Mail className="w-5 h-5 text-gray-500 group-hover:text-brand-dark transition-colors mt-1" />
-                <a href={`mailto:${SOCIAL_LINKS.email}`} className="text-gray-600 group-hover:text-brand-dark transition-colors font-light">
+                <a
+                  href={`mailto:${SOCIAL_LINKS.email}`}
+                  onClick={() => trackEmailClick(SOCIAL_LINKS.email)}
+                  className="text-gray-600 group-hover:text-brand-dark transition-colors font-light"
+                >
                   {SOCIAL_LINKS.email}
                 </a>
               </li>
@@ -256,6 +277,7 @@ const Contact: React.FC = () => {
                 href={SOCIAL_LINKS.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackPhoneClick(SOCIAL_LINKS.phone)}
                 aria-label="WhatsApp"
                 className="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white hover:bg-black hover:scale-110 transition-all duration-300 shadow-md"
               >
@@ -265,6 +287,7 @@ const Contact: React.FC = () => {
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackInstagramClick()}
                 aria-label="Instagram"
                 className="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white hover:bg-black hover:scale-110 transition-all duration-300 shadow-md"
               >
@@ -283,10 +306,10 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* Copyright */}
+        {/* Copyright & Legal */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 font-medium tracking-wider">
           <p>&copy; {new Date().getFullYear()} TOLYA FILMS. ALL RIGHTS RESERVED.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap justify-center gap-6 mt-4 md:mt-0">
             <button
               type="button"
               onClick={(e) => { e.preventDefault(); setIsImpressumOpen(true); }}
@@ -301,6 +324,20 @@ const Contact: React.FC = () => {
             >
               DATENSCHUTZ
             </button>
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); setIsCookiePolicyOpen(true); }}
+              className="hover:text-gray-400 transition-colors uppercase tracking-wider"
+            >
+              COOKIE-RICHTLINIE
+            </button>
+            <button
+              type="button"
+              onClick={(e) => { e.preventDefault(); triggerCookieSettings(); }}
+              className="hover:text-gray-400 transition-colors uppercase tracking-wider font-bold text-brand-dark"
+            >
+              COOKIE-EINSTELLUNGEN
+            </button>
           </div>
         </div>
 
@@ -308,6 +345,7 @@ const Contact: React.FC = () => {
 
       <ImpressumModal isOpen={isImpressumOpen} onClose={() => setIsImpressumOpen(false)} />
       <DatenschutzModal isOpen={isDatenschutzOpen} onClose={() => setIsDatenschutzOpen(false)} />
+      <CookiePolicyModal isOpen={isCookiePolicyOpen} onClose={() => setIsCookiePolicyOpen(false)} />
     </footer>
   );
 };
