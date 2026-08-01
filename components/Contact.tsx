@@ -11,6 +11,7 @@ import {
   trackPhoneClick,
   trackInstagramClick
 } from '../src/config/analytics';
+import { useLanguage } from '../src/context/LanguageContext';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
