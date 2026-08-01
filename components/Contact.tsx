@@ -109,7 +109,7 @@ const Contact: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Names */}
-                <div>
+                <div className="w-full min-w-0">
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     {t.contactForm.namesLabel}
                   </label>
@@ -120,12 +120,12 @@ const Contact: React.FC = () => {
                     value={formData.coupleNames}
                     onChange={handleChange}
                     placeholder={t.contactForm.namesPlaceholder}
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
 
                 {/* Email */}
-                <div>
+                <div className="w-full min-w-0">
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     {t.contactForm.emailLabel}
                   </label>
@@ -136,12 +136,12 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder={t.contactForm.emailPlaceholder}
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
 
                 {/* Wedding Date */}
-                <div>
+                <div className="w-full min-w-0">
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     {t.contactForm.dateLabel}
                   </label>
@@ -151,12 +151,12 @@ const Contact: React.FC = () => {
                     required
                     value={formData.weddingDate}
                     onChange={handleChange}
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all min-h-[42px]"
                   />
                 </div>
 
                 {/* Location */}
-                <div>
+                <div className="w-full min-w-0">
                   <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                     {t.contactForm.locationLabel}
                   </label>
@@ -167,13 +167,13 @@ const Contact: React.FC = () => {
                     value={formData.location}
                     onChange={handleChange}
                     placeholder={t.contactForm.locationPlaceholder}
-                    className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
                   />
                 </div>
               </div>
 
               {/* Message */}
-              <div>
+              <div className="w-full min-w-0">
                 <label className="block text-[11px] uppercase tracking-widest text-brand-dark/70 font-semibold mb-1.5">
                   {t.contactForm.messageLabel}
                 </label>
@@ -183,7 +183,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t.contactForm.messagePlaceholder}
-                  className="w-full bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all resize-none"
+                  className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all resize-none"
                 />
               </div>
 
