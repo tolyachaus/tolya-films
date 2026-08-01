@@ -65,6 +65,15 @@ export const TRANSLATIONS = {
       settingsBtn: 'Einstellungen',
       policyLink: 'COOKIE-RICHTLINIE',
       settingsLink: 'COOKIE-EINSTELLUNGEN'
+    },
+    footer: {
+      copyright: 'ALLE RECHTE VORBEHALTEN.',
+      taglineLine1: 'JEDE GESCHICHTE VERDIENT ES,',
+      taglineLine2: 'GESEHEN ZU WERDEN.',
+      impressum: 'IMPRESSUM',
+      datenschutz: 'DATENSCHUTZ',
+      cookiePolicy: 'COOKIE-RICHTLINIE',
+      cookieSettings: 'COOKIE-EINSTELLUNGEN'
     }
   },
   en: {
@@ -131,6 +140,15 @@ export const TRANSLATIONS = {
       settingsBtn: 'Settings',
       policyLink: 'COOKIE POLICY',
       settingsLink: 'COOKIE SETTINGS'
+    },
+    footer: {
+      copyright: 'ALL RIGHTS RESERVED.',
+      taglineLine1: 'EVERY STORY DESERVES TO BE SEEN.',
+      taglineLine2: '',
+      impressum: 'LEGAL NOTICE',
+      datenschutz: 'PRIVACY POLICY',
+      cookiePolicy: 'COOKIE POLICY',
+      cookieSettings: 'COOKIE SETTINGS'
     }
   }
 };

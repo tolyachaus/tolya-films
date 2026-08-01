@@ -228,14 +228,15 @@ const Contact: React.FC = () => {
             />
             <span id="footer-title" className="hidden text-3xl font-display font-bold tracking-widest uppercase mb-6">Tolya Films</span>
             <p className="text-gray-500 font-medium text-xs md:text-sm tracking-widest uppercase max-w-sm leading-relaxed mt-2 transition-all">
-              JEDE GESCHICHTE VERDIENT ES,<br className="hidden md:block" />GESEHEN ZU WERDEN.
+              {t.footer.taglineLine1}
+              {t.footer.taglineLine2 && <><br className="hidden md:block" />{t.footer.taglineLine2}</>}
             </p>
           </div>
 
           {/* Contact Info */}
           <div className="col-span-1">
             <h3 className="text-lg font-display font-bold uppercase tracking-widest mb-6 text-brand-dark">
-              Kontakt
+              {t.nav.contact}
             </h3>
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 group animate-pulse hover:animate-none">
@@ -310,35 +311,35 @@ const Contact: React.FC = () => {
 
         {/* Copyright & Legal */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 font-medium tracking-wider">
-          <p>&copy; {new Date().getFullYear()} TOLYA FILMS. ALL RIGHTS RESERVED.</p>
+          <p>&copy; {new Date().getFullYear()} TOLYA FILMS. {t.footer.copyright}</p>
           <div className="flex flex-wrap justify-center gap-6 mt-4 md:mt-0">
             <button
               type="button"
               onClick={(e) => { e.preventDefault(); setIsImpressumOpen(true); }}
               className="hover:text-gray-400 transition-colors uppercase tracking-wider"
             >
-              IMPRESSUM
+              {t.footer.impressum}
             </button>
             <button
               type="button"
               onClick={(e) => { e.preventDefault(); setIsDatenschutzOpen(true); }}
               className="hover:text-gray-400 transition-colors uppercase tracking-wider"
             >
-              DATENSCHUTZ
+              {t.footer.datenschutz}
             </button>
             <button
               type="button"
               onClick={(e) => { e.preventDefault(); setIsCookiePolicyOpen(true); }}
               className="hover:text-gray-400 transition-colors uppercase tracking-wider"
             >
-              COOKIE-RICHTLINIE
+              {t.footer.cookiePolicy}
             </button>
             <button
               type="button"
               onClick={(e) => { e.preventDefault(); triggerCookieSettings(); }}
               className="hover:text-gray-400 transition-colors uppercase tracking-wider font-bold text-brand-dark"
             >
-              COOKIE-EINSTELLUNGEN
+              {t.footer.cookieSettings}
             </button>
           </div>
         </div>
