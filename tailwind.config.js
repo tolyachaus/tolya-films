@@ -9,7 +9,10 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Montserrat', 'sans-serif'],
-                display: ['Montserrat', 'sans-serif'],
+                display: ['Cinzel', 'serif'],
+                cinema: ['Cinzel', 'serif'],
+                garamond: ['Cormorant Garamond', 'serif'],
+                logo: ['Montserrat', 'sans-serif'],
             },
             colors: {
                 brand: {
