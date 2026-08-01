@@ -65,13 +65,16 @@ export const loadGoogleAnalytics = () => {
   script.id = 'ga-gtag-script';
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
+  
+  script.onload = () => {
+    window.gtag('js', new Date());
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      anonymize_ip: true,
+      send_page_view: true
+    });
+  };
 
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    anonymize_ip: true,
-    send_page_view: false // We trigger custom pageviews on route changes
-  });
+  document.head.appendChild(script);
 };
 
 /**
@@ -91,15 +94,19 @@ export const updateConsentState = (analytics: boolean) => {
     });
   }
 
-  if (analytics) {
-    loadGoogleAnalytics();
-  }
-
   saveConsentPreferences({
     necessary: true,
     analytics,
     timestamp: Date.now()
   });
+
+  if (analytics) {
+    loadGoogleAnalytics();
+    // Fire immediate pageview for active session registration
+    setTimeout(() => {
+      trackPageView(window.location.hash || window.location.pathname);
+    }, 500);
+  }
 };
 
 /**
