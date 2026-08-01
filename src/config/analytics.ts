@@ -4,7 +4,7 @@
  * INSTRUCTION FOR TOLYA:
  * Replace 'G-XXXXXXXXXX' below with your actual Google Analytics Measurement ID (e.g. 'G-A1B2C3D4E5').
  */
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+export const GA_MEASUREMENT_ID = 'G-8VTK8P9G3F';
 
 export interface ConsentPreferences {
   necessary: boolean;
