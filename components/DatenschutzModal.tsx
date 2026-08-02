@@ -54,7 +54,7 @@ const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) 
                             <br />
                             <p className="font-medium text-brand-dark">Anatolii Rabochauskas</p>
                             <p>{isEn ? 'Operating commercially under the business name "Tolya Films"' : 'geschäftlich tätig unter der Bezeichnung „Tolya Films“'}</p>
-                            <p>Heckerstraße 18</p>
+                            <p>Heckerstraße 9</p>
                             <p>68199 Mannheim</p>
                             <p>{isEn ? 'Germany' : 'Deutschland'}</p>
                             <br />
