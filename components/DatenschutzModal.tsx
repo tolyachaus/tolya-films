@@ -10,10 +10,10 @@ interface DatenschutzModalProps {
 }
 
 const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) => {
-    const { language } = useLanguage();
+    const { lang } = useLanguage();
     if (!isOpen) return null;
 
-    const isEn = language === 'en';
+    const isEn = lang === 'en';
 
     const modalContent = (
         <AnimatePresence>

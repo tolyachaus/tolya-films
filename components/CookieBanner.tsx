@@ -149,11 +149,11 @@ const CookieBanner: React.FC = () => {
               <div className="flex items-center gap-2 mb-2">
                 <Settings size={22} className="text-brand-gold" />
                 <h3 className="font-display text-xl font-bold uppercase tracking-wider text-brand-dark">
-                  Cookie-Einstellungen
+                  {t.cookie.settingsBtn}
                 </h3>
               </div>
               <p className="text-xs text-gray-600 font-light mb-6">
-                Passen Sie Ihre persönlichen Einstellungen bezüglich der Verwendung von Cookies auf unserer Website an.
+                {t.cookie.desc}
               </p>
 
               <div className="space-y-4 mb-8">
@@ -161,14 +161,14 @@ const CookieBanner: React.FC = () => {
                 <div className="p-4 bg-brand-gray/60 border border-black/5 rounded-xs flex items-center justify-between">
                   <div>
                     <p className="font-bold text-xs uppercase tracking-wider text-brand-dark">
-                      Technisch Notwendig
+                      {t.cookie.title === 'Privacy & Cookies' ? 'Technically Essential' : 'Technisch Notwendig'}
                     </p>
                     <p className="text-[11px] text-gray-500 font-light mt-0.5">
-                      Essentiell für die Grundfunktionen der Website. Immer aktiv.
+                      {t.cookie.title === 'Privacy & Cookies' ? 'Essential for core website operation. Always active.' : 'Essentiell für die Grundfunktionen der Website. Immer aktiv.'}
                     </p>
                   </div>
                   <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-black/10 text-gray-600 rounded-xs">
-                    Immer aktiv
+                    {t.cookie.title === 'Privacy & Cookies' ? 'Always Active' : 'Immer aktiv'}
                   </span>
                 </div>
 
@@ -176,10 +176,10 @@ const CookieBanner: React.FC = () => {
                 <div className="p-4 bg-brand-gray/60 border border-black/5 rounded-xs flex items-center justify-between">
                   <div className="pr-4">
                     <p className="font-bold text-xs uppercase tracking-wider text-brand-dark">
-                      Google Analytics 4 (Anonymisiert)
+                      Google Analytics 4 ({t.cookie.title === 'Privacy & Cookies' ? 'Anonymized' : 'Anonymisiert'})
                     </p>
                     <p className="text-[11px] text-gray-500 font-light mt-0.5">
-                      Ermöglicht uns die anonyme statistische Auswertung der Nutzung.
+                      {t.cookie.title === 'Privacy & Cookies' ? 'Allows us to anonymously analyze website traffic.' : 'Ermöglicht uns die anonyme statistische Auswertung der Nutzung.'}
                     </p>
                   </div>
                   <label className="relative inline-flex items-center cursor-pointer">
@@ -201,14 +201,14 @@ const CookieBanner: React.FC = () => {
                   className="w-full sm:flex-1 py-3 px-4 bg-brand-dark text-white font-display text-xs uppercase tracking-widest font-semibold rounded-xs hover:bg-black transition-all flex items-center justify-center gap-2"
                 >
                   <Check size={14} />
-                  <span>Auswahl Speichern</span>
+                  <span>{t.cookie.title === 'Privacy & Cookies' ? 'Save Selection' : 'Auswahl Speichern'}</span>
                 </button>
                 <button
                   type="button"
                   onClick={handleAcceptAll}
                   className="w-full sm:w-auto py-3 px-4 text-xs uppercase tracking-widest font-semibold text-brand-gold hover:underline"
                 >
-                  Alle Akzeptieren
+                  {t.cookie.acceptAll}
                 </button>
               </div>
             </motion.div>
