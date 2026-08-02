@@ -33,7 +33,7 @@ const About: React.FC = () => {
               <div className="w-full h-full bg-gray-800">
                 <img
                   src={ASSETS.profilePhoto}
-                  alt="Tolya Portrait"
+                  alt="Tolya - Wedding Filmmaker & Director in Mannheim, Germany"
                   className="w-full h-full object-cover filter sepia-[20%] contrast-110"
                 />
               </div>
