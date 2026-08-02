@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Play, Instagram, Facebook, Youtube } from 'lucide-react';
 import { ASSETS, SOCIAL_LINKS, DOCUMENTARY_PORTFOLIO_ITEMS } from '../../types';
 import VideoModal from '../VideoModal';
+import { useLanguage } from '../../src/context/LanguageContext';
 
 const containerVariants = {
   hidden: {},
@@ -19,6 +20,7 @@ const itemVariants = {
 
 const Documentary: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-brand-light text-brand-dark flex flex-col justify-between">
@@ -57,7 +59,7 @@ const Documentary: React.FC = () => {
               <div className="flex items-center gap-4">
                 <div className="h-[1px] w-12 bg-brand-gold" />
                 <p className="text-brand-dark/50 text-sm tracking-widest uppercase">
-                  A filmmaker's broader lens
+                  {t.docPage.subtitle}
                 </p>
               </div>
             </motion.div>
@@ -75,9 +77,7 @@ const Documentary: React.FC = () => {
               className="max-w-2xl"
             >
               <p className="text-brand-dark/70 text-lg md:text-xl font-light leading-relaxed tracking-wide">
-                Neben Hochzeitsfilmen entstehen hier Arbeiten, die zeigen, wie ich als
-                Filmemacher denke — dokumentarisch, werblich, künstlerisch.
-                Jede Produktion ist eine eigene visuelle Sprache.
+                {t.docPage.intro}
               </p>
             </motion.div>
           </div>
@@ -134,7 +134,7 @@ const Documentary: React.FC = () => {
             />
           </Link>
           <p className="text-brand-dark/40 text-xs tracking-widest uppercase text-center">
-            © {new Date().getFullYear()} Tolya Films · Mannheim
+            © {new Date().getFullYear()} Tolya Films · {t.footer.copyright}
           </p>
         </div>
       </footer>

@@ -2,6 +2,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../src/context/LanguageContext';
 
 interface DatenschutzModalProps {
     isOpen: boolean;
@@ -9,7 +10,10 @@ interface DatenschutzModalProps {
 }
 
 const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) => {
+    const { language } = useLanguage();
     if (!isOpen) return null;
+
+    const isEn = language === 'en';
 
     const modalContent = (
         <AnimatePresence>
@@ -36,122 +40,90 @@ const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) 
                     </button>
 
                     <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-widest text-brand-dark mb-8">
-                        Datenschutzerklärung
+                        {isEn ? 'Privacy Policy' : 'Datenschutzerklärung'}
                     </h2>
 
                     <div className="space-y-6 font-light leading-relaxed text-gray-700 text-sm md:text-base">
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">1. Verantwortlicher</h3>
-                            <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">
+                                {isEn ? '1. Data Controller' : '1. Verantwortlicher'}
+                            </h3>
+                            <p>{isEn ? 'Responsible for data processing on this website:' : 'Verantwortlich für die Datenverarbeitung auf dieser Website ist:'}</p>
                             <br />
                             <p className="font-medium text-brand-dark">Anatolii Rabochauskas</p>
-                            <p>geschäftlich tätig unter der Bezeichnung „Tolya Films“</p>
+                            <p>{isEn ? 'Operating commercially under the name "Tolya Films"' : 'geschäftlich tätig unter der Bezeichnung „Tolya Films“'}</p>
                             <p>Heckerstraße 18</p>
                             <p>68199 Mannheim</p>
-                            <p>Deutschland</p>
+                            <p>{isEn ? 'Germany' : 'Deutschland'}</p>
                             <br />
-                            <p>Telefon: <a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
+                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
                             <p>E-Mail: <a href="mailto:tolya.films@gmail.com" className="hover:text-brand-gold transition-colors">tolya.films@gmail.com</a></p>
                         </section>
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">2. Allgemeine Hinweise zur Datenverarbeitung</h3>
-                            <p>Der Schutz Ihrer personenbezogenen Daten ist mir ein wichtiges Anliegen. Ich verarbeite personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Vorschriften, insbesondere der Datenschutz-Grundverordnung (DSGVO).</p>
-                            <p className="mt-2">Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können oder die einer Person zugeordnet werden können (z. B. IP-Adresse).</p>
-                            <p className="mt-2">Diese Datenschutzerklärung informiert über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf dieser Website.</p>
+                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">
+                                {isEn ? '2. General Notes on Data Processing' : '2. Allgemeine Hinweise zur Datenverarbeitung'}
+                            </h3>
+                            <p>
+                                {isEn
+                                    ? 'Protecting your personal data is a priority for me. I process personal data strictly in accordance with statutory data protection regulations, in particular the EU General Data Protection Regulation (GDPR).'
+                                    : 'Der Schutz Ihrer personenbezogenen Daten ist mir ein wichtiges Anliegen. Ich verarbeite personenbezogene Daten ausschließlich im Rahmen der gesetzlichen Vorschriften, insbesondere der Datenschutz-Grundverordnung (DSGVO).'}
+                            </p>
                         </section>
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">3. Hosting und Server-Logfiles</h3>
-                            <p>Diese Website wird über GitHub Pages (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) gehostet.</p>
-                            <p className="mt-2">Beim Besuch dieser Website werden durch den Webserver bzw. den Hosting-Anbieter automatisch Informationen in sogenannten Server-Logfiles erfasst. Dies können insbesondere sein:</p>
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                <li>IP-Adresse</li>
-                                <li>Datum und Uhrzeit des Zugriffs</li>
-                                <li>aufgerufene Seite / Datei</li>
-                                <li>Referrer-URL (falls übermittelt)</li>
-                                <li>Browsertyp und Browserversion</li>
-                                <li>verwendetes Betriebssystem</li>
-                            </ul>
-                            <p className="mt-2">Die Verarbeitung dieser Daten erfolgt zur technischen Bereitstellung der Website sowie zur Gewährleistung von Stabilität und Sicherheit.</p>
-                            <p className="mt-2"><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und funktionsfähigen Webauftritt).</p>
+                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">
+                                {isEn ? '3. Hosting & Server Log Files' : '3. Hosting und Server-Logfiles'}
+                            </h3>
+                            <p>
+                                {isEn
+                                    ? 'This website is hosted via GitHub Pages (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).'
+                                    : 'Diese Website wird über GitHub Pages (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA) gehostet.'}
+                            </p>
+                            <p className="mt-2">
+                                {isEn
+                                    ? 'When visiting this website, server log files automatically capture information such as IP address, date & time, browser type, and operating system.'
+                                    : 'Beim Besuch dieser Website werden durch den Webserver bzw. den Hosting-Anbieter automatisch Informationen in sogenannten Server-Logfiles erfasst.'}
+                            </p>
+                            <p className="mt-2"><strong>{isEn ? 'Legal Basis:' : 'Rechtsgrundlage:'}</strong> Art. 6 (1) lit. f GDPR.</p>
                         </section>
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">4. Kontaktaufnahme (E-Mail, Telefon, WhatsApp)</h3>
-                            <p>Wenn Sie mich per E-Mail, Telefon oder über einen WhatsApp-Link kontaktieren, verarbeite ich Ihre Angaben zur Bearbeitung Ihrer Anfrage und für den Fall von Anschlussfragen.</p>
-                            <p className="mt-2">Verarbeitet werden können insbesondere:</p>
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                <li>Name</li>
-                                <li>E-Mail-Adresse</li>
-                                <li>Telefonnummer</li>
-                                <li>Inhalt der Nachricht</li>
-                                <li>Kommunikationsdaten / Zeitpunkt der Kontaktaufnahme</li>
-                            </ul>
-                            <p className="mt-2"><strong>Rechtsgrundlagen:</strong></p>
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                <li>Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen / Vertrag), sofern Ihre Anfrage auf eine Beauftragung abzielt.</li>
-                                <li>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Kommunikation und Bearbeitung von Anfragen).</li>
-                            </ul>
-                            <p className="mt-2 font-medium">Hinweis zu WhatsApp:</p>
-                            <p>Bei einer Kontaktaufnahme über WhatsApp können personenbezogene Daten an WhatsApp Ireland Limited bzw. Unternehmen der Meta-Gruppe übermittelt werden. Die Nutzung von WhatsApp erfolgt freiwillig.</p>
+                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">
+                                {isEn ? '4. Contacting Us (Email, Phone, WhatsApp)' : '4. Kontaktaufnahme (E-Mail, Telefon, WhatsApp)'}
+                            </h3>
+                            <p>
+                                {isEn
+                                    ? 'When contacting me by email, phone, or WhatsApp link, your data will be stored to process your inquiry.'
+                                    : 'Wenn Sie mich per E-Mail, Telefon oder über einen WhatsApp-Link kontaktieren, verarbeite ich Ihre Angaben zur Bearbeitung Ihrer Anfrage.'}
+                            </p>
                         </section>
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">5. Links zu externen Plattformen / Social Media</h3>
-                            <p>Auf dieser Website befinden sich Links zu externen Plattformen und sozialen Netzwerken, insbesondere:</p>
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                <li>Instagram</li>
-                                <li>YouTube</li>
-                                <li>Facebook</li>
-                                <li>WhatsApp</li>
-                            </ul>
-                            <p className="mt-2">Soweit technisch umgesetzt, handelt es sich hierbei um reine Verlinkungen. Beim bloßen Besuch dieser Website werden durch diese Links grundsätzlich noch keine Daten an die jeweiligen Anbieter übertragen. Erst durch das aktive Anklicken eines Links verlassen Sie diese Website und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
+                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">
+                                {isEn ? '5. Cookies & Analytics' : '5. Cookies & Analytik'}
+                            </h3>
+                            <p>
+                                {isEn
+                                    ? 'Analytics cookies (Google Analytics 4) are loaded exclusively upon your explicit consent via Google Consent Mode v2.'
+                                    : 'Analyse-Cookies (Google Analytics 4) werden ausschließlich nach Ihrer ausdrücklichen Einwilligung über den Google Consent Mode v2 geladen.'}
+                            </p>
                         </section>
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">6. Videos und externe Inhalte (Portfolio)</h3>
-                            <p>Das Hauptvideo auf der Website wird nicht über YouTube eingebunden.</p>
-                            <p className="mt-2">Weitere Portfolio-Arbeiten werden – soweit technisch umgesetzt – erst nach einer aktiven Handlung der Nutzerin / des Nutzers (z. B. Klick auf einen Link oder ein Vorschauelement) aufgerufen. Erst in diesem Zusammenhang kann eine Verbindung zu externen Plattformen (z. B. YouTube) hergestellt werden.</p>
-                            <p className="mt-2">Bitte beachten Sie, dass ab dem Aufruf externer Inhalte die Datenschutzbestimmungen des jeweiligen Anbieters gelten.</p>
+                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">
+                                {isEn ? '6. Your GDPR Rights' : '6. Ihre Rechte nach der DSGVO'}
+                            </h3>
+                            <p>
+                                {isEn
+                                    ? 'Under the GDPR, you have the right to access, rectification, erasure, restriction of processing, data portability, and the right to object.'
+                                    : 'Sie haben das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch (Art. 21 DSGVO).'}
+                            </p>
                         </section>
 
                         <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">7. Schriftarten (lokal eingebundene Fonts)</h3>
-                            <p>Auf dieser Website werden Schriftarten verwendet, die lokal auf dem eigenen Webserver eingebunden sind.</p>
-                            <p className="mt-2">Beim Laden dieser Schriftarten wird keine Verbindung zu Servern von Google oder anderen externen Anbietern allein zum Abruf der Schriftarten hergestellt.</p>
-                        </section>
-
-                        <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">8. Cookies / technisch erforderliche Funktionen</h3>
-                            <p>Diese Website kann technisch erforderliche Funktionen verwenden, die für den Betrieb und die Darstellung der Website notwendig sind.</p>
-                            <p className="mt-2 text-brand-dark font-medium">Nach aktuellem Stand werden auf dieser Website keine eigenen Analyse- oder Marketing-Tracking-Tools (z. B. Google Analytics, Google Tag Manager, Meta Pixel) eingesetzt.</p>
-                            <p className="mt-2">Sollten künftig zusätzliche Dienste oder Tracking-/Analyse-Tools eingesetzt werden, wird diese Datenschutzerklärung entsprechend aktualisiert.</p>
-                        </section>
-
-                        <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">9. Ihre Rechte nach der DSGVO</h3>
-                            <p>Sie haben im Rahmen der gesetzlichen Vorgaben insbesondere folgende Rechte:</p>
-                            <ul className="list-disc pl-5 mt-2 space-y-1">
-                                <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
-                                <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
-                                <li>Recht auf Löschung (Art. 17 DSGVO)</li>
-                                <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
-                                <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
-                                <li>Recht auf Widerspruch (Art. 21 DSGVO)</li>
-                            </ul>
-                        </section>
-
-                        <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">10. Beschwerderecht bei einer Aufsichtsbehörde</h3>
-                            <p>Sie haben das Recht, sich bei einer Datenschutzaufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
-                        </section>
-
-                        <section>
-                            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">11. Aktualität und Änderung dieser Datenschutzerklärung</h3>
-                            <p>Ich behalte mir vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen meiner Website bzw. der eingesetzten Dienste umzusetzen.</p>
-                            <p className="mt-4 font-bold">Stand: 03.03.2026</p>
+                            <p className="mt-4 font-bold">{isEn ? 'Status: March 2026' : 'Stand: 03.03.2026'}</p>
                         </section>
 
                     </div>

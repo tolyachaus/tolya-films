@@ -2,6 +2,7 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../src/context/LanguageContext';
 
 interface ImpressumModalProps {
     isOpen: boolean;
@@ -9,7 +10,10 @@ interface ImpressumModalProps {
 }
 
 const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
+    const { language } = useLanguage();
     if (!isOpen) return null;
+
+    const isEn = language === 'en';
 
     const modalContent = (
         <AnimatePresence>
@@ -36,28 +40,34 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
                     </button>
 
                     <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-widest text-brand-dark mb-4">
-                        Impressum
+                        {isEn ? 'Legal Notice (Impressum)' : 'Impressum'}
                     </h2>
-                    <p className="font-bold mb-8">Angaben gemäß § 5 DDG</p>
+                    <p className="font-bold mb-8">
+                        {isEn ? 'Information pursuant to § 5 DDG' : 'Angaben gemäß § 5 DDG'}
+                    </p>
 
                     <div className="space-y-8 font-light leading-relaxed text-gray-700">
                         <div>
                             <p className="font-medium text-brand-dark text-lg">Anatolii Rabochauskas</p>
-                            <p>geschäftlich tätig unter der Bezeichnung „Tolya Films“</p>
+                            <p>{isEn ? 'Operating commercially under the business name "Tolya Films"' : 'geschäftlich tätig unter der Bezeichnung „Tolya Films“'}</p>
                             <p>Heckerstraße 18</p>
                             <p>68199 Mannheim</p>
-                            <p>Deutschland</p>
+                            <p>{isEn ? 'Germany' : 'Deutschland'}</p>
                         </div>
 
                         <div>
-                            <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">Kontakt</h3>
-                            <p>Telefon: <a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
+                            <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">
+                                {isEn ? 'Contact' : 'Kontakt'}
+                            </h3>
+                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
                             <p>E-Mail: <a href="mailto:tolya.films@gmail.com" className="hover:text-brand-gold transition-colors">tolya.films@gmail.com</a></p>
                         </div>
 
                         <div>
-                            <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">Berufsbezeichnung</h3>
-                            <p>Videograf / Videoproduktion</p>
+                            <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">
+                                {isEn ? 'Professional Title' : 'Berufsbezeichnung'}
+                            </h3>
+                            <p>{isEn ? 'Videographer / Video Production' : 'Videograf / Videoproduktion'}</p>
                         </div>
                     </div>
                 </motion.div>

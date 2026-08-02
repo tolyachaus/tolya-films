@@ -39,6 +39,10 @@ export const TRANSLATIONS = {
       versionHint: '2 Versionen verfügbar',
       nextProject: 'Nächstes Projekt'
     },
+    docPage: {
+      subtitle: 'Ein erweiterter Blick des Filmemachers',
+      intro: 'Neben Hochzeitsfilmen entstehen hier Arbeiten, die zeigen, wie ich als Filmemacher denke — dokumentarisch, werblich, künstlerisch. Jede Produktion ist eine eigene visuelle Sprache.'
+    },
     contactForm: {
       tag: 'Termin Reservieren',
       title: 'Jetzt Anfragen',
@@ -114,6 +118,10 @@ export const TRANSLATIONS = {
       fullFilmBtn: 'Full Film (Full Version)',
       versionHint: '2 Versions Available',
       nextProject: 'Next Project'
+    },
+    docPage: {
+      subtitle: "A filmmaker's broader lens",
+      intro: 'Alongside wedding films, this selection highlights how I think as a filmmaker — documentarian, commercial, artistic. Every production speaks its own visual language.'
     },
     contactForm: {
       tag: 'Reserve Your Date',
