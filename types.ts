@@ -32,7 +32,7 @@ export const ASSETS = {
 };
 
 export const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/tolya.films?igsh=czlzaTZyYmdtZGRr&utm_source=qr',
+  instagram: 'https://www.instagram.com/tolya.films/',
   facebook: 'https://www.facebook.com/people/Tolyafilms/61582845653575',
   youtube: 'https://www.youtube.com/channel/UCNp-b0u-fkjNH0QFdE49m6w',
   email: 'tolya.films@gmail.com',
