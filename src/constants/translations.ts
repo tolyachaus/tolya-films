@@ -60,7 +60,8 @@ export const TRANSLATIONS = {
       submittingBtn: 'WIRD GESENDET...',
       successTitle: 'Vielen Dank für eure Anfrage!',
       successDesc: 'Eure Nachricht wurde erfolgreich übermittelt. Ich werde mich innerhalb von 24 Stunden persönlich bei euch melden.',
-      newInquiryBtn: 'Neue Anfrage senden'
+      newInquiryBtn: 'Neue Anfrage senden',
+      gdprError: 'Bitte bestätigen Sie die Datenschutzerklärung, um Ihre Anfrage zu senden.'
     },
     cookie: {
       title: 'Privatsphäre & Cookies',
@@ -140,7 +141,8 @@ export const TRANSLATIONS = {
       submittingBtn: 'SENDING...',
       successTitle: 'Thank you for your inquiry!',
       successDesc: 'Your message has been sent successfully. I will get back to you personally within 24 hours.',
-      newInquiryBtn: 'Send Another Inquiry'
+      newInquiryBtn: 'Send Another Inquiry',
+      gdprError: 'Please accept the Privacy Policy to send your inquiry.'
     },
     cookie: {
       title: 'Privacy & Cookies',

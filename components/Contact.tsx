@@ -14,7 +14,7 @@ import {
 import { useLanguage } from '../src/context/LanguageContext';
 
 const Contact: React.FC = () => {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [isImpressumOpen, setIsImpressumOpen] = useState(false);
   const [isDatenschutzOpen, setIsDatenschutzOpen] = useState(false);
   const [isCookiePolicyOpen, setIsCookiePolicyOpen] = useState(false);
@@ -27,6 +27,9 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  const [privacyConsent, setPrivacyConsent] = useState(false);
+  const [consentError, setConsentError] = useState(false);
+
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,6 +38,13 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!privacyConsent) {
+      setConsentError(true);
+      return;
+    }
+    setConsentError(false);
+
     setStatus('submitting');
 
     // Track GA4 Form Lead Event
@@ -53,6 +63,7 @@ const Contact: React.FC = () => {
           'Hochzeitsdatum': formData.weddingDate,
           'Location & Ort': formData.location,
           'Nachricht & Wünsche': formData.message || 'Keine Nachricht angegeben',
+          'DSGVO-Einwilligung': 'Ja (Datenschutzerklärung akzeptiert)',
           _subject: `Neue Hochzeitsanfrage: ${formData.coupleNames || 'Tolya Films Website'}`,
           _template: 'table',
           _captcha: 'false'
@@ -187,8 +198,62 @@ const Contact: React.FC = () => {
                 />
               </div>
 
+              {/* GDPR Consent Checkbox */}
+              <div className="pt-2 flex flex-col space-y-1.5">
+                <label className="flex items-start gap-3 cursor-pointer group text-xs text-brand-dark/80 font-light leading-relaxed select-none">
+                  <input
+                    type="checkbox"
+                    name="privacyConsent"
+                    checked={privacyConsent}
+                    onChange={(e) => {
+                      setPrivacyConsent(e.target.checked);
+                      if (e.target.checked) setConsentError(false);
+                    }}
+                    className="mt-1 h-4 w-4 shrink-0 rounded-xs border-black/20 text-brand-dark focus:ring-brand-gold accent-brand-dark cursor-pointer"
+                  />
+                  <span>
+                    {lang === 'de' ? (
+                      <>
+                        Ich habe die{' '}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsDatenschutzOpen(true);
+                          }}
+                          className="font-semibold text-brand-dark underline hover:text-brand-gold transition-colors"
+                        >
+                          Datenschutzerklärung
+                        </button>{' '}
+                        gelesen und bin damit einverstanden, dass meine personenbezogenen Daten zur Bearbeitung meiner Anfrage verarbeitet werden. *
+                      </>
+                    ) : (
+                      <>
+                        I have read the{' '}
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setIsDatenschutzOpen(true);
+                          }}
+                          className="font-semibold text-brand-dark underline hover:text-brand-gold transition-colors"
+                        >
+                          Privacy Policy
+                        </button>{' '}
+                        and agree that my personal data may be processed to handle my inquiry. *
+                      </>
+                    )}
+                  </span>
+                </label>
+                {consentError && (
+                  <p className="text-xs text-red-600 font-medium pl-7">
+                    {t.contactForm.gdprError}
+                  </p>
+                )}
+              </div>
+
               {/* Submit Button */}
-              <div className="pt-2 text-center">
+              <div className="pt-3 text-center">
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
