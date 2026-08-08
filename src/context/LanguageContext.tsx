@@ -20,7 +20,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (typeof window !== 'undefined') {
       try {
         const saved = localStorage.getItem(STORAGE_KEY) as Language;
-        if (saved && (saved === 'de' || saved === 'en')) {
+        if (saved && (saved === 'de' || saved === 'en' || saved === 'tg')) {
           setLangState(saved);
         }
       } catch (e) {
@@ -41,7 +41,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   const toggleLang = () => {
-    setLang(lang === 'de' ? 'en' : 'de');
+    setLang(lang === 'de' ? 'en' : lang === 'en' ? 'tg' : 'de');
   };
 
   const t = TRANSLATIONS[lang] || TRANSLATIONS.de;
