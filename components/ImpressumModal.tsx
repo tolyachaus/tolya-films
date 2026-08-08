@@ -14,7 +14,6 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     const isEn = lang === 'en';
-    const isTg = lang === 'tg';
 
     const modalContent = (
         <AnimatePresence>
@@ -41,34 +40,34 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
                     </button>
 
                     <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-widest text-brand-dark mb-4">
-                        {isTg ? 'Огоҳии ҳуқуқӣ (Impressum)' : isEn ? 'Legal Notice (Impressum)' : 'Impressum'}
+                        {isEn ? 'Legal Notice (Impressum)' : 'Impressum'}
                     </h2>
                     <p className="font-bold mb-8">
-                        {isTg ? 'Маълумот мувофиқи § 5 DDG' : isEn ? 'Information pursuant to § 5 DDG' : 'Angaben gemäß § 5 DDG'}
+                        {isEn ? 'Information pursuant to § 5 DDG' : 'Angaben gemäß § 5 DDG'}
                     </p>
 
                     <div className="space-y-8 font-light leading-relaxed text-gray-700">
                         <div>
                             <p className="font-medium text-brand-dark text-lg">Anatolii Rabochauskas</p>
-                            <p>{isTg ? 'Фаъолияти тиҷоратӣ зери номи "Tolya Films"' : isEn ? 'Operating commercially under the business name "Tolya Films"' : 'geschäftlich tätig unter der Bezeichnung „Tolya Films“'}</p>
+                            <p>{isEn ? 'Operating commercially under the business name "Tolya Films"' : 'geschäftlich tätig unter der Bezeichnung „Tolya Films“'}</p>
                             <p>Heckerstraße 9</p>
                             <p>68199 Mannheim</p>
-                            <p>{isTg ? 'Олмон' : isEn ? 'Germany' : 'Deutschland'}</p>
+                            <p>{isEn ? 'Germany' : 'Deutschland'}</p>
                         </div>
 
                         <div>
                             <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">
-                                {isTg ? 'Тамос' : isEn ? 'Contact' : 'Kontakt'}
+                                {isEn ? 'Contact' : 'Kontakt'}
                             </h3>
-                            <p>{isTg ? 'Телефон: ' : isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
+                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
                             <p>E-Mail: <a href="mailto:tolya.films@gmail.com" className="hover:text-brand-gold transition-colors">tolya.films@gmail.com</a></p>
                         </div>
 
                         <div>
                             <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">
-                                {isTg ? 'Унвони касбӣ' : isEn ? 'Professional Title' : 'Berufsbezeichnung'}
+                                {isEn ? 'Professional Title' : 'Berufsbezeichnung'}
                             </h3>
-                            <p>{isTg ? 'Видеограф / Истеҳсоли видео' : isEn ? 'Videographer / Video Production' : 'Videograf / Videoproduktion'}</p>
+                            <p>{isEn ? 'Videographer / Video Production' : 'Videograf / Videoproduktion'}</p>
                         </div>
                     </div>
                 </motion.div>

@@ -14,7 +14,6 @@ const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) 
     if (!isOpen) return null;
 
     const isEn = lang === 'en';
-    const isTg = lang === 'tg';
 
     const modalContent = (
         <AnimatePresence>
@@ -41,7 +40,7 @@ const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) 
                     </button>
 
                     <h2 className="text-3xl md:text-4xl font-display font-bold uppercase tracking-widest text-brand-dark mb-8">
-                        {isTg ? 'Сиёсати маҳрамият' : isEn ? 'Privacy Policy' : 'Datenschutzerklärung'}
+                        {isEn ? 'Privacy Policy' : 'Datenschutzerklärung'}
                     </h2>
 
                     <div className="space-y-6 font-light leading-relaxed text-gray-700 text-sm md:text-base">

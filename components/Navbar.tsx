@@ -150,11 +150,11 @@ const Navbar: React.FC = () => {
               </a>
 
               {/* Language Switcher Desktop */}
-              <div className="flex items-center gap-1 ml-2 font-display text-xs tracking-wider uppercase font-semibold">
+              <div className="flex items-center gap-1.5 ml-2 font-display text-xs tracking-wider uppercase font-semibold">
                 <button
                   type="button"
                   onClick={() => setLang('de')}
-                  className={`transition-colors py-1 px-1 rounded-xs ${lang === 'de' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
+                  className={`transition-colors py-1 px-1.5 rounded-xs ${lang === 'de' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
                 >
                   DE
                 </button>
@@ -162,30 +162,22 @@ const Navbar: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setLang('en')}
-                  className={`transition-colors py-1 px-1 rounded-xs ${lang === 'en' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
+                  className={`transition-colors py-1 px-1.5 rounded-xs ${lang === 'en' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
                 >
                   EN
-                </button>
-                <span className="opacity-40">|</span>
-                <button
-                  type="button"
-                  onClick={() => setLang('tg')}
-                  className={`transition-colors py-1 px-1 rounded-xs ${lang === 'tg' ? 'text-brand-gold font-bold' : 'hover:opacity-70 opacity-60'}`}
-                >
-                  TG
                 </button>
               </div>
             </div>
           </div>
 
           {/* Mobile Right Controls: Language + Hamburger */}
-          <div className="md:hidden flex items-center gap-2 relative z-[60]">
+          <div className="md:hidden flex items-center gap-3 relative z-[60]">
             {/* Language Switcher Mobile Header */}
-            <div className={`flex items-center gap-0.5 text-[10px] font-display font-semibold uppercase tracking-wider ${mobileToggleColor}`}>
+            <div className={`flex items-center gap-1 text-[11px] font-display font-semibold uppercase tracking-wider ${mobileToggleColor}`}>
               <button
                 type="button"
                 onClick={() => setLang('de')}
-                className={`py-1 px-0.5 ${lang === 'de' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
+                className={`py-1 px-1 ${lang === 'de' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
               >
                 DE
               </button>
@@ -193,17 +185,9 @@ const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setLang('en')}
-                className={`py-1 px-0.5 ${lang === 'en' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
+                className={`py-1 px-1 ${lang === 'en' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
               >
                 EN
-              </button>
-              <span className="opacity-40">|</span>
-              <button
-                type="button"
-                onClick={() => setLang('tg')}
-                className={`py-1 px-0.5 ${lang === 'tg' ? 'text-brand-gold font-bold' : 'opacity-60'}`}
-              >
-                TG
               </button>
             </div>
 

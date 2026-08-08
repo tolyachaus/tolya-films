@@ -212,22 +212,7 @@ const Contact: React.FC = () => {
                     className="mt-1 h-4 w-4 shrink-0 rounded-xs border-black/20 text-brand-dark focus:ring-brand-gold accent-brand-dark cursor-pointer"
                   />
                   <span>
-                    {lang === 'tg' ? (
-                      <>
-                        Ман{' '}
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setIsDatenschutzOpen(true);
-                          }}
-                          className="font-semibold text-brand-dark underline hover:text-brand-gold transition-colors"
-                        >
-                          Сиёсати маҳрамиятро
-                        </button>{' '}
-                        хондам ва розиям, ки маълумоти шахсии ман барои коркарди дархости ман истифода бурда шавад. *
-                      </>
-                    ) : lang === 'de' ? (
+                    {lang === 'de' ? (
                       <>
                         Ich habe die{' '}
                         <button
