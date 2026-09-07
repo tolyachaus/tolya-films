@@ -86,7 +86,8 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     stills: [
       '/images/patrick_still_1.jpg',
       '/images/patrick_still_2.jpg',
-      '/images/patrick_still_3.jpg'
+      '/images/patrick_still_3.jpg',
+      '/images/patrick_still_4.jpg'
     ]
   },
   {
