@@ -41,6 +41,7 @@ export const SOCIAL_LINKS = {
 };
 
 import rikeJonathanCover from './src/assets/rike_jonathan_cover.avif';
+import patrickStellaCover from './src/assets/patrick_stella_cover.jpg';
 import gemmaTimoCover from './src/assets/thumbnails/YdLQ3CAjlpQ.jpg';
 import cinematicPortraitCover from './src/assets/thumbnails/ln-P6GUBLPo.jpg';
 import eventHighlightCover from './src/assets/thumbnails/dVGzZKFKxN0.jpg';
@@ -68,6 +69,20 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
       '/images/rike_still_3.jpg',
       '/images/rike_still_4.jpg'
     ]
+  },
+  {
+    id: '9',
+    slug: 'patrick-stella',
+    title: 'PATRICK & STELLA',
+    videoId: '7Dk1fqfs60Y', // Trailer
+    fullVideoId: '8PZO0dnKMi4', // Full Film
+    aspectRatio: 'aspect-video',
+    thumbnail: patrickStellaCover,
+    location: {
+      name: 'Zandvoort',
+      city: 'near Amsterdam, Netherlands'
+    },
+    quote: 'Watching the video touched me incredibly deeply. You didn’t simply capture beautiful moment you captured the emotions, the love, the little details, and somehow even a part of everything that has happened in my life and everything that brought me to this moment. It feels like you really saw the story behind the day, and that means more to me than I can put into words.'
   },
   {
     id: '8',

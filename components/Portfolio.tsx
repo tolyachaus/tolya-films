@@ -19,6 +19,17 @@ const Portfolio: React.FC = () => {
     }
   };
 
+  const getItemGridSpan = (index: number, total: number) => {
+    if (total === 5) {
+      if (index === 0) return 'col-span-1 md:col-span-2 lg:col-span-3';
+      if (index === 1) return 'col-span-1 md:col-span-1 lg:col-span-2';
+      if (index === 2) return 'col-span-1 md:col-span-1 lg:col-span-1';
+      if (index === 3) return 'col-span-1 md:col-span-1 lg:col-span-1';
+      if (index === 4) return 'col-span-1 md:col-span-1 lg:col-span-2';
+    }
+    return index === 0 ? 'col-span-1 md:col-span-2 lg:col-span-3' : 'col-span-1';
+  };
+
   return (
     <section id="portfolio" className="py-12 md:py-32 bg-brand-light relative z-10">
       <div className="container mx-auto px-6">
@@ -42,7 +53,7 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative ${item.aspectRatio || 'aspect-video'} bg-brand-gray cursor-pointer overflow-hidden rounded-sm ${index === 0 ? 'col-span-1 md:col-span-2 lg:col-span-3' : ''}`}
+              className={`group relative ${item.aspectRatio || 'aspect-video'} bg-brand-gray cursor-pointer overflow-hidden rounded-sm ${getItemGridSpan(index, WEDDING_PORTFOLIO_ITEMS.length)}`}
               onClick={() => handleItemClick(item)}
             >
               {/* Thumbnail */}
