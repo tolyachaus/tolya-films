@@ -82,7 +82,12 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
       name: 'Zandvoort',
       city: 'near Amsterdam, Netherlands'
     },
-    quote: 'Watching the video touched me incredibly deeply. You didn’t simply capture beautiful moment you captured the emotions, the love, the little details, and somehow even a part of everything that has happened in my life and everything that brought me to this moment. It feels like you really saw the story behind the day, and that means more to me than I can put into words.'
+    quote: 'Watching the video touched me incredibly deeply. You didn’t simply capture beautiful moment you captured the emotions, the love, the little details, and somehow even a part of everything that has happened in my life and everything that brought me to this moment. It feels like you really saw the story behind the day, and that means more to me than I can put into words.',
+    stills: [
+      '/images/patrick_still_1.jpg',
+      '/images/patrick_still_2.jpg',
+      '/images/patrick_still_3.jpg'
+    ]
   },
   {
     id: '8',
