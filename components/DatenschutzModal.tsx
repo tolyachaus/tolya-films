@@ -58,7 +58,7 @@ const DatenschutzModal: React.FC<DatenschutzModalProps> = ({ isOpen, onClose }) 
                             <p>68199 Mannheim</p>
                             <p>{isEn ? 'Germany' : 'Deutschland'}</p>
                             <br />
-                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
+                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+4915156220874" className="hover:text-brand-gold transition-colors">+49 1515 6220874</a></p>
                             <p>E-Mail: <a href="mailto:tolya.films@gmail.com" className="hover:text-brand-gold transition-colors">tolya.films@gmail.com</a></p>
                         </section>
 

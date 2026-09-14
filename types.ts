@@ -36,8 +36,8 @@ export const SOCIAL_LINKS = {
   facebook: 'https://www.facebook.com/people/Tolyafilms/61582845653575',
   youtube: 'https://www.youtube.com/channel/UCNp-b0u-fkjNH0QFdE49m6w',
   email: 'tolya.films@gmail.com',
-  phone: '+49 160 9652965',
-  whatsapp: 'https://wa.me/4916096562965'
+  phone: '+49 1515 6220874',
+  whatsapp: 'https://wa.me/4915156220874'
 };
 
 import rikeJonathanCover from './src/assets/rike_jonathan_cover.avif';

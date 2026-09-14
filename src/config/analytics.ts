@@ -163,7 +163,7 @@ export const trackEmailClick = (email: string = 'tolya.films@gmail.com') => {
   });
 };
 
-export const trackPhoneClick = (phone: string = '+49 160 9652965') => {
+export const trackPhoneClick = (phone: string = '+49 1515 6220874') => {
   trackEvent('click_phone', {
     event_category: 'Contact',
     event_label: phone

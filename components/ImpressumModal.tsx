@@ -59,7 +59,7 @@ const ImpressumModal: React.FC<ImpressumModalProps> = ({ isOpen, onClose }) => {
                             <h3 className="font-display text-xl tracking-wider font-bold text-brand-dark mb-3">
                                 {isEn ? 'Contact' : 'Kontakt'}
                             </h3>
-                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+491609652965" className="hover:text-brand-gold transition-colors">+49 160 9652965</a></p>
+                            <p>{isEn ? 'Phone: ' : 'Telefon: '}<a href="tel:+4915156220874" className="hover:text-brand-gold transition-colors">+49 1515 6220874</a></p>
                             <p>E-Mail: <a href="mailto:tolya.films@gmail.com" className="hover:text-brand-gold transition-colors">tolya.films@gmail.com</a></p>
                         </div>
 
