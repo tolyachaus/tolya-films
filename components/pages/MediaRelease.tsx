@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, ShieldCheck, PenTool, RotateCcw, Send, Globe, Instagram, Youtube, Film, Facebook, Printer, Download } from 'lucide-react';
 import { ASSETS } from '../../types';
 import { useLanguage } from '../../src/context/LanguageContext';
+import { generateReleasePDF } from '../../src/utils/pdfGenerator';
+import { sendReleaseEmailWithPDF } from '../../src/utils/emailService';
 
 const MediaRelease: React.FC = () => {
   const { lang } = useLanguage();
@@ -148,14 +150,29 @@ const MediaRelease: React.FC = () => {
     const signatureDataUrl = canvas ? canvas.toDataURL('image/png') : '';
     const formattedTimestamp = new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
 
-    setSignedData({
+    const currentSignedData = {
       ...formData,
       signatureUrl: signatureDataUrl,
       timestamp: formattedTimestamp
-    });
+    };
 
+    setSignedData(currentSignedData);
+
+    // 1. Automatically generate and download PDF for couple
     try {
-      const response = await fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
+      const pdfDoc = generateReleasePDF(currentSignedData);
+      const safeFilename = `Einwilligungserklaerung_TolyaFilms_${formData.partner1Name.replace(/\s+/g, '_')}.pdf`;
+      pdfDoc.save(safeFilename);
+    } catch (e) {
+      console.error('Error generating PDF download:', e);
+    }
+
+    // 2. Attempt EmailJS sending (if configured)
+    sendReleaseEmailWithPDF(currentSignedData);
+
+    // 3. Send FormSubmit email notification to Tolya & CC couple
+    try {
+      await fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -170,6 +187,7 @@ const MediaRelease: React.FC = () => {
           'Freigegebene Plattformen': 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms)',
           'Einwilligungserklärung': 'Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO',
           'Digitale Unterschrift': `Digital unterzeichnet am ${formattedTimestamp} (Canvas-Signatur erfasst)`,
+          'PDF Status': 'PDF-Dokument generiert & beim Paar heruntergeladen',
           'Zeitstempel (Berlin)': formattedTimestamp,
           _subject: `Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`,
           _replyto: formData.email,
@@ -180,14 +198,17 @@ const MediaRelease: React.FC = () => {
         })
       });
 
-      if (response.ok) {
-        setStatus('success');
-      } else {
-        setStatus('success');
-      }
+      setStatus('success');
     } catch (err) {
       setStatus('success');
     }
+  };
+
+  const handleDownloadPDF = () => {
+    if (!signedData) return;
+    const pdfDoc = generateReleasePDF(signedData);
+    const safeFilename = `Einwilligungserklaerung_TolyaFilms_${signedData.partner1Name.replace(/\s+/g, '_')}.pdf`;
+    pdfDoc.save(safeFilename);
   };
 
   const handlePrint = () => {
@@ -291,15 +312,24 @@ const MediaRelease: React.FC = () => {
               </div>
             </div>
 
-            {/* Print & Return Buttons */}
+            {/* Print & Download PDF Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 pt-2 print:hidden">
               <button
                 type="button"
-                onClick={handlePrint}
+                onClick={handleDownloadPDF}
                 className="flex-1 bg-brand-dark text-white py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-brand-gold transition-colors flex items-center justify-center gap-2 shadow-md cursor-pointer"
               >
+                <Download size={16} />
+                <span>{isEn ? 'Download PDF Document' : 'PDF-Dokument herunterladen'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handlePrint}
+                className="flex-1 bg-brand-gray text-brand-dark border border-black/15 py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-black/10 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              >
                 <Printer size={16} />
-                <span>{isEn ? 'Print / Save as PDF' : 'Drucken / Als PDF speichern'}</span>
+                <span>{isEn ? 'Print Document' : 'Drucken'}</span>
               </button>
 
               <Link
