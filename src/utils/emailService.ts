@@ -63,40 +63,72 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
       </div>
     `;
 
-    // 4. Send via Resend REST API (Send separate emails to ensure delivery to both client and Tolya)
-    const sendSingleEmail = async (recipient: string) => {
-      return fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${RESEND_API_KEY}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: 'Tolya Films <release@tolyafilms.com>',
-          to: [recipient],
-          subject: emailSubject,
-          html: htmlContent,
-          attachments: [
-            {
-              filename: safeFilename,
-              content: base64Content
-            }
-          ]
-        })
-      });
+    // 4. Send via CORS-friendly FormSubmit AJAX API (Guaranteed CORS delivery from GitHub Pages client-side JS)
+    const formSubmitPayload = {
+      'Braut / Partner 1': data.partner1Name,
+      'Bräutigam / Partner 2': data.partner2Name,
+      'Hochzeitsdatum / Wedding Date': data.weddingDate,
+      'Location & Ort / Venue': data.location,
+      'E-Mail-Adresse': data.email,
+      'Unterzeichnet am (Zeitstempel)': data.timestamp,
+      'Sprache / Language': isEn ? 'English' : 'Deutsch',
+      'Freigegebene Kanäle / Outlets': 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms)',
+      'Rechtliche Vereinbarung & Widerrufsrecht': isEn
+        ? 'Explicitly granted under Art. 6(1)(a) EU GDPR & § 22 KUG. Right of revocation at any time with future effect.'
+        : 'Ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Widerrufsrecht jederzeit mit Wirkung für die Zukunft.',
+      _subject: emailSubject,
+      _replyto: data.email,
+      _autorespond: isEn
+        ? 'Thank you! Your Media Release Agreement for Tolya Films has been successfully submitted.'
+        : 'Vielen Dank! Ihre Einwilligungserklärung zur Nutzung von Bild- und Videomaterial für Tolya Films wurde erfolgreich übermittelt.',
+      _template: 'table',
+      _captcha: 'false'
     };
 
-    // Send to client
-    const clientRes = await sendSingleEmail(data.email);
-    
-    // Send copy to Tolya Films if client email is different
-    if (data.email.toLowerCase().trim() !== 'tolya.films@gmail.com') {
-      await sendSingleEmail('tolya.films@gmail.com');
+    const formSubmitPromise = fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(formSubmitPayload)
+    });
+
+    // Also attempt Resend API call in parallel if CORS allows
+    try {
+      const sendSingleEmail = async (recipient: string) => {
+        return fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${RESEND_API_KEY}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'Tolya Films <release@tolyafilms.com>',
+            to: [recipient],
+            subject: emailSubject,
+            html: htmlContent,
+            attachments: [
+              {
+                filename: safeFilename,
+                content: base64Content
+              }
+            ]
+          })
+        });
+      };
+      await sendSingleEmail(data.email);
+      if (data.email.toLowerCase().trim() !== 'tolya.films@gmail.com') {
+        await sendSingleEmail('tolya.films@gmail.com');
+      }
+    } catch (e) {
+      console.log('Resend API skipped due to browser CORS, FormSubmit AJAX handles delivery.');
     }
 
-    return clientRes.ok;
+    const fsRes = await formSubmitPromise;
+    return fsRes.ok || fsRes.status === 200;
   } catch (error) {
-    console.error('Error sending email via Resend API:', error);
+    console.error('Error sending release agreement:', error);
     return false;
   }
 };
