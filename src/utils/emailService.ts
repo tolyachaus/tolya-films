@@ -13,8 +13,6 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
     const base64Content = dataUri.split(',')[1];
     const safeFilename = `Einwilligungserklaerung_TolyaFilms_${data.partner1Name.replace(/\s+/g, '_')}.pdf`;
 
-    // 3. Email Recipients (Sends to both couple & Tolya Films)
-    const recipients = [data.email, 'tolya.films@gmail.com'];
 
     // 4. HTML Email Body
     const htmlContent = `
@@ -49,28 +47,38 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
       </div>
     `;
 
-    // 5. Send via Resend REST API
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'Tolya Films <release@tolyafilms.com>',
-        to: recipients,
-        subject: `Einwilligungserklärung (Media Release): ${data.partner1Name} & ${data.partner2Name}`,
-        html: htmlContent,
-        attachments: [
-          {
-            filename: safeFilename,
-            content: base64Content
-          }
-        ]
-      })
-    });
+    // 5. Send via Resend REST API (Send separate emails to ensure delivery to both client and Tolya)
+    const sendSingleEmail = async (recipient: string) => {
+      return fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: 'Tolya Films <release@tolyafilms.com>',
+          to: [recipient],
+          subject: `Einwilligungserklärung (Media Release): ${data.partner1Name} & ${data.partner2Name}`,
+          html: htmlContent,
+          attachments: [
+            {
+              filename: safeFilename,
+              content: base64Content
+            }
+          ]
+        })
+      });
+    };
 
-    return response.ok;
+    // Send to client
+    const clientRes = await sendSingleEmail(data.email);
+    
+    // Send copy to Tolya Films if client email is different
+    if (data.email.toLowerCase().trim() !== 'tolya.films@gmail.com') {
+      await sendSingleEmail('tolya.films@gmail.com');
+    }
+
+    return clientRes.ok;
   } catch (error) {
     console.error('Error sending email via Resend API:', error);
     return false;
