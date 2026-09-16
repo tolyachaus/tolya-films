@@ -69,7 +69,7 @@ const MediaRelease: React.FC = () => {
   const isDrawingRef = useRef(false);
 
 
-  // Initialize and resize Canvas
+  // Initialize and resize Canvas (preserve drawn signature across mobile keyboard resizes)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -77,8 +77,17 @@ const MediaRelease: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    let prevWidth = 0;
+
     const setCanvasSize = () => {
       const rect = canvas.getBoundingClientRect();
+      if (rect.width === 0) return;
+      // Do not re-allocate canvas size if width hasn't changed (prevents erasing drawn content on mobile keyboard popups)
+      if (Math.abs(rect.width - prevWidth) < 5 && canvas.width > 0) return;
+      prevWidth = rect.width;
+
+      const tempUrl = isSigned ? canvas.toDataURL() : '';
+
       canvas.width = rect.width * 2;
       canvas.height = rect.height * 2;
       ctx.scale(2, 2);
@@ -86,12 +95,20 @@ const MediaRelease: React.FC = () => {
       ctx.lineJoin = 'round';
       ctx.strokeStyle = '#1a1a1a';
       ctx.lineWidth = 2.5;
+
+      if (tempUrl) {
+        const img = new Image();
+        img.onload = () => {
+          ctx.drawImage(img, 0, 0, rect.width, rect.height);
+        };
+        img.src = tempUrl;
+      }
     };
 
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
     return () => window.removeEventListener('resize', setCanvasSize);
-  }, []);
+  }, [isSigned]);
 
   // Canvas Mouse & Touch Event Handlers
   const getCoordinates = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {

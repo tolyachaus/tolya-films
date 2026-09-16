@@ -63,16 +63,15 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
       </div>
     `;
 
-    // 4. Send via CORS-friendly FormSubmit AJAX API (Guaranteed CORS delivery from GitHub Pages client-side JS)
     const formSubmitPayload = {
       'Braut / Partner 1': data.partner1Name,
       'Bräutigam / Partner 2': data.partner2Name,
-      'Hochzeitsdatum / Wedding Date': data.weddingDate,
-      'Location & Ort / Venue': data.location,
+      'Hochzeitsdatum': data.weddingDate,
+      'Location & Ort': data.location,
       'E-Mail-Adresse': data.email,
-      'Unterzeichnet am (Zeitstempel)': data.timestamp,
+      'Unterzeichnet am': data.timestamp,
       'Sprache / Language': isEn ? 'English' : 'Deutsch',
-      'Freigegebene Kanäle / Outlets': 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms)',
+      'Freigegebene Kanäle': 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms)',
       'Rechtliche Vereinbarung & Widerrufsrecht': isEn
         ? 'Explicitly granted under Art. 6(1)(a) EU GDPR & § 22 KUG. Right of revocation at any time with future effect.'
         : 'Ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Widerrufsrecht jederzeit mit Wirkung für die Zukunft.',
@@ -81,7 +80,6 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
       _autorespond: isEn
         ? 'Thank you! Your Media Release Agreement for Tolya Films has been successfully submitted.'
         : 'Vielen Dank! Ihre Einwilligungserklärung zur Nutzung von Bild- und Videomaterial für Tolya Films wurde erfolgreich übermittelt.',
-      _template: 'table',
       _captcha: 'false'
     };
 
