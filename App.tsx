@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './components/pages/Home';
 import Documentary from './components/pages/Documentary';
 import WeddingProject from './components/pages/WeddingProject';
+import MediaRelease from './components/pages/MediaRelease';
 import CookieBanner from './components/CookieBanner';
 import { trackPageView } from './src/config/analytics';
 import { LanguageProvider } from './src/context/LanguageContext';
@@ -28,6 +29,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/documentary" element={<Documentary />} />
           <Route path="/wedding/:slug" element={<WeddingProject />} />
+          <Route path="/release" element={<MediaRelease />} />
+          <Route path="/media-release" element={<MediaRelease />} />
         </Routes>
         <CookieBanner />
       </HashRouter>
