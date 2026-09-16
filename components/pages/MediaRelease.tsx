@@ -184,7 +184,14 @@ const MediaRelease: React.FC = () => {
       console.error('Error generating PDF:', e);
     }
 
-    // 2. Submit native multipart/form-data POST via hidden iframe
+    // 2. Send email with attached PDF via Resend API to both couple & Tolya Films
+    try {
+      await sendReleaseEmailWithPDF(currentSignedData);
+    } catch (err) {
+      console.error('Resend API error:', err);
+    }
+
+    // 3. Backup FormSubmit submission
     try {
       if (hiddenFormRef.current) {
         hiddenFormRef.current.submit();
