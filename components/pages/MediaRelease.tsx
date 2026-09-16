@@ -42,11 +42,27 @@ const MediaRelease: React.FC = () => {
   } | null>(null);
 
   const [consentChecked, setConsentChecked] = useState(false);
-  const [consentError, setConsentError] = useState(false);
-  const [signatureError, setSignatureError] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<{
+    partner1Name?: boolean;
+    partner2Name?: boolean;
+    weddingDate?: boolean;
+    location?: boolean;
+    email?: boolean;
+    consent?: boolean;
+    signature?: boolean;
+  }>({});
 
   const [isSigned, setIsSigned] = useState(false);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  // Input & Section Refs for Smooth Auto-Scroll Validation
+  const partner1Ref = useRef<HTMLDivElement | null>(null);
+  const partner2Ref = useRef<HTMLDivElement | null>(null);
+  const weddingDateRef = useRef<HTMLDivElement | null>(null);
+  const locationRef = useRef<HTMLDivElement | null>(null);
+  const emailRef = useRef<HTMLDivElement | null>(null);
+  const consentRef = useRef<HTMLDivElement | null>(null);
+  const signatureRef = useRef<HTMLDivElement | null>(null);
 
   // Canvas signature ref
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -108,12 +124,14 @@ const MediaRelease: React.FC = () => {
     ctx.beginPath();
     ctx.moveTo(x, y);
     setIsSigned(true);
-    setSignatureError(false);
+    setFieldErrors((prev) => ({ ...prev, signature: false }));
   };
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     if (!isDrawingRef.current) return;
-    e.preventDefault(); // Prevent scrolling on touch devices
+    if (e.cancelable) {
+      e.preventDefault(); // Prevent scrolling on touch devices
+    }
     const { x, y } = getCoordinates(e);
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -139,23 +157,56 @@ const MediaRelease: React.FC = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (fieldErrors[name as keyof typeof fieldErrors]) {
+      setFieldErrors((prev) => ({ ...prev, [name]: false }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!consentChecked) {
-      setConsentError(true);
-      return;
-    }
-    setConsentError(false);
+    const errors: typeof fieldErrors = {};
+    let firstErrorRef: React.RefObject<HTMLDivElement | null> | null = null;
 
+    if (!formData.partner1Name.trim()) {
+      errors.partner1Name = true;
+      if (!firstErrorRef) firstErrorRef = partner1Ref;
+    }
+    if (!formData.partner2Name.trim()) {
+      errors.partner2Name = true;
+      if (!firstErrorRef) firstErrorRef = partner2Ref;
+    }
+    if (!formData.weddingDate.trim()) {
+      errors.weddingDate = true;
+      if (!firstErrorRef) firstErrorRef = weddingDateRef;
+    }
+    if (!formData.location.trim()) {
+      errors.location = true;
+      if (!firstErrorRef) firstErrorRef = locationRef;
+    }
+    if (!formData.email.trim() || !formData.email.includes('@')) {
+      errors.email = true;
+      if (!firstErrorRef) firstErrorRef = emailRef;
+    }
+    if (!consentChecked) {
+      errors.consent = true;
+      if (!firstErrorRef) firstErrorRef = consentRef;
+    }
     if (!isSigned) {
-      setSignatureError(true);
+      errors.signature = true;
+      if (!firstErrorRef) firstErrorRef = signatureRef;
+    }
+
+    setFieldErrors(errors);
+
+    if (firstErrorRef && firstErrorRef.current) {
+      firstErrorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const inputChild = firstErrorRef.current.querySelector('input');
+      if (inputChild) inputChild.focus();
       return;
     }
-    setSignatureError(false);
 
     setStatus('submitting');
 
@@ -343,7 +394,7 @@ const MediaRelease: React.FC = () => {
             </div>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-sm border border-black/10 shadow-xl space-y-8">
+          <form noValidate onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-sm border border-black/10 shadow-xl space-y-8">
             
             {/* ── SECTION 1: MINIMAL COUPLE DETAILS ── */}
             <div>
@@ -352,78 +403,118 @@ const MediaRelease: React.FC = () => {
               </h2>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
+                <div ref={partner1Ref}>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-brand-dark/70 mb-1">
                     {isEn ? 'Bride / Partner 1 Name *' : 'Name Braut / Partner 1 *'}
                   </label>
                   <input
                     type="text"
                     name="partner1Name"
-                    required
                     value={formData.partner1Name}
                     onChange={handleChange}
                     placeholder="z. B. Stella Obert"
-                    className="w-full px-3 py-2.5 bg-brand-gray/50 border border-black/15 rounded-xs text-sm text-brand-dark focus:outline-none focus:border-brand-gold focus:bg-white transition-colors"
+                    className={`w-full px-3 py-2.5 bg-brand-gray/50 border rounded-xs text-sm text-brand-dark focus:outline-none transition-colors ${
+                      fieldErrors.partner1Name
+                        ? 'border-red-500 bg-red-50/50 focus:border-red-600 ring-1 ring-red-500'
+                        : 'border-black/15 focus:border-brand-gold focus:bg-white'
+                    }`}
                   />
+                  {fieldErrors.partner1Name && (
+                    <p className="text-xs text-red-600 font-semibold mt-1 flex items-center gap-1">
+                      <span>⚠</span> {isEn ? 'Please enter a name.' : 'Bitte gebt einen Namen ein.'}
+                    </p>
+                  )}
                 </div>
 
-                <div>
+                <div ref={partner2Ref}>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-brand-dark/70 mb-1">
                     {isEn ? 'Groom / Partner 2 Name *' : 'Name Bräutigam / Partner 2 *'}
                   </label>
                   <input
                     type="text"
                     name="partner2Name"
-                    required
                     value={formData.partner2Name}
                     onChange={handleChange}
                     placeholder="z. B. Patrick Obert"
-                    className="w-full px-3 py-2.5 bg-brand-gray/50 border border-black/15 rounded-xs text-sm text-brand-dark focus:outline-none focus:border-brand-gold focus:bg-white transition-colors"
+                    className={`w-full px-3 py-2.5 bg-brand-gray/50 border rounded-xs text-sm text-brand-dark focus:outline-none transition-colors ${
+                      fieldErrors.partner2Name
+                        ? 'border-red-500 bg-red-50/50 focus:border-red-600 ring-1 ring-red-500'
+                        : 'border-black/15 focus:border-brand-gold focus:bg-white'
+                    }`}
                   />
+                  {fieldErrors.partner2Name && (
+                    <p className="text-xs text-red-600 font-semibold mt-1 flex items-center gap-1">
+                      <span>⚠</span> {isEn ? 'Please enter a name.' : 'Bitte gebt einen Namen ein.'}
+                    </p>
+                  )}
                 </div>
 
-                <div>
+                <div ref={weddingDateRef}>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-brand-dark/70 mb-1">
                     {isEn ? 'Wedding Date *' : 'Hochzeitsdatum *'}
                   </label>
                   <input
                     type="date"
                     name="weddingDate"
-                    required
                     value={formData.weddingDate}
                     onChange={handleChange}
-                    className="w-full px-3 py-2.5 bg-brand-gray/50 border border-black/15 rounded-xs text-sm text-brand-dark focus:outline-none focus:border-brand-gold focus:bg-white transition-colors"
+                    className={`w-full px-3 py-2.5 bg-brand-gray/50 border rounded-xs text-sm text-brand-dark focus:outline-none transition-colors ${
+                      fieldErrors.weddingDate
+                        ? 'border-red-500 bg-red-50/50 focus:border-red-600 ring-1 ring-red-500'
+                        : 'border-black/15 focus:border-brand-gold focus:bg-white'
+                    }`}
                   />
+                  {fieldErrors.weddingDate && (
+                    <p className="text-xs text-red-600 font-semibold mt-1 flex items-center gap-1">
+                      <span>⚠</span> {isEn ? 'Please select a wedding date.' : 'Bitte wählt ein Hochzeitsdatum aus.'}
+                    </p>
+                  )}
                 </div>
 
-                <div>
+                <div ref={locationRef}>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-brand-dark/70 mb-1">
                     {isEn ? 'Location / Venue *' : 'Location / Veranstaltungsort *'}
                   </label>
                   <input
                     type="text"
                     name="location"
-                    required
                     value={formData.location}
                     onChange={handleChange}
                     placeholder="z. B. Zandvoort, Netherlands"
-                    className="w-full px-3 py-2.5 bg-brand-gray/50 border border-black/15 rounded-xs text-sm text-brand-dark focus:outline-none focus:border-brand-gold focus:bg-white transition-colors"
+                    className={`w-full px-3 py-2.5 bg-brand-gray/50 border rounded-xs text-sm text-brand-dark focus:outline-none transition-colors ${
+                      fieldErrors.location
+                        ? 'border-red-500 bg-red-50/50 focus:border-red-600 ring-1 ring-red-500'
+                        : 'border-black/15 focus:border-brand-gold focus:bg-white'
+                    }`}
                   />
+                  {fieldErrors.location && (
+                    <p className="text-xs text-red-600 font-semibold mt-1 flex items-center gap-1">
+                      <span>⚠</span> {isEn ? 'Please enter a venue/location.' : 'Bitte gebt einen Veranstaltungsort ein.'}
+                    </p>
+                  )}
                 </div>
 
-                <div className="sm:col-span-2">
+                <div className="sm:col-span-2" ref={emailRef}>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-brand-dark/70 mb-1">
                     {isEn ? 'E-Mail Address for Confirmation Copy *' : 'E-Mail-Adresse für Bestätigungskopie *'}
                   </label>
                   <input
                     type="email"
                     name="email"
-                    required
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="eure.email@beispiel.de"
-                    className="w-full px-3 py-2.5 bg-brand-gray/50 border border-black/15 rounded-xs text-sm text-brand-dark focus:outline-none focus:border-brand-gold focus:bg-white transition-colors"
+                    className={`w-full px-3 py-2.5 bg-brand-gray/50 border rounded-xs text-sm text-brand-dark focus:outline-none transition-colors ${
+                      fieldErrors.email
+                        ? 'border-red-500 bg-red-50/50 focus:border-red-600 ring-1 ring-red-500'
+                        : 'border-black/15 focus:border-brand-gold focus:bg-white'
+                    }`}
                   />
+                  {fieldErrors.email && (
+                    <p className="text-xs text-red-600 font-semibold mt-1 flex items-center gap-1">
+                      <span>⚠</span> {isEn ? 'Please enter a valid e-mail address.' : 'Bitte gebt eine gültige E-Mail-Adresse ein.'}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -516,34 +607,36 @@ const MediaRelease: React.FC = () => {
                 )}
               </div>
 
-              <label className="flex items-start gap-3 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={consentChecked}
-                  onChange={(e) => {
-                    setConsentChecked(e.target.checked);
-                    if (e.target.checked) setConsentError(false);
-                  }}
-                  className="mt-1 h-4 w-4 shrink-0 rounded-xs border-black/20 text-brand-dark focus:ring-brand-gold accent-brand-dark cursor-pointer"
-                />
-                <span className="text-xs text-brand-dark leading-normal">
-                  {isEn
-                    ? 'We have read the media release agreement and explicitly consent to the publication of our wedding film material on the specified channels. *'
-                    : 'Wir haben die Einwilligungserklärung gelesen und erklären uns ausdrücklich mit der Veröffentlichung unseres Hochzeitsfilmmaterials auf den oben genannten Kanälen einverstanden. *'}
-                </span>
-              </label>
+              <div ref={consentRef} className={`p-3 rounded-xs transition-colors ${fieldErrors.consent ? 'border-2 border-red-500 bg-red-50/50' : ''}`}>
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={consentChecked}
+                    onChange={(e) => {
+                      setConsentChecked(e.target.checked);
+                      if (e.target.checked && fieldErrors.consent) {
+                        setFieldErrors((prev) => ({ ...prev, consent: false }));
+                      }
+                    }}
+                    className="mt-1 h-4 w-4 shrink-0 rounded-xs border-black/20 text-brand-dark focus:ring-brand-gold accent-brand-dark cursor-pointer"
+                  />
+                  <span className="text-xs text-brand-dark leading-normal">
+                    {isEn
+                      ? 'We have read the media release agreement and explicitly consent to the publication of our wedding film material on the specified channels. *'
+                      : 'Wir haben die Einwilligungserklärung gelesen und erklären uns ausdrücklich mit der Veröffentlichung unseres Hochzeitsfilmmaterials auf den oben genannten Kanälen einverstanden. *'}
+                  </span>
+                </label>
 
-              {consentError && (
-                <p className="text-xs text-red-600 font-semibold mt-1">
-                  {isEn
-                    ? 'Please check the box to confirm the agreement.'
-                    : 'Bitte bestätigt die Einwilligungserklärung, um fortzufahren.'}
-                </p>
-              )}
+                {fieldErrors.consent && (
+                  <p className="text-xs text-red-600 font-semibold mt-2 flex items-center gap-1">
+                    <span>⚠</span> {isEn ? 'Please check the box to confirm the agreement.' : 'Bitte bestätigt die Einwilligungserklärung, um fortzufahren.'}
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* ── SECTION 4: DIGITAL SIGNATURE PAD ── */}
-            <div>
+            <div ref={signatureRef}>
               <div className="flex items-center justify-between mb-2">
                 <label className="text-base font-display font-bold uppercase tracking-wider text-brand-dark flex items-center gap-2">
                   <PenTool size={16} className="text-brand-gold" />
@@ -569,7 +662,9 @@ const MediaRelease: React.FC = () => {
               </p>
 
               {/* Touch & Mouse Canvas */}
-              <div className="relative border-2 border-dashed border-black/20 rounded-xs bg-brand-gray/30 overflow-hidden touch-none">
+              <div className={`relative border-2 border-dashed rounded-xs bg-brand-gray/30 overflow-hidden touch-none transition-colors ${
+                fieldErrors.signature ? 'border-red-500 bg-red-50/30 ring-1 ring-red-500' : 'border-black/20'
+              }`}>
                 <canvas
                   ref={canvasRef}
                   onMouseDown={startDrawing}
@@ -579,7 +674,8 @@ const MediaRelease: React.FC = () => {
                   onTouchStart={startDrawing}
                   onTouchMove={draw}
                   onTouchEnd={stopDrawing}
-                  className="w-full h-40 cursor-crosshair block"
+                  style={{ touchAction: 'none' }}
+                  className="w-full h-40 cursor-crosshair block touch-none"
                 />
                 
                 {!isSigned && (
@@ -591,11 +687,9 @@ const MediaRelease: React.FC = () => {
                 )}
               </div>
 
-              {signatureError && (
-                <p className="text-xs text-red-600 font-semibold mt-1">
-                  {isEn
-                    ? 'Please draw your signature in the box above.'
-                    : 'Bitte zeichnet eure Unterschrift in das Feld oben.'}
+              {fieldErrors.signature && (
+                <p className="text-xs text-red-600 font-semibold mt-2 flex items-center gap-1">
+                  <span>⚠</span> {isEn ? 'Please draw your signature in the box above.' : 'Bitte zeichnet eure Unterschrift in das Feld oben.'}
                 </p>
               )}
             </div>
