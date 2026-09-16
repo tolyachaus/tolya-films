@@ -52,9 +52,6 @@ const MediaRelease: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isDrawingRef = useRef(false);
 
-  // Hidden form and iframe refs for native PDF attachment upload
-  const hiddenFormRef = useRef<HTMLFormElement | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Initialize and resize Canvas
   useEffect(() => {
@@ -175,47 +172,14 @@ const MediaRelease: React.FC = () => {
 
     setSignedData(currentSignedData);
 
-    // 1. Generate jsPDF Document & Trigger Instant Download
-    const safeFilename = `Einwilligungserklaerung_TolyaFilms_${formData.partner1Name.replace(/\s+/g, '_')}.pdf`;
-
-    try {
-      const pdfDoc = generateReleasePDF(currentSignedData);
-      
-      // Save PDF locally on couple's device
-      pdfDoc.save(safeFilename);
-
-      // Convert jsPDF to Blob File
-      const pdfBlob = pdfDoc.output('blob');
-      const pdfFile = new File([pdfBlob], safeFilename, { type: 'application/pdf' });
-
-      // Attach file to native hidden input using DataTransfer
-      if (fileInputRef.current) {
-        const container = new DataTransfer();
-        container.items.add(pdfFile);
-        fileInputRef.current.files = container.files;
-      }
-    } catch (e) {
-      console.error('Error generating PDF:', e);
-    }
-
-    // 2. Send email with attached PDF via Resend API to both couple & Tolya Films
+    // Send email with attached PDF via Resend API directly to client & Tolya Films
     try {
       await sendReleaseEmailWithPDF(currentSignedData);
     } catch (err) {
       console.error('Resend API error:', err);
     }
 
-    // 3. Backup FormSubmit submission
-    try {
-      if (hiddenFormRef.current) {
-        hiddenFormRef.current.submit();
-      }
-      setTimeout(() => {
-        setStatus('success');
-      }, 1000);
-    } catch (err) {
-      setStatus('success');
-    }
+    setStatus('success');
   };
 
   const handleDownloadPDF = () => {
@@ -233,31 +197,6 @@ const MediaRelease: React.FC = () => {
     <div className="min-h-screen bg-brand-light text-brand-dark pt-24 pb-16 font-body">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-3xl">
         
-        {/* Hidden Form & Iframe for Native FormSubmit PDF File Upload to tolya.films@gmail.com */}
-        <iframe name="formsubmit_iframe" id="formsubmit_iframe" style={{ display: 'none' }} title="FormSubmit Relay" />
-        <form
-          ref={hiddenFormRef}
-          action="https://formsubmit.co/tolya.films@gmail.com"
-          method="POST"
-          encType="multipart/form-data"
-          target="formsubmit_iframe"
-          style={{ display: 'none' }}
-        >
-          <input type="hidden" name="Name Braut / Partner 1" value={formData.partner1Name} />
-          <input type="hidden" name="Name Bräutigam / Partner 2" value={formData.partner2Name} />
-          <input type="hidden" name="Hochzeitsdatum" value={formData.weddingDate} />
-          <input type="hidden" name="Location & Ort" value={formData.location} />
-          <input type="hidden" name="E-Mail-Adresse" value={formData.email} />
-          <input type="hidden" name="Freigegebene Plattformen" value="Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms)" />
-          <input type="hidden" name="Einwilligungserklärung" value="Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO" />
-          <input type="hidden" name="Digitale Unterschrift" value={`Digital unterzeichnet (Canvas-Signatur erfasst)`} />
-          <input type="hidden" name="_subject" value={`Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`} />
-          <input type="hidden" name="_replyto" value={formData.email} />
-          <input type="hidden" name="_cc" value={formData.email} />
-          <input type="hidden" name="_autorespond" value="Vielen Dank! Ihre Einwilligungserklärung zur Nutzung von Bild- und Videomaterial für Tolya Films wurde erfolgreich übermittelt. Das unterzeichnete PDF-Dokument befindet sich im Anhang." />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="file" name="attachment" ref={fileInputRef} />
-        </form>
 
         {/* Top Back Link & Language Toggle */}
         <div className="mb-6 print:hidden flex items-center justify-between gap-4">
