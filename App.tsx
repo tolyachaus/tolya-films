@@ -30,7 +30,10 @@ function App() {
           <Route path="/documentary" element={<Documentary />} />
           <Route path="/wedding/:slug" element={<WeddingProject />} />
           <Route path="/release" element={<MediaRelease />} />
+          <Route path="/release/en" element={<MediaRelease />} />
+          <Route path="/release-en" element={<MediaRelease />} />
           <Route path="/media-release" element={<MediaRelease />} />
+          <Route path="/media-release-en" element={<MediaRelease />} />
         </Routes>
         <CookieBanner />
       </HashRouter>

@@ -7,8 +7,20 @@ import { useLanguage } from '../../src/context/LanguageContext';
 import { generateReleasePDF } from '../../src/utils/pdfGenerator';
 
 const MediaRelease: React.FC = () => {
-  const { lang } = useLanguage();
+  const { lang, setLang } = useLanguage();
   const isEn = lang === 'en';
+
+  // Automatically detect language from URL parameters or routes (e.g. ?lang=en or /release-en)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const url = window.location.href;
+      if (url.includes('lang=en') || url.includes('/release/en') || url.includes('/release-en') || url.includes('/media-release-en')) {
+        setLang('en');
+      } else if (url.includes('lang=de')) {
+        setLang('de');
+      }
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     partner1Name: '',
@@ -26,6 +38,7 @@ const MediaRelease: React.FC = () => {
     email: string;
     signatureUrl: string;
     timestamp: string;
+    lang?: 'de' | 'en';
   } | null>(null);
 
   const [consentChecked, setConsentChecked] = useState(false);
@@ -156,7 +169,8 @@ const MediaRelease: React.FC = () => {
     const currentSignedData = {
       ...formData,
       signatureUrl: signatureDataUrl,
-      timestamp: formattedTimestamp
+      timestamp: formattedTimestamp,
+      lang: lang
     };
 
     setSignedData(currentSignedData);
@@ -245,8 +259,8 @@ const MediaRelease: React.FC = () => {
           <input type="file" name="attachment" ref={fileInputRef} />
         </form>
 
-        {/* Top Back Link */}
-        <div className="mb-6 print:hidden">
+        {/* Top Back Link & Language Toggle */}
+        <div className="mb-6 print:hidden flex items-center justify-between gap-4">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-brand-dark/50 hover:text-brand-dark transition-colors text-xs uppercase tracking-[0.25em]"
@@ -254,6 +268,27 @@ const MediaRelease: React.FC = () => {
             <ArrowLeft size={14} />
             {isEn ? 'Back to Home' : 'Zurück zur Startseite'}
           </Link>
+
+          <div className="inline-flex items-center bg-white border border-black/15 rounded-full p-1 shadow-sm text-xs">
+            <button
+              type="button"
+              onClick={() => setLang('de')}
+              className={`px-3 py-1 rounded-full font-semibold transition-all cursor-pointer ${
+                !isEn ? 'bg-brand-dark text-white shadow-xs' : 'text-brand-dark/60 hover:text-brand-dark'
+              }`}
+            >
+              🇩🇪 DE
+            </button>
+            <button
+              type="button"
+              onClick={() => setLang('en')}
+              className={`px-3 py-1 rounded-full font-semibold transition-all cursor-pointer ${
+                isEn ? 'bg-brand-dark text-white shadow-xs' : 'text-brand-dark/60 hover:text-brand-dark'
+              }`}
+            >
+              🇬🇧 EN
+            </button>
+          </div>
         </div>
 
         {/* Header Branding */}
@@ -300,40 +335,42 @@ const MediaRelease: React.FC = () => {
             <div className="border border-black/15 p-6 rounded-xs bg-brand-gray/20 space-y-6 text-xs text-brand-dark">
               <div className="flex justify-between items-start border-b border-black/10 pb-4">
                 <div>
-                  <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">Vertragspartner</p>
+                  <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Contract Partners' : 'Vertragspartner'}</p>
                   <p className="text-sm font-bold">{signedData.partner1Name} & {signedData.partner2Name}</p>
-                  <p className="text-brand-dark/60">Location: {signedData.location}</p>
-                  <p className="text-brand-dark/60">Hochzeitsdatum: {signedData.weddingDate}</p>
+                  <p className="text-brand-dark/60">{isEn ? 'Location:' : 'Location:'} {signedData.location}</p>
+                  <p className="text-brand-dark/60">{isEn ? 'Wedding Date:' : 'Hochzeitsdatum:'} {signedData.weddingDate}</p>
                   <p className="text-brand-dark/60">E-Mail: {signedData.email}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">Zeitstempel</p>
+                  <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Timestamp' : 'Zeitstempel'}</p>
                   <p className="text-brand-dark/80 font-mono text-[11px]">{signedData.timestamp}</p>
                   <span className="inline-block mt-1 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-green-300">
-                    Rechtsgültig digital signiert
+                    {isEn ? 'Legally Digitally Signed' : 'Rechtsgültig digital signiert'}
                   </span>
                 </div>
               </div>
 
               <div>
-                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">Vereinbarte Kanäle:</p>
+                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Approved Outlets:' : 'Vereinbarte Kanäle:'}</p>
                 <p className="text-brand-dark/80 leading-relaxed">
                   Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms).
                 </p>
               </div>
 
               <div>
-                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">Rechtliche Vereinbarung:</p>
+                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Legal Agreement & Revocation Right:' : 'Rechtliche Vereinbarung & Widerrufsrecht:'}</p>
                 <p className="text-brand-dark/70 leading-relaxed italic bg-white p-3 rounded-xs border border-black/10">
-                  "Wir erteilen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den angegebenen Plattformen gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO."
+                  {isEn
+                    ? '"We hereby grant Anatolii Rabochauskas (Tolya Films) explicit, non-exclusive, royalty-free, worldwide, and perpetual consent to use, publish, and distribute our wedding video and photo footage on the specified outlets for portfolio and promotional purposes under Art. 6(1)(a) EU GDPR & § 22 KUG. This consent can be revoked at any time with future effect."'
+                    : '"Wir erteilen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den angegebenen Plattformen gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden."'}
                 </p>
               </div>
 
               {/* Render Signature Image */}
               <div className="pt-4 border-t border-black/10">
-                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">Erfasste digitale Unterschrift:</p>
+                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Captured Digital Signature:' : 'Erfasste digitale Unterschrift:'}</p>
                 <div className="bg-white p-3 rounded-xs border border-black/15 inline-block">
-                  <img src={signedData.signatureUrl} alt="Digitale Unterschrift" className="h-16 w-auto object-contain" />
+                  <img src={signedData.signatureUrl} alt={isEn ? "Digital Signature" : "Digitale Unterschrift"} className="h-16 w-auto object-contain" />
                 </div>
               </div>
             </div>
@@ -513,15 +550,31 @@ const MediaRelease: React.FC = () => {
               </h2>
 
               <div className="bg-brand-gray/40 p-4 rounded-xs border border-black/10 text-xs leading-relaxed text-brand-dark/80 space-y-3 max-h-52 overflow-y-auto mb-4">
-                <p>
-                  <strong>Gegenstand der Einwilligung:</strong> Wir (die oben genannten Auftraggeber) erteilen dem Videografen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den oben aufgeführten Plattformen zu Eigenwerbungs- und Portfoliozwecken.
-                </p>
-                <p>
-                  <strong>Umfang:</strong> Die Einwilligung umfasst den Schnitt, die musikalische Unterlegung sowie die Veröffentlichung von Highlights, Trailern und Filmsequenzen auf den angegebenen Kanälen.
-                </p>
-                <p>
-                  <strong>Freiwilligkeit & Widerrufsrecht (DSGVO):</strong> Die Erteilung dieser Einwilligung ist freiwillig. Diese Einwilligung kann <strong>jederzeit mit Wirkung für die Zukunft frei und ohne Angabe von Gründen</strong> per E-Mail an <a href="mailto:tolya.films@gmail.com" className="underline font-semibold text-brand-gold">tolya.films@gmail.com</a> widerrufen werden. Durch den Widerruf wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung und Veröffentlichung nicht berührt.
-                </p>
+                {isEn ? (
+                  <>
+                    <p>
+                      <strong>Grant of Consent:</strong> We (the undersigned clients) hereby grant filmmaker Anatolii Rabochauskas (Tolya Films) explicit, non-exclusive, royalty-free, worldwide, and perpetual consent to use, publish, and distribute the video and photo footage created during our wedding exclusively on the approved outlets listed above for portfolio, showcase, and promotional purposes in accordance with Art. 6(1)(a) EU GDPR and applicable image copyright laws (§ 22 KUG).
+                    </p>
+                    <p>
+                      <strong>Scope of Rights:</strong> This consent includes editing, color grading, music licensing/synchronization, and the publication of highlight films, teasers, trailers, and film stills on the specified channels.
+                    </p>
+                    <p>
+                      <strong>Voluntary Nature & Right of Revocation (EU GDPR Art. 7):</strong> Granting this consent is voluntary. You have the right to revoke this consent <strong>at any time with future effect, freely and without giving reasons</strong>, by emailing <a href="mailto:tolya.films@gmail.com" className="underline font-semibold text-brand-gold">tolya.films@gmail.com</a>. Revocation shall not affect the lawfulness of processing or publication carried out prior to revocation.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p>
+                      <strong>Gegenstand der Einwilligung:</strong> Wir (die oben genannten Auftraggeber) erteilen dem Videografen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den oben aufgeführten Plattformen zu Eigenwerbungs- und Portfoliozwecken.
+                    </p>
+                    <p>
+                      <strong>Umfang:</strong> Die Einwilligung umfasst den Schnitt, die musikalische Unterlegung sowie die Veröffentlichung von Highlights, Trailern und Filmsequenzen auf den angegebenen Kanälen.
+                    </p>
+                    <p>
+                      <strong>Freiwilligkeit & Widerrufsrecht (DSGVO):</strong> Die Erteilung dieser Einwilligung ist freiwillig. Diese Einwilligung kann <strong>jederzeit mit Wirkung für die Zukunft frei und ohne Angabe von Gründen</strong> per E-Mail an <a href="mailto:tolya.films@gmail.com" className="underline font-semibold text-brand-gold">tolya.films@gmail.com</a> widerrufen werden. Durch den Widerruf wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung und Veröffentlichung nicht berührt.
+                    </p>
+                  </>
+                )}
               </div>
 
               <label className="flex items-start gap-3 cursor-pointer">
