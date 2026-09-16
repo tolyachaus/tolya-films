@@ -5,7 +5,6 @@ import { ArrowLeft, CheckCircle2, ShieldCheck, PenTool, RotateCcw, Send, Globe, 
 import { ASSETS } from '../../types';
 import { useLanguage } from '../../src/context/LanguageContext';
 import { generateReleasePDF } from '../../src/utils/pdfGenerator';
-import { sendReleaseEmailWithPDF } from '../../src/utils/emailService';
 
 const MediaRelease: React.FC = () => {
   const { lang } = useLanguage();
@@ -39,6 +38,10 @@ const MediaRelease: React.FC = () => {
   // Canvas signature ref
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const isDrawingRef = useRef(false);
+
+  // Hidden form and iframe refs for native PDF attachment upload
+  const hiddenFormRef = useRef<HTMLFormElement | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Initialize and resize Canvas
   useEffect(() => {
@@ -163,43 +166,32 @@ const MediaRelease: React.FC = () => {
 
     try {
       const pdfDoc = generateReleasePDF(currentSignedData);
+      
       // Save PDF locally on couple's device
       pdfDoc.save(safeFilename);
+
+      // Convert jsPDF to Blob File
+      const pdfBlob = pdfDoc.output('blob');
+      const pdfFile = new File([pdfBlob], safeFilename, { type: 'application/pdf' });
+
+      // Attach file to native hidden input using DataTransfer
+      if (fileInputRef.current) {
+        const container = new DataTransfer();
+        container.items.add(pdfFile);
+        fileInputRef.current.files = container.files;
+      }
     } catch (e) {
-      console.error('Error generating PDF download:', e);
+      console.error('Error generating PDF:', e);
     }
 
-    // 2. Send email with attached PDF via Resend API (to both couple & tolya.films@gmail.com)
+    // 2. Submit native multipart/form-data POST via hidden iframe
     try {
-      const sentViaResend = await sendReleaseEmailWithPDF(currentSignedData);
-      
-      if (!sentViaResend) {
-        // Fallback to FormSubmit if needed
-        await fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-          },
-          body: JSON.stringify({
-            'Name Braut / Partner 1': formData.partner1Name,
-            'Name Bräutigam / Partner 2': formData.partner2Name,
-            'Hochzeitsdatum': formData.weddingDate,
-            'Location & Ort': formData.location,
-            'E-Mail-Adresse': formData.email,
-            'Freigegebene Plattformen': 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms)',
-            'Einwilligungserklärung': 'Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO',
-            'Digitale Unterschrift': `Digital unterzeichnet am ${formattedTimestamp} (Canvas-Signatur erfasst)`,
-            'Zeitstempel (Berlin)': formattedTimestamp,
-            _subject: `Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`,
-            _replyto: formData.email,
-            _template: 'table',
-            _captcha: 'false'
-          })
-        });
+      if (hiddenFormRef.current) {
+        hiddenFormRef.current.submit();
       }
-
-      setStatus('success');
+      setTimeout(() => {
+        setStatus('success');
+      }, 1000);
     } catch (err) {
       setStatus('success');
     }
@@ -220,7 +212,33 @@ const MediaRelease: React.FC = () => {
     <div className="min-h-screen bg-brand-light text-brand-dark pt-24 pb-16 font-body">
       <div className="container mx-auto px-4 sm:px-6 md:px-12 max-w-3xl">
         
-        {/* Top Back Link (Hidden during print) */}
+        {/* Hidden Form & Iframe for Native FormSubmit PDF File Upload to tolya.films@gmail.com */}
+        <iframe name="formsubmit_iframe" id="formsubmit_iframe" style={{ display: 'none' }} title="FormSubmit Relay" />
+        <form
+          ref={hiddenFormRef}
+          action="https://formsubmit.co/tolya.films@gmail.com"
+          method="POST"
+          encType="multipart/form-data"
+          target="formsubmit_iframe"
+          style={{ display: 'none' }}
+        >
+          <input type="hidden" name="Name Braut / Partner 1" value={formData.partner1Name} />
+          <input type="hidden" name="Name Bräutigam / Partner 2" value={formData.partner2Name} />
+          <input type="hidden" name="Hochzeitsdatum" value={formData.weddingDate} />
+          <input type="hidden" name="Location & Ort" value={formData.location} />
+          <input type="hidden" name="E-Mail-Adresse" value={formData.email} />
+          <input type="hidden" name="Freigegebene Plattformen" value="Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms)" />
+          <input type="hidden" name="Einwilligungserklärung" value="Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO" />
+          <input type="hidden" name="Digitale Unterschrift" value={`Digital unterzeichnet (Canvas-Signatur erfasst)`} />
+          <input type="hidden" name="_subject" value={`Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`} />
+          <input type="hidden" name="_replyto" value={formData.email} />
+          <input type="hidden" name="_cc" value={formData.email} />
+          <input type="hidden" name="_autorespond" value="Vielen Dank! Ihre Einwilligungserklärung zur Nutzung von Bild- und Videomaterial für Tolya Films wurde erfolgreich übermittelt. Das unterzeichnete PDF-Dokument befindet sich im Anhang." />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="file" name="attachment" ref={fileInputRef} />
+        </form>
+
+        {/* Top Back Link */}
         <div className="mb-6 print:hidden">
           <Link
             to="/"
