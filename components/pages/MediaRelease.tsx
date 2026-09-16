@@ -158,44 +158,48 @@ const MediaRelease: React.FC = () => {
 
     setSignedData(currentSignedData);
 
-    // 1. Automatically generate and download PDF for couple
+    // 1. Generate jsPDF Document & Trigger Instant Download
+    let pdfFile: File | null = null;
+    const safeFilename = `Einwilligungserklaerung_TolyaFilms_${formData.partner1Name.replace(/\s+/g, '_')}.pdf`;
+
     try {
       const pdfDoc = generateReleasePDF(currentSignedData);
-      const safeFilename = `Einwilligungserklaerung_TolyaFilms_${formData.partner1Name.replace(/\s+/g, '_')}.pdf`;
+      
+      // Save PDF locally on couple's device
       pdfDoc.save(safeFilename);
+
+      // Convert jsPDF to Blob File for email attachment
+      const pdfBlob = pdfDoc.output('blob');
+      pdfFile = new File([pdfBlob], safeFilename, { type: 'application/pdf' });
     } catch (e) {
-      console.error('Error generating PDF download:', e);
+      console.error('Error generating PDF:', e);
     }
 
-    // 2. Attempt EmailJS sending (if configured)
-    sendReleaseEmailWithPDF(currentSignedData);
-
-    // 3. Send FormSubmit email notification to Tolya & CC couple
+    // 2. Submit FormData to FormSubmit with PDF File Attachment
     try {
+      const uploadFormData = new FormData();
+      if (pdfFile) {
+        uploadFormData.append('attachment', pdfFile, safeFilename);
+      }
+      uploadFormData.append('Name Braut / Partner 1', formData.partner1Name);
+      uploadFormData.append('Name Bräutigam / Partner 2', formData.partner2Name);
+      uploadFormData.append('Hochzeitsdatum', formData.weddingDate);
+      uploadFormData.append('Location & Ort', formData.location);
+      uploadFormData.append('E-Mail-Adresse', formData.email);
+      uploadFormData.append('Freigegebene Plattformen', 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms)');
+      uploadFormData.append('Einwilligungserklärung', 'Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO');
+      uploadFormData.append('Digitale Unterschrift', `Digital unterzeichnet am ${formattedTimestamp} (Canvas-Signatur erfasst)`);
+      uploadFormData.append('PDF-Anhang', safeFilename);
+      uploadFormData.append('Zeitstempel (Berlin)', formattedTimestamp);
+      uploadFormData.append('_subject', `Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`);
+      uploadFormData.append('_replyto', formData.email);
+      uploadFormData.append('_cc', formData.email);
+      uploadFormData.append('_autorespond', 'Vielen Dank! Ihre Einwilligungserklärung zur Nutzung von Bild- und Videomaterial für Tolya Films wurde erfolgreich übermittelt. Das unterzeichnete PDF-Dokument befindet sich im Anhang.');
+      uploadFormData.append('_captcha', 'false');
+
       await fetch('https://formsubmit.co/ajax/tolya.films@gmail.com', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify({
-          'Name Braut / Partner 1': formData.partner1Name,
-          'Name Bräutigam / Partner 2': formData.partner2Name,
-          'Hochzeitsdatum': formData.weddingDate,
-          'Location & Ort': formData.location,
-          'E-Mail-Adresse': formData.email,
-          'Freigegebene Plattformen': 'Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms)',
-          'Einwilligungserklärung': 'Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO',
-          'Digitale Unterschrift': `Digital unterzeichnet am ${formattedTimestamp} (Canvas-Signatur erfasst)`,
-          'PDF Status': 'PDF-Dokument generiert & beim Paar heruntergeladen',
-          'Zeitstempel (Berlin)': formattedTimestamp,
-          _subject: `Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`,
-          _replyto: formData.email,
-          _cc: formData.email,
-          _autorespond: 'Vielen Dank! Ihre Einwilligungserklärung zur Nutzung von Bild- und Videomaterial für Tolya Films wurde erfolgreich übermittelt.',
-          _template: 'table',
-          _captcha: 'false'
-        })
+        body: uploadFormData
       });
 
       setStatus('success');
