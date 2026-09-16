@@ -5,16 +5,24 @@ const RESEND_API_KEY = ['re', 'frwDgHD4', '5qihTLtyg1ZhWdEs35VAb74C'].join('_');
 
 export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<boolean> => {
   try {
+    const isEn = data.lang === 'en';
+
     // 1. Generate jsPDF Document
     const pdfDoc = generateReleasePDF(data);
     
     // 2. Extract Base64 String for PDF Attachment
     const dataUri = pdfDoc.output('datauristring');
     const base64Content = dataUri.split(',')[1];
-    const safeFilename = `Einwilligungserklaerung_TolyaFilms_${data.partner1Name.replace(/\s+/g, '_')}.pdf`;
+    
+    const safeFilename = isEn
+      ? `Media_Release_Agreement_TolyaFilms_${data.partner1Name.replace(/\s+/g, '_')}.pdf`
+      : `Einwilligungserklaerung_TolyaFilms_${data.partner1Name.replace(/\s+/g, '_')}.pdf`;
 
+    const emailSubject = isEn
+      ? `Media Release Agreement: ${data.partner1Name} & ${data.partner2Name}`
+      : `Einwilligungserklärung (Media Release): ${data.partner1Name} & ${data.partner2Name}`;
 
-    // 4. HTML Email Body
+    // 3. HTML Email Body (Language-Aware DE / EN)
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; color: #1a1a1a; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e5e5; border-radius: 4px;">
         <div style="background-color: #1a1a1a; padding: 20px; text-align: center; border-radius: 4px 4px 0 0;">
@@ -23,21 +31,29 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
         </div>
         
         <div style="padding: 24px; background-color: #ffffff;">
-          <p style="font-size: 15px; margin-top: 0;">Hallo <strong>${data.partner1Name} & ${data.partner2Name}</strong>,</p>
+          <p style="font-size: 15px; margin-top: 0;">${isEn ? 'Hello' : 'Hallo'} <strong>${data.partner1Name} & ${data.partner2Name}</strong>,</p>
           <p style="font-size: 13px; color: #4a4a4a; line-height: 1.6;">
-            vielen Dank! Ihre <strong>Einwilligungserklärung zur Nutzung von Bild- und Videomaterial</strong> wurde erfolgreich übermittelt und digital unterzeichnet.
+            ${
+              isEn
+                ? 'Thank you! Your <strong>Media Release & Consent Agreement for video & photo material</strong> has been successfully submitted and digitally signed.'
+                : 'vielen Dank! Ihre <strong>Einwilligungserklärung zur Nutzung von Bild- und Videomaterial</strong> wurde erfolgreich übermittelt und digital unterzeichnet.'
+            }
           </p>
           
           <div style="background-color: #f7f7f7; border-left: 4px solid #c5a059; padding: 16px; margin: 20px 0; font-size: 12.5px; line-height: 1.6;">
-            <p style="margin: 0 0 6px 0;"><strong>Vertragspartner:</strong> ${data.partner1Name} & ${data.partner2Name}</p>
-            <p style="margin: 0 0 6px 0;"><strong>Hochzeitsdatum:</strong> ${data.weddingDate}</p>
-            <p style="margin: 0 0 6px 0;"><strong>Location & Ort:</strong> ${data.location}</p>
+            <p style="margin: 0 0 6px 0;"><strong>${isEn ? 'Contract Partners:' : 'Vertragspartner:'}</strong> ${data.partner1Name} & ${data.partner2Name}</p>
+            <p style="margin: 0 0 6px 0;"><strong>${isEn ? 'Wedding Date:' : 'Hochzeitsdatum:'}</strong> ${data.weddingDate}</p>
+            <p style="margin: 0 0 6px 0;"><strong>${isEn ? 'Location / Venue:' : 'Location & Ort:'}</strong> ${data.location}</p>
             <p style="margin: 0 0 6px 0;"><strong>E-Mail:</strong> ${data.email}</p>
-            <p style="margin: 0;"><strong>Unterzeichnet am (Zeitstempel):</strong> ${data.timestamp}</p>
+            <p style="margin: 0;"><strong>${isEn ? 'Signed On (Timestamp):' : 'Unterzeichnet am (Zeitstempel):'}</strong> ${data.timestamp}</p>
           </div>
 
           <p style="font-size: 13px; color: #222222; margin-bottom: 0;">
-            📎 <strong>Das rechtlich bindende PDF-Dokument</strong> mit Ihrer digitalen Unterschrift befindet sich direkt im Anhang dieser E-Mail.
+            📎 <strong>${
+              isEn
+                ? 'The legally binding PDF document with your digital signature is attached directly to this email.'
+                : 'Das rechtlich bindende PDF-Dokument mit Ihrer digitalen Unterschrift befindet sich direkt im Anhang dieser E-Mail.'
+            }</strong>
           </p>
         </div>
 
@@ -47,7 +63,7 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
       </div>
     `;
 
-    // 5. Send via Resend REST API (Send separate emails to ensure delivery to both client and Tolya)
+    // 4. Send via Resend REST API (Send separate emails to ensure delivery to both client and Tolya)
     const sendSingleEmail = async (recipient: string) => {
       return fetch('https://api.resend.com/emails', {
         method: 'POST',
@@ -58,7 +74,7 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
         body: JSON.stringify({
           from: 'Tolya Films <release@tolyafilms.com>',
           to: [recipient],
-          subject: `Einwilligungserklärung (Media Release): ${data.partner1Name} & ${data.partner2Name}`,
+          subject: emailSubject,
           html: htmlContent,
           attachments: [
             {
