@@ -57,7 +57,7 @@ export const sendReleaseEmailWithPDF = async (data: ReleaseFormData): Promise<bo
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        from: 'Tolya Films <onboarding@resend.dev>',
+        from: 'Tolya Films <release@tolyafilms.com>',
         to: recipients,
         subject: `Einwilligungserklärung (Media Release): ${data.partner1Name} & ${data.partner2Name}`,
         html: htmlContent,
