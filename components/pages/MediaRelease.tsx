@@ -234,7 +234,7 @@ const MediaRelease: React.FC = () => {
           <input type="hidden" name="Hochzeitsdatum" value={formData.weddingDate} />
           <input type="hidden" name="Location & Ort" value={formData.location} />
           <input type="hidden" name="E-Mail-Adresse" value={formData.email} />
-          <input type="hidden" name="Freigegebene Plattformen" value="Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms)" />
+          <input type="hidden" name="Freigegebene Plattformen" value="Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms)" />
           <input type="hidden" name="Einwilligungserklärung" value="Ja, ausdrücklich erteilt gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO" />
           <input type="hidden" name="Digitale Unterschrift" value={`Digital unterzeichnet (Canvas-Signatur erfasst)`} />
           <input type="hidden" name="_subject" value={`Einwilligungserklärung (Media Release): ${formData.partner1Name} & ${formData.partner2Name}`} />
@@ -318,7 +318,7 @@ const MediaRelease: React.FC = () => {
               <div>
                 <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">Vereinbarte Kanäle:</p>
                 <p className="text-brand-dark/80 leading-relaxed">
-                  Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (Tolya Films), Vimeo (Tolya Films), Facebook (Tolyafilms).
+                  Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms).
                 </p>
               </div>
 
@@ -484,7 +484,7 @@ const MediaRelease: React.FC = () => {
                   <Youtube size={16} className="text-brand-gold shrink-0" />
                   <div>
                     <span className="font-bold text-brand-dark block">YouTube</span>
-                    <span className="text-brand-dark/60">Tolya Films (Highlights & Showreels)</span>
+                    <span className="text-brand-dark/60">@Tolya.filmsss</span>
                   </div>
                 </div>
 
@@ -492,7 +492,7 @@ const MediaRelease: React.FC = () => {
                   <Film size={16} className="text-brand-gold shrink-0" />
                   <div>
                     <span className="font-bold text-brand-dark block">Vimeo</span>
-                    <span className="text-brand-dark/60">Tolya Films (High-Res Portfolios)</span>
+                    <span className="text-brand-dark/60">Tolya films</span>
                   </div>
                 </div>
 
@@ -509,10 +509,10 @@ const MediaRelease: React.FC = () => {
             {/* ── SECTION 3: LEGAL TERMS & CHECKBOX ── */}
             <div>
               <h2 className="text-base font-display font-bold uppercase tracking-wider text-brand-dark mb-4 pb-2 border-b border-black/10">
-                3. {isEn ? 'Legal Terms & Agreement' : 'Rechtliche Vereinbarung'}
+                3. {isEn ? 'Legal Terms & Right of Revocation' : 'Rechtliche Vereinbarung & Widerrufsrecht'}
               </h2>
 
-              <div className="bg-brand-gray/40 p-4 rounded-xs border border-black/10 text-xs leading-relaxed text-brand-dark/80 space-y-3 max-h-48 overflow-y-auto mb-4">
+              <div className="bg-brand-gray/40 p-4 rounded-xs border border-black/10 text-xs leading-relaxed text-brand-dark/80 space-y-3 max-h-52 overflow-y-auto mb-4">
                 <p>
                   <strong>Gegenstand der Einwilligung:</strong> Wir (die oben genannten Auftraggeber) erteilen dem Videografen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den oben aufgeführten Plattformen zu Eigenwerbungs- und Portfoliozwecken.
                 </p>
@@ -520,7 +520,7 @@ const MediaRelease: React.FC = () => {
                   <strong>Umfang:</strong> Die Einwilligung umfasst den Schnitt, die musikalische Unterlegung sowie die Veröffentlichung von Highlights, Trailern und Filmsequenzen auf den angegebenen Kanälen.
                 </p>
                 <p>
-                  <strong>Widerrufsbelehrung (DSGVO):</strong> Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft per E-Mail an <a href="mailto:tolya.films@gmail.com" className="underline font-semibold text-brand-gold">tolya.films@gmail.com</a> widerrufen werden. Durch den Widerruf wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt.
+                  <strong>Freiwilligkeit & Widerrufsrecht (DSGVO):</strong> Die Erteilung dieser Einwilligung ist freiwillig. Diese Einwilligung kann <strong>jederzeit mit Wirkung für die Zukunft frei und ohne Angabe von Gründen</strong> per E-Mail an <a href="mailto:tolya.films@gmail.com" className="underline font-semibold text-brand-gold">tolya.films@gmail.com</a> widerrufen werden. Durch den Widerruf wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung und Veröffentlichung nicht berührt.
                 </p>
               </div>
 

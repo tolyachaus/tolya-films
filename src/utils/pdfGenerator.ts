@@ -81,23 +81,23 @@ export const generateReleasePDF = (data: ReleaseFormData): jsPDF => {
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(26, 26, 26);
-  doc.text('• Webseite:  tolyafilms.com (Portfolio & Blog)', 20, 113);
-  doc.text('• Instagram:  @tolya.films (Reels, Posts & Stories)', 20, 119);
-  doc.text('• YouTube:  Tolya Films (Highlights & Showreels)', 20, 125);
-  doc.text('• Vimeo:  Tolya Films (Videos in voller Auflösung)', 115, 113);
-  doc.text('• Facebook:  Tolyafilms (Social Media Präsenz)', 115, 119);
+  doc.text('• Webseite:  tolyafilms.com', 20, 113);
+  doc.text('• Instagram:  @tolya.films', 20, 119);
+  doc.text('• YouTube:  @Tolya.filmsss', 20, 125);
+  doc.text('• Vimeo:  Tolya films', 115, 113);
+  doc.text('• Facebook:  Tolyafilms', 115, 119);
 
   // 5. Legal Text
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(197, 160, 89);
-  doc.text('3. RECHTLICHE VEREINBARUNG', 15, 137);
+  doc.text('3. RECHTLICHE VEREINBARUNG & WIDERRUFSRECHT', 15, 137);
 
   doc.setFontSize(8.5);
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(60, 60, 60);
 
-  const legalText = `Gegenstand der Einwilligung: Wir (${data.partner1Name} & ${data.partner2Name}) erteilen dem Videografen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den oben aufgeführten Plattformen zu Eigenwerbungs- und Portfoliozwecken.\n\nUmfang: Die Einwilligung umfasst den Schnitt, die musikalische Unterlegung sowie die Veröffentlichung von Highlights, Trailern und Filmsequenzen auf den angegebenen Kanälen.\n\nWiderrufsbelehrung (DSGVO): Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft per E-Mail an tolya.films@gmail.com widerrufen werden. Durch den Widerruf wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung nicht berührt.`;
+  const legalText = `Gegenstand der Einwilligung: Wir (${data.partner1Name} & ${data.partner2Name}) erteilen dem Videografen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den oben aufgeführten Plattformen zu Eigenwerbungs- und Portfoliozwecken.\n\nUmfang: Die Einwilligung umfasst den Schnitt, die musikalische Unterlegung sowie die Veröffentlichung von Highlights, Trailern und Filmsequenzen auf den angegebenen Kanälen.\n\nWiderrufsrecht: Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft frei und ohne Angabe von Gründen per E-Mail an tolya.films@gmail.com widerrufen werden. Durch den Widerruf wird die Rechtmäßigkeit der aufgrund der Einwilligung bis zum Widerruf erfolgten Verarbeitung und Veröffentlichung nicht berührt.`;
 
   const splitLegalText = doc.splitTextToSize(legalText, pageWidth - 30);
   doc.text(splitLegalText, 15, 144);
