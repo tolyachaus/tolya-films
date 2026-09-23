@@ -91,6 +91,14 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     ]
   },
   {
+    id: '10',
+    slug: 'yana-eduard',
+    title: 'YANA & EDUARD',
+    videoId: 'I8mWK02gx8g',
+    aspectRatio: 'aspect-video',
+    thumbnail: 'https://img.youtube.com/vi/I8mWK02gx8g/maxresdefault.jpg'
+  },
+  {
     id: '8',
     slug: 'kerstin-freddy',
     title: 'KERSTIN & FREDDY',

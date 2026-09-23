@@ -20,6 +20,9 @@ const Portfolio: React.FC = () => {
   };
 
   const getItemGridSpan = (index: number, total: number) => {
+    if (total === 6) {
+      return 'col-span-1';
+    }
     if (total === 5) {
       if (index === 0) return 'col-span-1 md:col-span-2 lg:col-span-3';
       if (index === 1) return 'col-span-1 md:col-span-1 lg:col-span-2';
@@ -61,6 +64,12 @@ const Portfolio: React.FC = () => {
                 src={item.thumbnail || `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                 alt={`${item.title} - Wedding Film by Tolya Films`}
                 loading="lazy"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (target.src.includes('maxresdefault.jpg')) {
+                    target.src = target.src.replace('maxresdefault.jpg', 'hqdefault.jpg');
+                  }
+                }}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
