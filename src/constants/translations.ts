@@ -11,7 +11,9 @@ export const TRANSLATIONS = {
     hero: {
       taglineLine1: 'Hochzeitsfilme,',
       taglineLine2: 'die sich wie Kino anfühlen',
-      subtitle: 'Eine Geschichte erzählt durch Bild, Rhythmus und Ton'
+      subtitle: 'Eine Geschichte erzählt durch Bild, Rhythmus und Ton',
+      soundOn: 'Ton an',
+      soundOff: 'Stumm'
     },
     portfolio: {
       title: 'Portfolio',
@@ -92,7 +94,9 @@ export const TRANSLATIONS = {
     hero: {
       taglineLine1: 'Wedding films',
       taglineLine2: 'that feel like cinema',
-      subtitle: 'A story told through image, rhythm, and sound'
+      subtitle: 'A story told through image, rhythm, and sound',
+      soundOn: 'Sound on',
+      soundOff: 'Mute'
     },
     portfolio: {
       title: 'Portfolio',
