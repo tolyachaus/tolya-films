@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --site-grain-opacity: 0.12;
+  --site-grain-opacity: 0.085;
 }
 
 /* Full Website Cinematic 35mm Film Grain Overlay */
