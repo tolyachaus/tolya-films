@@ -43,12 +43,11 @@ const Testimonials: React.FC = () => {
 
   const current = FEATURED_TESTIMONIALS[currentIndex];
 
-  // Optional auto-rotation every 8 seconds when not hovered
   useEffect(() => {
     if (isPaused) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % FEATURED_TESTIMONIALS.length);
-    }, 8500);
+    }, 9000);
     return () => clearInterval(interval);
   }, [isPaused]);
 
@@ -63,36 +62,33 @@ const Testimonials: React.FC = () => {
   return (
     <section
       id="testimonials"
-      className="py-20 md:py-32 bg-[#111111] text-white relative overflow-hidden"
+      className="py-14 md:py-20 bg-white text-brand-dark border-t border-black/[0.06] relative"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[140px] pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-        {/* Section Header */}
-        <div className="text-center mb-10 md:mb-12">
-          <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-3 font-medium">
+      <div className="container mx-auto px-6 relative z-10 max-w-3xl">
+        {/* Subtle Section Header */}
+        <div className="text-center mb-8">
+          <p className="text-brand-gold text-[11px] uppercase tracking-[0.3em] font-medium mb-1.5">
             {t.testimonials?.tag || 'Kind Words'}
           </p>
-          <h2 className="text-2xl md:text-4xl font-display font-bold uppercase tracking-wider text-white">
+          <h2 className="text-xl md:text-2xl font-display font-bold uppercase tracking-widest text-brand-dark">
             {t.testimonials?.title || 'Was Paare sagen'}
           </h2>
-          <div className="h-0.5 w-16 bg-brand-gold/60 mx-auto mt-4" />
+          <div className="h-[1px] w-12 bg-brand-gold/60 mx-auto mt-3" />
         </div>
 
-        {/* Couples Pill Selector */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+        {/* Minimalist Couple Switcher Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8">
           {FEATURED_TESTIMONIALS.map((item, idx) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setCurrentIndex(idx)}
-              className={`px-4 py-2 text-[11px] md:text-xs uppercase tracking-[0.18em] rounded-full transition-all duration-300 border cursor-pointer ${
+              className={`px-3.5 py-1.5 text-[10px] md:text-[11px] uppercase tracking-[0.18em] transition-all duration-300 rounded-full cursor-pointer ${
                 currentIndex === idx
-                  ? 'bg-brand-gold text-brand-dark font-bold border-brand-gold shadow-lg shadow-brand-gold/20 scale-105'
-                  : 'bg-white/5 hover:bg-white/10 text-white/70 hover:text-white border-white/10'
+                  ? 'bg-brand-dark text-white font-medium shadow-sm'
+                  : 'bg-brand-gray/70 hover:bg-brand-gray text-brand-dark/60 hover:text-brand-dark'
               }`}
             >
               {item.couple}
@@ -101,38 +97,38 @@ const Testimonials: React.FC = () => {
         </div>
 
         {/* Quote Spotlight Box */}
-        <div className="relative min-h-[260px] md:min-h-[240px] flex flex-col justify-center items-center text-center px-4 md:px-12">
-          <Quote size={34} className="text-brand-gold/70 mb-6 drop-shadow-md" />
+        <div className="relative min-h-[220px] md:min-h-[200px] flex flex-col justify-center items-center text-center px-4 sm:px-10">
+          <Quote size={22} className="text-brand-gold/70 mb-4" />
 
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35 }}
               className="w-full flex flex-col items-center"
             >
-              <blockquote className="font-display text-base sm:text-lg md:text-xl lg:text-2xl font-light italic text-white/95 leading-relaxed max-w-3xl whitespace-pre-line">
+              <blockquote className="font-display text-sm sm:text-base md:text-lg font-light italic text-brand-dark/85 leading-relaxed max-w-2xl whitespace-pre-line">
                 "{current.quote}"
               </blockquote>
 
               {/* Author & Location */}
-              <div className="mt-8 pt-6 border-t border-white/10 w-full max-w-md flex flex-col items-center">
-                <p className="text-xs md:text-sm uppercase tracking-[0.25em] text-brand-gold font-bold">
+              <div className="mt-6 pt-4 border-t border-black/10 w-full max-w-xs flex flex-col items-center">
+                <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-brand-dark font-bold">
                   {current.couple}
                 </p>
-                <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-white/50 font-light mt-1">
+                <p className="text-[10px] uppercase tracking-[0.15em] text-brand-dark/50 font-light mt-0.5">
                   {current.location}
                 </p>
 
                 {/* Direct Link to Project */}
                 <Link
                   to={`/wedding/${current.slug}`}
-                  className="mt-4 inline-flex items-center gap-2 text-[11px] md:text-xs uppercase tracking-[0.2em] text-white/70 hover:text-brand-gold transition-colors duration-300 group"
+                  className="mt-3 inline-flex items-center gap-1.5 text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-brand-gold hover:text-brand-dark transition-colors duration-300 group font-medium"
                 >
                   <span>{t.testimonials?.watchFilm || 'Film ansehen'}</span>
-                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-300 text-brand-gold" />
+                  <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>
             </motion.div>
@@ -143,30 +139,30 @@ const Testimonials: React.FC = () => {
             type="button"
             onClick={handlePrev}
             aria-label="Previous quote"
-            className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-white/40 hover:text-brand-gold transition-colors hidden sm:block cursor-pointer"
+            className="absolute left-0 top-1/2 -translate-y-1/2 p-2 text-brand-dark/30 hover:text-brand-dark transition-colors hidden sm:block cursor-pointer"
           >
-            <ChevronLeft size={28} />
+            <ChevronLeft size={22} />
           </button>
           <button
             type="button"
             onClick={handleNext}
             aria-label="Next quote"
-            className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-white/40 hover:text-brand-gold transition-colors hidden sm:block cursor-pointer"
+            className="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-brand-dark/30 hover:text-brand-dark transition-colors hidden sm:block cursor-pointer"
           >
-            <ChevronRight size={28} />
+            <ChevronRight size={22} />
           </button>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="flex items-center justify-center gap-2 mt-8">
+        {/* Minimalist Pagination Dots */}
+        <div className="flex items-center justify-center gap-1.5 mt-6">
           {FEATURED_TESTIMONIALS.map((item, idx) => (
             <button
               key={item.id}
               type="button"
               onClick={() => setCurrentIndex(idx)}
               aria-label={`Go to quote ${idx + 1}`}
-              className={`h-1.5 transition-all duration-300 rounded-full cursor-pointer ${
-                currentIndex === idx ? 'w-6 bg-brand-gold' : 'w-1.5 bg-white/20 hover:bg-white/40'
+              className={`h-1 transition-all duration-300 rounded-full cursor-pointer ${
+                currentIndex === idx ? 'w-5 bg-brand-gold' : 'w-1 bg-black/15 hover:bg-black/30'
               }`}
             />
           ))}
