@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './src/assets/fonts/montserrat.css';
-import './src/assets/fonts/ranade.css';
 import './src/index.css';
 
 const rootElement = document.getElementById('root');

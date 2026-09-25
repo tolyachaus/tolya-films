@@ -8,10 +8,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['var(--font-sans)', 'Montserrat', 'sans-serif'],
-                display: ['var(--font-display)', 'Montserrat', 'sans-serif'],
-                ranade: ['Ranade', 'sans-serif'],
-                montserrat: ['Montserrat', 'sans-serif'],
+                sans: ['Montserrat', 'sans-serif'],
+                display: ['Montserrat', 'sans-serif'],
             },
             colors: {
                 brand: {
