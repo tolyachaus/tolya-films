@@ -23,6 +23,8 @@ function App() {
   return (
     <LanguageProvider>
       <HashRouter>
+        {/* Full-Website Cinematic 35mm Film Grain Overlay */}
+        <div id="cinematic-grain-overlay" aria-hidden="true" />
         <RouteTracker />
         <Navbar />
         <Routes>
