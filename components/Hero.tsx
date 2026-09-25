@@ -96,9 +96,10 @@ const Hero: React.FC = () => {
             <span className="sr-only">Tolya Films - Wedding Filmmaker in Mannheim</span>
           </h1>
 
-          {/* Subheadline - Single Line, Light Font, Smaller */}
-          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md sm:whitespace-nowrap uppercase">
-            {t.hero.subtitle}
+          {/* Subheadline - 2 Lines on Mobile for Perfect Fit, Single Line on Desktop */}
+          <p className="text-[10px] sm:text-xs md:text-sm lg:text-base font-light tracking-[0.12em] sm:tracking-[0.2em] md:tracking-[0.3em] text-brand-dark/75 md:text-white/90 drop-shadow-none md:drop-shadow-md uppercase leading-relaxed md:leading-normal">
+            <span className="block sm:inline">{t.hero.subtitleLine1 || 'Eine Geschichte erzählt'} </span>
+            <span className="block sm:inline">{t.hero.subtitleLine2 || 'durch Bild, Rhythmus und Ton'}</span>
           </p>
         </motion.div>
       </div>
