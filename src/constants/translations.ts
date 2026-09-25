@@ -21,6 +21,11 @@ export const TRANSLATIONS = {
       docSubtitle: 'Dokumentationen & Commercials',
       viewFilm: 'Film ansehen'
     },
+    testimonials: {
+      tag: 'Kind Words',
+      title: 'Was Paare sagen',
+      watchFilm: 'Film ansehen'
+    },
     about: {
       sectionTitle: 'ÜBER MICH',
       p1: 'Ich heiße Tolya. Ich bin Wedding Filmmaker aus Mannheim – tätig in ganz Deutschland und darüber hinaus.',
@@ -103,6 +108,11 @@ export const TRANSLATIONS = {
       weddingSubtitle: 'Selected Wedding Films',
       docSubtitle: 'Documentaries & Commercials',
       viewFilm: 'Watch Film'
+    },
+    testimonials: {
+      tag: 'Kind Words',
+      title: 'What couples say',
+      watchFilm: 'Watch film'
     },
     about: {
       sectionTitle: 'ABOUT ME',

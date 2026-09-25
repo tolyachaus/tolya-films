@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from '../Hero';
 import Portfolio from '../Portfolio';
+import Testimonials from '../Testimonials';
 import About from '../About';
 import Contact from '../Contact';
 
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
       <main className="relative z-10">
         <Hero />
         <Portfolio />
+        <Testimonials />
         <About />
       </main>
       <Contact />
