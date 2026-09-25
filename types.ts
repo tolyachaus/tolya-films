@@ -94,9 +94,11 @@ export const WEDDING_PORTFOLIO_ITEMS: PortfolioItem[] = [
     id: '10',
     slug: 'yana-eduard',
     title: 'YANA & EDUARD',
-    videoId: 'I8mWK02gx8g',
+    videoId: 'DctEINOYKko', // Trailer
+    fullVideoId: 'I8mWK02gx8g', // Full Film
     aspectRatio: 'aspect-video',
-    thumbnail: 'https://img.youtube.com/vi/I8mWK02gx8g/maxresdefault.jpg'
+    thumbnail: 'https://img.youtube.com/vi/DctEINOYKko/maxresdefault.jpg',
+    quote: "We watched it, and I’m literally crying 😭\n\nTolya, Tosya, this is just unbelievably emotional. The way you captured all the moments, the editing, the transitions… we were literally sitting there with our mouths open 😅\nI expected it to be amazing, of course, but THIS amazing?!)) In short, we’re absolutely blown away ❤️❤️❤️\n\nWe definitely made the right choice with you two 😉\n\nThank you for these memories 🥹❤️"
   },
   {
     id: '8',

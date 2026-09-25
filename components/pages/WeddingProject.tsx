@@ -159,7 +159,7 @@ const WeddingProject: React.FC = () => {
                     <p className="text-xs uppercase tracking-[0.3em] text-brand-gold font-medium mb-2 flex items-center gap-1.5">
                       <Quote size={14} className="text-brand-gold/60" /> {t.weddingProject.kindWordsLabel}
                     </p>
-                    <blockquote className="font-display text-base lg:text-lg italic font-light text-brand-dark leading-relaxed">
+                    <blockquote className="font-display text-base lg:text-lg italic font-light text-brand-dark leading-relaxed whitespace-pre-line">
                       "{project.quote}"
                     </blockquote>
                   </div>
