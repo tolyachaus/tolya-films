@@ -56,7 +56,7 @@ const Portfolio: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative ${item.aspectRatio || 'aspect-video'} bg-brand-gray cursor-pointer overflow-hidden rounded-sm ${getItemGridSpan(index, WEDDING_PORTFOLIO_ITEMS.length)}`}
+              className={`group relative ${item.aspectRatio || 'aspect-video'} cursor-pointer overflow-hidden border-none shadow-md ${getItemGridSpan(index, WEDDING_PORTFOLIO_ITEMS.length)}`}
               onClick={() => handleItemClick(item)}
             >
               {/* Thumbnail */}
@@ -70,7 +70,7 @@ const Portfolio: React.FC = () => {
                     target.src = target.src.replace('maxresdefault.jpg', 'hqdefault.jpg');
                   }
                 }}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 border-none"
               />
 
               {/* Overlay */}

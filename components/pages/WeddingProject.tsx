@@ -65,7 +65,7 @@ const WeddingProject: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8 }}
-                  className="relative aspect-video w-full rounded-sm overflow-hidden shadow-2xl bg-black border border-black/10"
+                  className="relative aspect-video w-full overflow-hidden shadow-2xl bg-black border-none"
                 >
                   <iframe
                     key={activeVideoId}
@@ -79,7 +79,7 @@ const WeddingProject: React.FC = () => {
 
                 {/* Video Version Toggle Switcher (If Full Film Exists) */}
                 {project.fullVideoId && (
-                  <div className="bg-white p-3 rounded-sm border border-black/15 shadow-md space-y-2">
+                  <div className="bg-white p-3 shadow-md space-y-2">
                     <div className="flex items-center justify-between text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold text-brand-dark/80 px-1">
                       <span className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
@@ -94,10 +94,10 @@ const WeddingProject: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleVideoTypeChange('trailer')}
-                        className={`py-2.5 px-3 text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] transition-all rounded-xs flex items-center justify-center gap-2 border ${
+                        className={`py-2.5 px-3 text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-2 ${
                           activeVideoType === 'trailer'
-                            ? 'bg-brand-dark text-white border-brand-dark shadow-md ring-2 ring-brand-gold/50 scale-[1.01]'
-                            : 'bg-brand-gray/60 text-brand-dark/80 border-black/10 hover:bg-brand-gray hover:text-brand-dark'
+                            ? 'bg-brand-dark text-white shadow-md'
+                            : 'bg-brand-gray/60 text-brand-dark/80 hover:bg-brand-gray hover:text-brand-dark'
                         }`}
                       >
                         <Film size={14} className={activeVideoType === 'trailer' ? 'text-brand-gold' : 'text-brand-dark/60'} />
@@ -107,10 +107,10 @@ const WeddingProject: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleVideoTypeChange('full')}
-                        className={`py-2.5 px-3 text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] transition-all rounded-xs flex items-center justify-center gap-2 border ${
+                        className={`py-2.5 px-3 text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] transition-all flex items-center justify-center gap-2 ${
                           activeVideoType === 'full'
-                            ? 'bg-brand-dark text-white border-brand-dark shadow-md ring-2 ring-brand-gold/50 scale-[1.01]'
-                            : 'bg-brand-gray/60 text-brand-dark/80 border-black/10 hover:bg-brand-gray hover:text-brand-dark'
+                            ? 'bg-brand-dark text-white shadow-md'
+                            : 'bg-brand-gray/60 text-brand-dark/80 hover:bg-brand-gray hover:text-brand-dark'
                         }`}
                       >
                         <Play size={13} fill="currentColor" className={activeVideoType === 'full' ? 'text-brand-gold' : 'text-brand-dark/60'} />
@@ -207,16 +207,16 @@ const WeddingProject: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.15 }}
                     onClick={() => setSelectedImage(stillUrl)}
-                    className="group relative aspect-video bg-black rounded-xs overflow-hidden shadow-lg border border-black/10 cursor-pointer"
+                    className="group relative aspect-video bg-black overflow-hidden shadow-lg border-none cursor-pointer"
                   >
                     <img
                       src={stillUrl}
                       alt={`${project.title} - Film Still ${index + 1}`}
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 brightness-95 group-hover:brightness-105"
+                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 brightness-95 group-hover:brightness-105 border-none"
                     />
                     {/* Dark gradient & zoom icon on hover */}
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/40 shadow-xl transform scale-75 group-hover:scale-100 transition-all duration-300">
+                      <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border-none shadow-xl transform scale-75 group-hover:scale-100 transition-all duration-300">
                         <Maximize2 size={18} />
                       </div>
                     </div>
@@ -252,7 +252,7 @@ const WeddingProject: React.FC = () => {
               exit={{ scale: 0.9, opacity: 0 }}
               src={selectedImage}
               alt="Cinematic Film Still"
-              className="max-w-full max-h-[90vh] object-contain rounded-xs shadow-2xl border border-white/10"
+              className="max-w-full max-h-[90vh] object-contain shadow-2xl border-none"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>

@@ -101,13 +101,13 @@ const Documentary: React.FC = () => {
                   onClick={() => setSelectedVideo(item.videoId)}
                 >
                   {/* Aspect ratio container */}
-                  <div className="relative overflow-hidden bg-gray-150 shadow-md aspect-video mb-5 border border-black/[0.03]">
+                  <div className="relative overflow-hidden shadow-md aspect-video mb-5 border-none">
                     {/* Thumbnail */}
                     <img
                       src={item.thumbnail || `https://img.youtube.com/vi/${item.videoId}/maxresdefault.jpg`}
                       alt={item.title}
                       loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 border-none"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-500 flex flex-col items-center justify-center">

@@ -27,8 +27,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
             style={{ y: imageY }}
           >
-            <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:mx-0 overflow-hidden rounded-sm shadow-2xl">
-              <div className="absolute inset-0 border border-white/10 z-20"></div>
+            <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:mx-0 overflow-hidden shadow-2xl">
               {/* Use a solid color fallback behind image in case of load failure */}
               <div className="w-full h-full bg-gray-800">
                 <img
@@ -38,9 +37,6 @@ const About: React.FC = () => {
                 />
               </div>
             </div>
-            {/* Decorative Element */}
-            <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white/5 z-0 hidden lg:block backdrop-blur-sm"></div>
-            <div className="absolute -top-8 -left-8 w-32 h-32 border border-white/10 z-0 hidden lg:block"></div>
           </motion.div>
 
           {/* Text Section */}

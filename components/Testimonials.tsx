@@ -62,7 +62,7 @@ const Testimonials: React.FC = () => {
   return (
     <section
       id="testimonials"
-      className="py-14 md:py-20 bg-white text-brand-dark border-t border-black/[0.06] relative"
+      className="py-14 md:py-20 bg-white text-brand-dark relative"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -114,7 +114,7 @@ const Testimonials: React.FC = () => {
               </blockquote>
 
               {/* Author & Location */}
-              <div className="mt-6 pt-4 border-t border-black/10 w-full max-w-xs flex flex-col items-center">
+              <div className="mt-6 pt-2 w-full max-w-xs flex flex-col items-center">
                 <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-brand-dark font-bold">
                   {current.couple}
                 </p>
