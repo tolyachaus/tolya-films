@@ -88,10 +88,6 @@ const Contact: React.FC = () => {
         {/* ── MINIMALIST CINEMATIC BOOKING INQUIRY FORM ── */}
         <div className="max-w-3xl mx-auto mb-20 vintage-paper film-grain p-6 sm:p-10 md:p-12 rounded-sm border-none shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)] relative">
           <div className="text-center mb-8 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/[0.04] text-[9px] uppercase tracking-[0.25em] text-brand-dark/55 mb-3 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-              <span>35mm & 4K Cinema Inquiry</span>
-            </div>
             <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-2 font-medium">
               {t.contactForm.tag}
             </p>
