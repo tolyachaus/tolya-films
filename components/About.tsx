@@ -59,20 +59,20 @@ const About: React.FC = () => {
               <p>{t.about.p2}</p>
               <p>{t.about.p3}</p>
 
-              <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm mt-8">
-                <h3 className="font-display text-lg uppercase tracking-widest mb-2 font-bold text-brand-dark">
+              <div className="p-6 vintage-paper film-grain border-l-2 border-brand-gold shadow-xs mt-8">
+                <h3 className="font-display text-lg uppercase tracking-widest mb-2 font-bold text-brand-dark relative z-10">
                   {t.about.specTitle}
                 </h3>
-                <p className="text-brand-dark/90 leading-relaxed text-base">
+                <p className="text-brand-dark/90 leading-relaxed text-base relative z-10">
                   {t.about.specBody}
                 </p>
               </div>
 
-              <div className="p-6 bg-brand-gray border-l-2 border-brand-gold backdrop-blur-sm mt-6">
-                <h3 className="font-display text-lg uppercase tracking-widest mb-2 font-bold text-brand-dark">
+              <div className="p-6 vintage-paper film-grain border-l-2 border-brand-gold shadow-xs mt-6">
+                <h3 className="font-display text-lg uppercase tracking-widest mb-2 font-bold text-brand-dark relative z-10">
                   {t.about.styleTitle}
                 </h3>
-                <p className="text-brand-dark/90 leading-relaxed text-base">
+                <p className="text-brand-dark/90 leading-relaxed text-base relative z-10">
                   {t.about.styleBody}
                 </p>
               </div>

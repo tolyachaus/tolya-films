@@ -86,8 +86,12 @@ const Contact: React.FC = () => {
       <div className="container mx-auto px-6">
         
         {/* ── MINIMALIST CINEMATIC BOOKING INQUIRY FORM ── */}
-        <div className="max-w-3xl mx-auto mb-20 bg-white/90 backdrop-blur-md p-6 sm:p-10 md:p-12 rounded-sm border border-black/10 shadow-xl">
-          <div className="text-center mb-8">
+        <div className="max-w-3xl mx-auto mb-20 vintage-paper film-grain p-6 sm:p-10 md:p-12 rounded-sm border-none shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)] relative">
+          <div className="text-center mb-8 relative z-10">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/[0.04] text-[9px] uppercase tracking-[0.25em] text-brand-dark/55 mb-3 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
+              <span>35mm & 4K Cinema Inquiry</span>
+            </div>
             <p className="text-brand-gold text-xs uppercase tracking-[0.35em] mb-2 font-medium">
               {t.contactForm.tag}
             </p>
@@ -117,7 +121,7 @@ const Contact: React.FC = () => {
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Names */}
                 <div className="w-full min-w-0">
@@ -131,7 +135,7 @@ const Contact: React.FC = () => {
                     value={formData.coupleNames}
                     onChange={handleChange}
                     placeholder={t.contactForm.namesPlaceholder}
-                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-white/75 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all shadow-xs"
                   />
                 </div>
 
@@ -147,7 +151,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder={t.contactForm.emailPlaceholder}
-                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-white/75 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all shadow-xs"
                   />
                 </div>
 
@@ -162,7 +166,7 @@ const Contact: React.FC = () => {
                     required
                     value={formData.weddingDate}
                     onChange={handleChange}
-                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all min-h-[42px]"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-white/75 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all min-h-[42px] shadow-xs"
                   />
                 </div>
 
@@ -178,7 +182,7 @@ const Contact: React.FC = () => {
                     value={formData.location}
                     onChange={handleChange}
                     placeholder={t.contactForm.locationPlaceholder}
-                    className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all"
+                    className="w-full max-w-full min-w-0 box-border appearance-none bg-white/75 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all shadow-xs"
                   />
                 </div>
               </div>
@@ -194,7 +198,7 @@ const Contact: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t.contactForm.messagePlaceholder}
-                  className="w-full max-w-full min-w-0 box-border appearance-none bg-brand-gray/50 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all resize-none"
+                  className="w-full max-w-full min-w-0 box-border appearance-none bg-white/75 border border-black/10 focus:border-brand-dark focus:bg-white text-brand-dark text-sm px-3.5 py-2.5 rounded-xs outline-none transition-all resize-none shadow-xs"
                 />
               </div>
 
