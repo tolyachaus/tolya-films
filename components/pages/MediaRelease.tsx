@@ -334,7 +334,7 @@ const MediaRelease: React.FC = () => {
         {status !== 'success' && (
           <div className="bg-white p-6 sm:p-10 rounded-sm border border-black/10 shadow-xl mb-8">
             <div className="flex items-center justify-between border-b border-black/10 pb-6 mb-6">
-              <img src={ASSETS.logoBlack} alt="Tolya Films" className="h-8 w-auto opacity-80" />
+              <img src={ASSETS.logoBlack} alt="Tolya films" className="h-6 w-auto opacity-85" />
               <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">
                 <ShieldCheck size={14} />
                 {isEn ? 'DSGVO / KUG Compliant' : 'DSGVO & § 22 KUG konform'}
@@ -371,8 +371,8 @@ const MediaRelease: React.FC = () => {
                   </h2>
                   <p className="text-xs sm:text-sm text-brand-dark/80 mt-1 leading-relaxed">
                     {isEn
-                      ? `A copy with your digital signature has been sent to ${signedData.email} and Tolya Films.`
-                      : `Eine Bestätigung mit eurer digitalen Unterschrift wurde soeben an ${signedData.email} und Tolya Films gesendet.`}
+                      ? `A copy with your digital signature has been sent to ${signedData.email} and Tolya films.`
+                      : `Eine Bestätigung mit eurer digitalen Unterschrift wurde soeben an ${signedData.email} und Tolya films gesendet.`}
                   </p>
                 </div>
               </div>
@@ -397,21 +397,26 @@ const MediaRelease: React.FC = () => {
               </div>
 
               {/* Signed Document Preview */}
-              <div className="border border-black/15 p-6 rounded-xs bg-brand-gray/20 space-y-6 text-xs text-brand-dark">
-                <div className="flex justify-between items-start border-b border-black/10 pb-4">
-                  <div>
+              <div className="border border-black/15 p-5 sm:p-6 rounded-xs bg-brand-gray/20 space-y-6 text-xs text-brand-dark">
+                <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4 border-b border-black/10 pb-4">
+                  <div className="space-y-1">
                     <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Contract Partners' : 'Vertragspartner'}</p>
-                    <p className="text-sm font-bold">{signedData.partner1Name} & {signedData.partner2Name}</p>
-                    <p className="text-brand-dark/60">{isEn ? 'Location:' : 'Location:'} {signedData.location}</p>
-                    <p className="text-brand-dark/60">{isEn ? 'Wedding Date:' : 'Hochzeitsdatum:'} {signedData.weddingDate}</p>
-                    <p className="text-brand-dark/60">E-Mail: {signedData.email}</p>
+                    <p className="text-sm font-bold text-brand-dark">{signedData.partner1Name} & {signedData.partner2Name}</p>
+                    <div className="text-xs text-brand-dark/70 space-y-0.5 pt-0.5">
+                      <p><span className="text-brand-dark/50">{isEn ? 'Location:' : 'Location:'}</span> {signedData.location}</p>
+                      <p><span className="text-brand-dark/50">{isEn ? 'Wedding Date:' : 'Hochzeitsdatum:'}</span> {signedData.weddingDate}</p>
+                      <p><span className="text-brand-dark/50">E-Mail:</span> {signedData.email}</p>
+                    </div>
                   </div>
-                  <div className="text-right">
+                  <div className="flex flex-col sm:items-end justify-start gap-1 pt-2 sm:pt-0 border-t border-black/5 sm:border-0">
                     <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Timestamp' : 'Zeitstempel'}</p>
-                    <p className="text-brand-dark/80 font-mono text-[11px]">{signedData.timestamp}</p>
-                    <span className="inline-block mt-1 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-green-300">
-                      {isEn ? 'Legally Digitally Signed' : 'Rechtsgültig digital signiert'}
-                    </span>
+                    <p className="text-brand-dark/80 font-mono text-xs">{signedData.timestamp}</p>
+                    <div className="pt-1">
+                      <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-emerald-300 shadow-2xs whitespace-nowrap">
+                        <CheckCircle2 size={13} className="text-emerald-600 shrink-0" />
+                        <span>{isEn ? 'Legally Digitally Signed' : 'Rechtsgültig digital signiert'}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -426,8 +431,8 @@ const MediaRelease: React.FC = () => {
                   <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Legal Agreement & Revocation Right:' : 'Rechtliche Vereinbarung & Widerrufsrecht:'}</p>
                   <p className="text-brand-dark/70 leading-relaxed italic bg-white p-3 rounded-xs border border-black/10">
                     {isEn
-                      ? '"We hereby grant Anatolii Rabochauskas (Tolya Films) explicit, non-exclusive, royalty-free, worldwide, and perpetual consent to use, publish, and distribute our wedding video and photo footage on the specified outlets for portfolio and promotional purposes under Art. 6(1)(a) EU GDPR & § 22 KUG. This consent can be revoked at any time with future effect."'
-                      : '"Wir erteilen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den angegebenen Plattformen gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden."'}
+                      ? '"We hereby grant Anatolii Rabochauskas (Tolya films) explicit, non-exclusive, royalty-free, worldwide, and perpetual consent to use, publish, and distribute our wedding video and photo footage on the specified outlets for portfolio and promotional purposes under Art. 6(1)(a) EU GDPR & § 22 KUG. This consent can be revoked at any time with future effect."'
+                      : '"Wir erteilen Anatolii Rabochauskas (Tolya films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den angegebenen Plattformen gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden."'}
                   </p>
                 </div>
 

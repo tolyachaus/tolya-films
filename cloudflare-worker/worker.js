@@ -63,7 +63,7 @@ export default {
       const htmlContent = `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #111111; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #eaeaea; border-radius: 6px; background-color: #ffffff;">
           <div style="background-color: #111111; padding: 24px; text-align: center; border-radius: 4px;">
-            <h1 style="color: #ffffff; font-size: 20px; font-weight: 700; margin: 0; letter-spacing: 3px;">TOLYA FILMS</h1>
+            <h1 style="color: #ffffff; font-size: 22px; font-weight: 700; margin: 0; letter-spacing: 1px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">Tolya films</h1>
             <p style="color: #D4AF37; font-size: 11px; margin: 6px 0 0 0; text-transform: uppercase; letter-spacing: 2px;">
               ${isEn ? "Media Release & Consent Agreement" : "Einwilligungserklärung für Film- & Fotomaterial"}
             </p>
@@ -99,13 +99,13 @@ export default {
           </div>
 
           <div style="border-top: 1px solid #eeeeee; padding-top: 18px; margin-top: 16px; text-align: center; font-size: 11px; color: #888888; line-height: 1.5;">
-            © ${new Date().getFullYear()} Tolya Films · Anatolii Rabochauskas · Mannheim · <a href="https://tolyafilms.com" style="color: #D4AF37; text-decoration: none;">tolyafilms.com</a>
+            © ${new Date().getFullYear()} Tolya films · Anatolii Rabochauskas · Mannheim · <a href="https://tolyafilms.com" style="color: #D4AF37; text-decoration: none;">tolyafilms.com</a>
           </div>
         </div>
       `;
 
-      // 4. Send Email via Resend API (Recipient + BCC Tolya Films)
-      const fromSender = env.FROM_EMAIL || "Tolya Films <release@tolyafilms.com>";
+      // 4. Send Email via Resend API (Recipient + BCC Tolya films)
+      const fromSender = env.FROM_EMAIL || "Tolya films <release@tolyafilms.com>";
 
       const resendPayload = {
         from: fromSender,
