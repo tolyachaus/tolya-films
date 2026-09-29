@@ -65,6 +65,20 @@ const MediaRelease: React.FC = () => {
   const emailRef = useRef<HTMLDivElement | null>(null);
   const consentRef = useRef<HTMLDivElement | null>(null);
   const signatureRef = useRef<HTMLDivElement | null>(null);
+  const successRef = useRef<HTMLDivElement | null>(null);
+
+  // Auto-scroll to success card on mobile & desktop
+  useEffect(() => {
+    if (status === 'success') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const timer = setTimeout(() => {
+        if (successRef.current) {
+          successRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   // Canvas signature ref
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -316,118 +330,145 @@ const MediaRelease: React.FC = () => {
           </div>
         </div>
 
-        {/* Header Branding */}
-        <div className="bg-white p-6 sm:p-10 rounded-sm border border-black/10 shadow-xl mb-8">
-          <div className="flex items-center justify-between border-b border-black/10 pb-6 mb-6">
-            <img src={ASSETS.logoBlack} alt="Tolya Films" className="h-8 w-auto opacity-80" />
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">
-              <ShieldCheck size={14} />
-              {isEn ? 'DSGVO / KUG Compliant' : 'DSGVO & § 22 KUG konform'}
-            </span>
-          </div>
+        {/* Header Branding (shown during form filling) */}
+        {status !== 'success' && (
+          <div className="bg-white p-6 sm:p-10 rounded-sm border border-black/10 shadow-xl mb-8">
+            <div className="flex items-center justify-between border-b border-black/10 pb-6 mb-6">
+              <img src={ASSETS.logoBlack} alt="Tolya Films" className="h-8 w-auto opacity-80" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">
+                <ShieldCheck size={14} />
+                {isEn ? 'DSGVO / KUG Compliant' : 'DSGVO & § 22 KUG konform'}
+              </span>
+            </div>
 
-          <h1 className="text-2xl sm:text-3xl font-display font-bold uppercase tracking-wide text-brand-dark mb-3">
-            {isEn ? 'Media Release & Consent Agreement' : 'Einwilligungserklärung zur Nutzung von Bild- und Videomaterial'}
-          </h1>
-          <p className="text-brand-dark/70 text-sm font-light leading-relaxed">
-            {isEn
-              ? 'Quick & simple online release for your wedding film footage. Please fill in your details and sign below.'
-              : 'Schnell & unkompliziert – Online-Freigabe für euer Hochzeitsvideo. Bitte füllt die Angaben aus und unterschreibt unten.'}
-          </p>
-        </div>
+            <h1 className="text-2xl sm:text-3xl font-display font-bold uppercase tracking-wide text-brand-dark mb-3">
+              {isEn ? 'Media Release & Consent Agreement' : 'Einwilligungserklärung zur Nutzung von Bild- und Videomaterial'}
+            </h1>
+            <p className="text-brand-dark/70 text-sm font-light leading-relaxed">
+              {isEn
+                ? 'Quick & simple online release for your wedding film footage. Please fill in your details and sign below.'
+                : 'Schnell & unkompliziert – Online-Freigabe für euer Hochzeitsvideo. Bitte füllt die Angaben aus und unterschreibt unten.'}
+            </p>
+          </div>
+        )}
 
         {status === 'success' && signedData ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-white p-6 sm:p-10 rounded-sm border border-brand-gold/30 shadow-2xl space-y-6"
-          >
-            <div className="flex items-center gap-3 p-4 bg-brand-gold/10 border border-brand-gold/30 rounded-xs text-brand-dark">
-              <CheckCircle2 size={28} className="text-brand-gold shrink-0" />
-              <div>
-                <h2 className="font-display font-bold uppercase text-sm sm:text-base">
-                  {isEn ? 'Release Consent Successfully Signed!' : 'Einwilligungserklärung erfolgreich unterzeichnet!'}
-                </h2>
-                <p className="text-xs opacity-80">
-                  {isEn
-                    ? 'A copy has been sent to your email. You can also print or save a PDF of your signed agreement below.'
-                    : 'Eine Kopie wurde an eure E-Mail gesendet. Ihr könnt dieses Dokument unten als PDF speichern oder ausdrucken.'}
-                </p>
-              </div>
-            </div>
-
-            {/* Signed Document Preview */}
-            <div className="border border-black/15 p-6 rounded-xs bg-brand-gray/20 space-y-6 text-xs text-brand-dark">
-              <div className="flex justify-between items-start border-b border-black/10 pb-4">
+          <div ref={successRef} className="py-2 sm:py-6">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="bg-white p-6 sm:p-10 rounded-sm border border-brand-gold/40 shadow-2xl space-y-6"
+            >
+              {/* Prominent Success Banner */}
+              <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-4 p-5 sm:p-6 bg-brand-gold/10 border border-brand-gold/30 rounded-xs text-brand-dark">
+                <div className="w-12 h-12 rounded-full bg-brand-gold/20 flex items-center justify-center shrink-0">
+                  <CheckCircle2 size={32} className="text-brand-gold" />
+                </div>
                 <div>
-                  <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Contract Partners' : 'Vertragspartner'}</p>
-                  <p className="text-sm font-bold">{signedData.partner1Name} & {signedData.partner2Name}</p>
-                  <p className="text-brand-dark/60">{isEn ? 'Location:' : 'Location:'} {signedData.location}</p>
-                  <p className="text-brand-dark/60">{isEn ? 'Wedding Date:' : 'Hochzeitsdatum:'} {signedData.weddingDate}</p>
-                  <p className="text-brand-dark/60">E-Mail: {signedData.email}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Timestamp' : 'Zeitstempel'}</p>
-                  <p className="text-brand-dark/80 font-mono text-[11px]">{signedData.timestamp}</p>
-                  <span className="inline-block mt-1 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-green-300">
-                    {isEn ? 'Legally Digitally Signed' : 'Rechtsgültig digital signiert'}
-                  </span>
+                  <h2 className="font-display font-bold uppercase text-base sm:text-lg text-brand-dark">
+                    {isEn ? 'Release Consent Successfully Signed!' : 'Einwilligungserklärung erfolgreich unterzeichnet!'}
+                  </h2>
+                  <p className="text-xs sm:text-sm text-brand-dark/80 mt-1 leading-relaxed">
+                    {isEn
+                      ? `A copy with your digital signature has been sent to ${signedData.email} and Tolya Films.`
+                      : `Eine Bestätigung mit eurer digitalen Unterschrift wurde soeben an ${signedData.email} und Tolya Films gesendet.`}
+                  </p>
                 </div>
               </div>
 
-              <div>
-                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Approved Outlets:' : 'Vereinbarte Kanäle:'}</p>
-                <p className="text-brand-dark/80 leading-relaxed">
-                  Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms).
-                </p>
+              {/* Top Action Buttons (immediate access on mobile) */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-1 print:hidden">
+                <button
+                  type="button"
+                  onClick={handleDownloadPDF}
+                  className="flex-1 bg-brand-dark text-white py-3.5 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-brand-gold transition-colors flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                >
+                  <Download size={16} />
+                  <span>{isEn ? 'Download Signed PDF Document' : 'Unterzeichnetes PDF-Dokument herunterladen'}</span>
+                </button>
+
+                <Link
+                  to="/"
+                  className="flex-1 bg-brand-gray text-brand-dark border border-black/15 py-3.5 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-black/10 transition-colors text-center flex items-center justify-center"
+                >
+                  {isEn ? 'Back to Website' : 'Zurück zur Startseite'}
+                </Link>
               </div>
 
-              <div>
-                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Legal Agreement & Revocation Right:' : 'Rechtliche Vereinbarung & Widerrufsrecht:'}</p>
-                <p className="text-brand-dark/70 leading-relaxed italic bg-white p-3 rounded-xs border border-black/10">
-                  {isEn
-                    ? '"We hereby grant Anatolii Rabochauskas (Tolya Films) explicit, non-exclusive, royalty-free, worldwide, and perpetual consent to use, publish, and distribute our wedding video and photo footage on the specified outlets for portfolio and promotional purposes under Art. 6(1)(a) EU GDPR & § 22 KUG. This consent can be revoked at any time with future effect."'
-                    : '"Wir erteilen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den angegebenen Plattformen gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden."'}
-                </p>
-              </div>
+              {/* Signed Document Preview */}
+              <div className="border border-black/15 p-6 rounded-xs bg-brand-gray/20 space-y-6 text-xs text-brand-dark">
+                <div className="flex justify-between items-start border-b border-black/10 pb-4">
+                  <div>
+                    <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Contract Partners' : 'Vertragspartner'}</p>
+                    <p className="text-sm font-bold">{signedData.partner1Name} & {signedData.partner2Name}</p>
+                    <p className="text-brand-dark/60">{isEn ? 'Location:' : 'Location:'} {signedData.location}</p>
+                    <p className="text-brand-dark/60">{isEn ? 'Wedding Date:' : 'Hochzeitsdatum:'} {signedData.weddingDate}</p>
+                    <p className="text-brand-dark/60">E-Mail: {signedData.email}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-brand-gold font-bold uppercase text-[10px] tracking-widest">{isEn ? 'Timestamp' : 'Zeitstempel'}</p>
+                    <p className="text-brand-dark/80 font-mono text-[11px]">{signedData.timestamp}</p>
+                    <span className="inline-block mt-1 bg-green-100 text-green-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-green-300">
+                      {isEn ? 'Legally Digitally Signed' : 'Rechtsgültig digital signiert'}
+                    </span>
+                  </div>
+                </div>
 
-              {/* Render Signature Image */}
-              <div className="pt-4 border-t border-black/10">
-                <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Captured Digital Signature:' : 'Erfasste digitale Unterschrift:'}</p>
-                <div className="bg-white p-3 rounded-xs border border-black/15 inline-block">
-                  <img src={signedData.signatureUrl} alt={isEn ? "Digital Signature" : "Digitale Unterschrift"} className="h-16 w-auto object-contain" />
+                <div>
+                  <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Approved Outlets:' : 'Vereinbarte Kanäle:'}</p>
+                  <p className="text-brand-dark/80 leading-relaxed">
+                    Webseite (tolyafilms.com), Instagram (@tolya.films), YouTube (@Tolya.filmsss), Vimeo (Tolya films), Facebook (Tolyafilms).
+                  </p>
+                </div>
+
+                <div>
+                  <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Legal Agreement & Revocation Right:' : 'Rechtliche Vereinbarung & Widerrufsrecht:'}</p>
+                  <p className="text-brand-dark/70 leading-relaxed italic bg-white p-3 rounded-xs border border-black/10">
+                    {isEn
+                      ? '"We hereby grant Anatolii Rabochauskas (Tolya Films) explicit, non-exclusive, royalty-free, worldwide, and perpetual consent to use, publish, and distribute our wedding video and photo footage on the specified outlets for portfolio and promotional purposes under Art. 6(1)(a) EU GDPR & § 22 KUG. This consent can be revoked at any time with future effect."'
+                      : '"Wir erteilen Anatolii Rabochauskas (Tolya Films) hiermit die ausdrückliche, unentgeltliche sowie zeitlich und räumlich unbeschränkte Einwilligung zur Nutzung, Veröffentlichung und Verbreitung der im Rahmen unserer Hochzeit erstellten Video- und Fotoaufnahmen auf den angegebenen Plattformen gemäß § 22 KUG & Art. 6 Abs. 1 lit. a DSGVO. Diese Einwilligung kann jederzeit mit Wirkung für die Zukunft widerrufen werden."'}
+                  </p>
+                </div>
+
+                {/* Render Signature Image */}
+                <div className="pt-4 border-t border-black/10">
+                  <p className="font-bold uppercase tracking-wider text-[11px] mb-2 text-brand-dark">{isEn ? 'Captured Digital Signature:' : 'Erfasste digitale Unterschrift:'}</p>
+                  <div className="bg-white p-3 rounded-xs border border-black/15 inline-block">
+                    <img src={signedData.signatureUrl} alt={isEn ? "Digital Signature" : "Digitale Unterschrift"} className="h-16 w-auto object-contain" />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Print & Download PDF Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-2 print:hidden">
-              <button
-                type="button"
-                onClick={handleDownloadPDF}
-                className="flex-1 bg-brand-dark text-white py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-brand-gold transition-colors flex items-center justify-center gap-2 shadow-md cursor-pointer"
-              >
-                <Download size={16} />
-                <span>{isEn ? 'Download PDF Document' : 'PDF-Dokument herunterladen'}</span>
-              </button>
+              {/* Bottom Print & Download PDF Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-2 print:hidden">
+                <button
+                  type="button"
+                  onClick={handleDownloadPDF}
+                  className="flex-1 bg-brand-dark text-white py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-brand-gold transition-colors flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                >
+                  <Download size={16} />
+                  <span>{isEn ? 'Download PDF Document' : 'PDF-Dokument herunterladen'}</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={handlePrint}
-                className="flex-1 bg-brand-gray text-brand-dark border border-black/15 py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-black/10 transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Printer size={16} />
-                <span>{isEn ? 'Print Document' : 'Drucken'}</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="flex-1 bg-brand-gray text-brand-dark border border-black/15 py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-black/10 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Printer size={16} />
+                  <span>{isEn ? 'Print Document' : 'Drucken'}</span>
+                </button>
 
-              <Link
-                to="/"
-                className="flex-1 bg-brand-gray text-brand-dark border border-black/15 py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-black/10 transition-colors text-center flex items-center justify-center"
-              >
-                {isEn ? 'Back to Website' : 'Zurück zur Webseite'}
-              </Link>
-            </div>
-          </motion.div>
+                <Link
+                  to="/"
+                  className="flex-1 bg-brand-gray text-brand-dark border border-black/15 py-3 px-4 rounded-xs text-xs uppercase tracking-[0.2em] font-bold hover:bg-black/10 transition-colors text-center flex items-center justify-center"
+                >
+                  {isEn ? 'Back to Website' : 'Zurück zur Webseite'}
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         ) : (
           <form noValidate onSubmit={handleSubmit} className="bg-white p-6 sm:p-10 rounded-sm border border-black/10 shadow-xl space-y-8">
             

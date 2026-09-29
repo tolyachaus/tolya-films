@@ -1,4 +1,5 @@
 import { jsPDF } from 'jspdf';
+import { LOGO_BLACK_BASE64 } from './logoBase64';
 
 export interface ReleaseFormData {
   partner1Name: string;
@@ -22,17 +23,18 @@ export const generateReleasePDF = (data: ReleaseFormData): jsPDF => {
 
   const pageWidth = doc.internal.pageSize.getWidth();
 
-  // 1. Header Banner
-  doc.setFillColor(26, 26, 26);
-  doc.rect(0, 0, pageWidth, 28, 'F');
-
-  doc.setTextColor(255, 255, 255);
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(16);
-  doc.text('TOLYA FILMS', 15, 18);
+  // 1. Header (Clean White Luxury Design with Official Tolya Films Logo)
+  try {
+    doc.addImage(LOGO_BLACK_BASE64, 'PNG', 15, 10, 35, 20);
+  } catch (e) {
+    doc.setTextColor(26, 26, 26);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.text('TOLYA FILMS', 15, 20);
+  }
 
   doc.setFontSize(8.5);
-  doc.setFont('helvetica', 'normal');
+  doc.setFont('helvetica', 'bold');
   doc.setTextColor(197, 160, 89);
   doc.text(
     isEn ? 'EU GDPR (ART. 6) & § 22 KUG COMPLIANT' : 'DSGVO & § 22 KUG KONFORM',
@@ -41,28 +43,38 @@ export const generateReleasePDF = (data: ReleaseFormData): jsPDF => {
     { align: 'right' }
   );
 
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(130, 130, 130);
+  doc.text('tolyafilms.com · Wedding Filmmaker', pageWidth - 15, 23, { align: 'right' });
+
+  // Subtle divider line
+  doc.setDrawColor(225, 225, 225);
+  doc.setLineWidth(0.3);
+  doc.line(15, 33, pageWidth - 15, 33);
+
   // 2. Document Title
   doc.setTextColor(26, 26, 26);
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(14);
+  doc.setFontSize(13);
   doc.text(
     isEn ? 'MEDIA RELEASE & CONSENT AGREEMENT' : 'EINWILLIGUNGSERKLÄRUNG',
     15,
-    40
+    41
   );
 
-  doc.setFontSize(9.5);
+  doc.setFontSize(8.5);
   doc.setFont('helvetica', 'normal');
-  doc.setTextColor(100, 100, 100);
+  doc.setTextColor(110, 110, 110);
   doc.text(
     isEn
       ? 'for Video & Photo Material (Art. 6 GDPR / § 22 KUG Image Copyright)'
       : 'zur Nutzung von Bild- und Videomaterial (§ 22 KUG / Art. 6 Abs. 1 lit. a DSGVO)',
     15,
-    46
+    46.5
   );
 
-  doc.setDrawColor(200, 200, 200);
+  doc.setDrawColor(225, 225, 225);
   doc.line(15, 50, pageWidth - 15, 50);
 
   // 3. Couple & Event Details Box
