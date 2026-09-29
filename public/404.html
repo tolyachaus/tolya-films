@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Tolya Films</title>
+  <script>
+    // SPA redirect for GitHub Pages + HashRouter
+    var pathname = window.location.pathname;
+    var search = window.location.search;
+    var hash = window.location.hash;
+    
+    // Redirect /release -> /#/release, /documentary -> /#/documentary, etc.
+    if (pathname && pathname !== '/') {
+      window.location.replace('/#' + pathname + search + hash);
+    } else {
+      window.location.replace('/' + search + hash);
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
