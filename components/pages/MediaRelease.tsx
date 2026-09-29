@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, ShieldCheck, PenTool, RotateCcw, Send, Globe, Instagram, Youtube, Film, Facebook, Printer, Download } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ShieldCheck, PenTool, RotateCcw, Send, Globe, Instagram, Youtube, Film, Facebook, Printer, Download, AlertCircle } from 'lucide-react';
 import { ASSETS } from '../../types';
 import { useLanguage } from '../../src/context/LanguageContext';
 import { generateReleasePDF } from '../../src/utils/pdfGenerator';
+import { sendReleaseEmailWithPDF } from '../../src/utils/emailService';
 
 const MediaRelease: React.FC = () => {
   const { lang, setLang } = useLanguage();
@@ -54,6 +55,7 @@ const MediaRelease: React.FC = () => {
 
   const [isSigned, setIsSigned] = useState(false);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Input & Section Refs for Smooth Auto-Scroll Validation
   const partner1Ref = useRef<HTMLDivElement | null>(null);
@@ -239,15 +241,31 @@ const MediaRelease: React.FC = () => {
     };
 
     setSignedData(currentSignedData);
+    setErrorMessage(null);
 
-    // Send email with attached PDF via Resend API directly to client & Tolya Films
+    // Send email with attached PDF via Cloudflare Worker -> Resend API
     try {
-      await sendReleaseEmailWithPDF(currentSignedData);
-    } catch (err) {
-      console.error('Resend API error:', err);
+      const result = await sendReleaseEmailWithPDF(currentSignedData);
+      if (result.success) {
+        setStatus('success');
+      } else {
+        console.error('Email delivery error:', result.error);
+        setErrorMessage(
+          isEn
+            ? `E-mail delivery issue: ${result.error || 'Unknown error'}. You can try submitting again, or download your legally signed PDF directly below.`
+            : `Hinweis zum E-Mail-Versand: ${result.error || 'Unbekannter Fehler'}. Sie können es erneut versuchen oder das rechtsgültig unterzeichnete PDF direkt unten herunterladen.`
+        );
+        setStatus('error');
+      }
+    } catch (err: any) {
+      console.error('Submission error:', err);
+      setErrorMessage(
+        isEn
+          ? `An unexpected network error occurred: ${err.message || err}. Please try again.`
+          : `Ein unerwarteter Netzwerkfehler ist aufgetreten: ${err.message || err}. Bitte versuchen Sie es erneut.`
+      );
+      setStatus('error');
     }
-
-    setStatus('success');
   };
 
   const handleDownloadPDF = () => {
@@ -710,6 +728,29 @@ const MediaRelease: React.FC = () => {
                 </p>
               )}
             </div>
+
+            {/* ── ERROR NOTICE (if email delivery failed) ── */}
+            {status === 'error' && errorMessage && (
+              <div className="p-4 bg-red-50 border border-red-200 rounded-xs text-red-800 text-xs sm:text-sm space-y-2">
+                <div className="flex items-center gap-2 font-bold text-red-900">
+                  <AlertCircle size={18} className="shrink-0 text-red-600" />
+                  <span>{isEn ? 'Submission Problem' : 'Übertragungsfehler'}</span>
+                </div>
+                <p className="leading-relaxed">{errorMessage}</p>
+                {signedData && (
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={handleDownloadPDF}
+                      className="px-3.5 py-2 bg-red-800 text-white rounded-xs text-xs font-semibold hover:bg-red-900 transition-colors inline-flex items-center gap-2 cursor-pointer shadow-sm"
+                    >
+                      <Download size={14} />
+                      <span>{isEn ? 'Download Signed PDF Document' : 'Unterzeichnetes PDF-Dokument herunterladen'}</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* ── SUBMIT BUTTON ── */}
             <div className="pt-4 border-t border-black/10">
